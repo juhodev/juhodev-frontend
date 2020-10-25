@@ -16,17 +16,8 @@ module.exports = {
 				loader: 'awesome-typescript-loader',
 			},
 			{
-				test: /\.scss$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					'sass-loader',
-					'postcss-loader',
-				],
-			},
-			{
 				test: /\.css$/,
-				use: ['css-loader'],
+				use: ['style-loader', 'css-loader', 'postcss-loader'],
 			},
 			{
 				test: /\.(png|jp(e*)g|svg|gif)$/,

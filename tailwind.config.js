@@ -1,4 +1,5 @@
 module.exports = {
+	purge: ['./**/*.html'],
 	plugins: [require('@tailwindcss/ui')],
 	theme: {
 		fontFamily: {
