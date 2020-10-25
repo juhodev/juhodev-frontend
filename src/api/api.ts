@@ -36,5 +36,5 @@ export async function getToken(password: string): Promise<string> {
 }
 
 function getURL() {
-	return `http://${window.location.hostname}:8080`;
+	return window.location.origin;
 }

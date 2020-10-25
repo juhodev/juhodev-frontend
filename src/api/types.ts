@@ -12,6 +12,7 @@ export enum SubmissionType {
 	CLIP = 'CLIP',
 	IMAGE = 'IMAGE',
 	QUOTE = 'QUOTE',
+	BAAVO = 'BAAVO',
 }
 
 export type ClipSubmission = {
@@ -57,4 +58,11 @@ export const ERROR = {
 export type CodeResponse = {
 	error: boolean;
 	jwt?: string;
+};
+
+export type BaavoSubmission = {
+	name: string;
+	views: number;
+	submission_by: string;
+	submission_date: number;
 };

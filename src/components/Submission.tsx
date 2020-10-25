@@ -27,8 +27,10 @@ const Submission = (props: Props) => {
 		submissionContent = (submission as ClipSubmission).original_link;
 	} else if (submission.submission_type === SubmissionType.IMAGE) {
 		submissionContent = (submission as ImageSubmission).original_link;
-	} else {
+	} else if (submission.submission_type === SubmissionType.QUOTE) {
 		submissionContent = (submission as QuoteSubmission).content;
+	} else {
+		submissionContent = '';
 	}
 
 	const beautifyType = (type: SubmissionType) => {
@@ -79,7 +81,9 @@ const Submission = (props: Props) => {
 							src={Paint}
 							text={beautifyType(submission.submission_type)}
 						/>
-						<TextIcon src={Source} text={submissionContent} />
+						{submissionContent.length > 0 && (
+							<TextIcon src={Source} text={submissionContent} />
+						)}
 					</div>
 				</div>
 			</div>
