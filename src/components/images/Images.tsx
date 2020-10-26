@@ -4,11 +4,12 @@ import {
 	ImageRouteResponse,
 	ImageSubmission,
 	UserData,
-} from '../api/types';
-import { fetchImages } from '../api/api';
-import User from './User';
-import SubmissionFeed from './SubmissionFeed';
-import LinkDiscord from './LinkDiscord';
+} from '../../api/types';
+import { fetchImages } from '../../api/api';
+import User from '../User';
+import SubmissionFeed from '../SubmissionFeed';
+import LinkDiscord from '../LinkDiscord';
+import ImageUpload from './ImageUpload';
 
 const { useState, useEffect } = React;
 
@@ -37,7 +38,10 @@ const Images = () => {
 
 	const fetchData = async () => {
 		const response: ImageRouteResponse = await fetchImages();
+		handleResponse(response);
+	};
 
+	const handleResponse = (response: ImageRouteResponse) => {
 		if (response.error) {
 			if (response.errorCode === ImageError.DISCORD_NOT_AUTHENTICATED) {
 				setDiscordAuthenticated(false);
@@ -47,6 +51,11 @@ const Images = () => {
 				window.alert('You are not on the server');
 			}
 
+			if (response.errorCode === ImageError.NAME_ALREADY_EXISTS) {
+				window.alert('Image with that name already exists!');
+			}
+
+			setLoading(false);
 			return;
 		}
 
@@ -82,7 +91,12 @@ const Images = () => {
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<SubmissionFeed title="Submissions" submissions={submissions} />
+			<div className="flex flex-col">
+				<ImageUpload
+					onUpdate={(response) => handleResponse(response)}
+				/>
+				<SubmissionFeed title="Submissions" submissions={submissions} />
+			</div>
 		</div>
 	);
 };

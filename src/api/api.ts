@@ -61,6 +61,22 @@ export async function fetchClips(): Promise<ClipsRouteResponse> {
 	return response.json();
 }
 
+export async function sendImage(
+	name: string,
+	link: string,
+): Promise<ImageRouteResponse> {
+	const response = await fetch(`${getURL()}/api/images`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+		body: JSON.stringify({ name, link }),
+	});
+
+	return response.json();
+}
+
 function getURL() {
 	const { hostname } = window.location;
 

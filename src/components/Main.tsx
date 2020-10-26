@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Auth from './Auth';
 import Clips from './Clips';
 import Home from './Home';
-import Images from './Images';
+import Images from './images/Images';
 import Landing from './Landing';
 import Navigation from './Navigation';
 

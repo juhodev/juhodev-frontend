@@ -47,6 +47,7 @@ const Clips = () => {
 				window.alert('You are not on the server');
 			}
 
+			setLoading(false);
 			return;
 		}
 

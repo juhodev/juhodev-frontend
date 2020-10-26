@@ -41,6 +41,7 @@ const Home = () => {
 				window.alert('You are not on the server');
 			}
 
+			setLoading(false);
 			return;
 		}
 
