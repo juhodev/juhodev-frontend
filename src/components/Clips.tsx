@@ -7,6 +7,7 @@ import {
 	ClipsError,
 } from '../api/types';
 import { startAuthFlow } from '../ts/auth';
+import LinkDiscord from './LinkDiscord';
 import SubmissionFeed from './SubmissionFeed';
 import User from './User';
 
@@ -67,16 +68,7 @@ const Clips = () => {
 						snowflake={userData.snowflake}
 					/>
 				</div>
-				<div className="flex flex-col border-solid border-2 border-gray-800 w-1/3 p-4 m-4 h-3/4">
-					<button
-						className="bg-discord px-8 py-2 rounded text-gray-200"
-						onClick={() => {
-							startAuthFlow();
-						}}
-					>
-						Link your Discord account
-					</button>
-				</div>
+				<LinkDiscord />
 			</div>
 		);
 	}
