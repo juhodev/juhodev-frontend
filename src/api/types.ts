@@ -6,6 +6,13 @@ export type UserBasicData = {
 	submissions: UserSubmission[];
 };
 
+export type UserData = {
+	avatar: string;
+	name: string;
+	tag: string;
+	snowflake: string;
+};
+
 export type UserSubmission = ClipSubmission | ImageSubmission | QuoteSubmission;
 
 export enum SubmissionType {
@@ -53,6 +60,7 @@ export type UserRouteResponse = {
 
 export const ERROR = {
 	DISCORD_NOT_AUTHENTICATED: 0,
+	USER_NOT_ON_SERVER: 1,
 };
 
 export type CodeResponse = {
@@ -65,4 +73,28 @@ export type BaavoSubmission = {
 	views: number;
 	submission_by: string;
 	submission_date: number;
+};
+
+export type ImageRouteResponse = {
+	error: boolean;
+	errorCode?: number;
+	submissions?: ImageSubmission[];
+	userData?: UserData;
+};
+
+export const ImageError = {
+	DISCORD_NOT_AUTHENTICATED: 0,
+	USER_NOT_ON_SERVER: 1,
+};
+
+export type ClipsRouteResponse = {
+	error: boolean;
+	errorCode?: number;
+	submissions?: ClipSubmission[];
+	userData?: UserData;
+};
+
+export const ClipsError = {
+	DISCORD_NOT_AUTHENTICATED: 0,
+	USER_NOT_ON_SERVER: 1,
 };

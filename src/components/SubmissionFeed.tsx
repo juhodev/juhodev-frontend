@@ -4,6 +4,7 @@ import Submission from './Submission';
 
 type Props = {
 	submissions: UserSubmission[];
+	title: string;
 };
 
 const SubmissionFeed = (props: Props) => {
@@ -16,7 +17,8 @@ const SubmissionFeed = (props: Props) => {
 	);
 
 	return (
-		<div className="flex flex-col border-solid border-2 border-gray-800 w-1/3 p-4 m-4 h-3/4 overflow-y-scroll">
+		<div className="border-solid border-2 border-gray-800 p-4 m-4 overflow-y-scroll">
+			<span className="text-gray-100">{props.title}</span>
 			{submissionComponents}
 		</div>
 	);

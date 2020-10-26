@@ -1,20 +1,28 @@
 import * as React from 'react';
+import {
+	ImageError,
+	ImageRouteResponse,
+	ImageSubmission,
+	UserData,
+} from '../api/types';
+import { fetchImages } from '../api/api';
 import User from './User';
-import { fetchUserData } from '../api/api';
-import { ERROR, UserBasicData, UserRouteResponse } from '../api/types';
-import SubmissionFeed from './SubmissionFeed';
 import { startAuthFlow } from '../ts/auth';
+import SubmissionFeed from './SubmissionFeed';
 
 const { useState, useEffect } = React;
 
-const Home = () => {
-	const [discordAuthenticated, setDiscordAuthenticated] = useState(false);
-	const [userData, setUserData] = useState<UserBasicData>({
-		avatar: undefined,
-		discord_name: 'User',
-		discord_tag: '0000',
+const Images = () => {
+	const [loading, setLoading] = useState<boolean>(true);
+	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
+		false,
+	);
+	const [submissions, setSubmissions] = useState<ImageSubmission[]>([]);
+	const [userData, setUserData] = useState<UserData>({
+		avatar: 'http://placekitten/500/500',
+		name: 'User',
 		snowflake: '',
-		submissions: [],
+		tag: '0000',
 	});
 
 	const jwt = localStorage.getItem('jwt');
@@ -28,24 +36,24 @@ const Home = () => {
 	}, []);
 
 	const fetchData = async () => {
-		const response: UserRouteResponse = await fetchUserData();
+		const response: ImageRouteResponse = await fetchImages();
 
 		if (response.error) {
-			if (response.errorCode === ERROR.DISCORD_NOT_AUTHENTICATED) {
+			if (response.errorCode === ImageError.DISCORD_NOT_AUTHENTICATED) {
 				setDiscordAuthenticated(false);
 			}
 
-			if (response.errorCode === ERROR.USER_NOT_ON_SERVER) {
+			if (response.errorCode === ImageError.USER_NOT_ON_SERVER) {
 				window.alert('You are not on the server');
 			}
 
 			return;
 		}
 
-		if (response.userData.snowflake !== undefined) {
-			setDiscordAuthenticated(true);
-		}
+		setDiscordAuthenticated(true);
+		setSubmissions(response.submissions);
 		setUserData(response.userData);
+		setLoading(false);
 	};
 
 	if (!discordAuthenticated) {
@@ -54,8 +62,8 @@ const Home = () => {
 				<div className="">
 					<User
 						avatar={userData.avatar}
-						discordName={userData.discord_name}
-						discordTag={userData.discord_tag}
+						discordName={userData.name}
+						discordTag={userData.tag}
 						snowflake={userData.snowflake}
 					/>
 				</div>
@@ -78,17 +86,14 @@ const Home = () => {
 			<div className="">
 				<User
 					avatar={userData.avatar}
-					discordName={userData.discord_name}
-					discordTag={userData.discord_tag}
+					discordName={userData.name}
+					discordTag={userData.tag}
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<SubmissionFeed
-				title="Your submissions"
-				submissions={userData.submissions}
-			/>
+			<SubmissionFeed title="Submissions" submissions={submissions} />
 		</div>
 	);
 };
 
-export default Home;
+export default Images;

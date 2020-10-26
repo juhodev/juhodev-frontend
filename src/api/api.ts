@@ -1,4 +1,9 @@
-import { CodeResponse, UserRouteResponse } from './types';
+import {
+	ClipsRouteResponse,
+	CodeResponse,
+	ImageRouteResponse,
+	UserRouteResponse,
+} from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
 	const response = await fetch(`${getURL()}/api/user`, {
@@ -34,6 +39,26 @@ export async function getToken(password: string): Promise<string> {
 	const json = await response.json();
 
 	return json['token'];
+}
+
+export async function fetchImages(): Promise<ImageRouteResponse> {
+	const response = await fetch(`${getURL()}/api/images`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchClips(): Promise<ClipsRouteResponse> {
+	const response = await fetch(`${getURL()}/api/clips`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
 }
 
 function getURL() {

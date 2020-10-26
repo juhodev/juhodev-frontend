@@ -14,6 +14,7 @@ const Navigation = () => {
 	const paths: Path[] = [
 		{ to: '/home', name: 'Home' },
 		{ to: '/images', name: 'Images' },
+		{ to: '/clips', name: 'Clips' },
 	];
 
 	const links: JSX.Element[] = paths.map(
@@ -37,7 +38,7 @@ const Navigation = () => {
 		},
 	);
 
-	return <div className="pl-12 pt-2 pb-4 mx-1/5">{links}</div>;
+	return <div className="pl-12 mt-2 mb-4 mx-1/5">{links}</div>;
 };
 
 export default Navigation;
