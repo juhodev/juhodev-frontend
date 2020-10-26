@@ -64,7 +64,7 @@ const Submission = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col py-2 border-b-2 border-gray-800">
 			<div className="flex flex-row text-gray-100">
 				<span className="font-bold text-xl text-purple-800 flex-1">
 					{submission.name}
@@ -87,19 +87,26 @@ const Submission = (props: Props) => {
 						<TextIcon
 							src={Eye}
 							text={submission.views.toString()}
+							truncate={true}
 						/>
 						<TextIcon
 							src={Person}
 							text={submission.submission_by}
+							truncate={true}
 						/>
 					</div>
 					<div className="flex flex-col">
 						<TextIcon
 							src={Paint}
 							text={beautifyType(submission.submission_type)}
+							truncate={true}
 						/>
 						{submissionContent.length > 0 && (
-							<TextIcon src={Source} text={submissionContent} />
+							<TextIcon
+								src={Source}
+								text={submissionContent}
+								truncate={true}
+							/>
 						)}
 					</div>
 				</div>
