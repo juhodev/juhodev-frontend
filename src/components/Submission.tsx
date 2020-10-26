@@ -43,6 +43,23 @@ const Submission = (props: Props) => {
 
 			case SubmissionType.QUOTE:
 				return 'Quote';
+
+			case SubmissionType.BAAVO:
+				return 'Baavo';
+		}
+	};
+
+	const getImgSource = (submission: UserSubmission) => {
+		switch (submission.submission_type) {
+			case SubmissionType.QUOTE:
+			case SubmissionType.CLIP:
+				return 'http://placekitten.com/500/500';
+
+			case SubmissionType.IMAGE:
+				return `${window.location.origin}/img/${submission.name}`;
+
+			case SubmissionType.BAAVO:
+				return `${window.location.origin}/baavo/${submission.name}`;
 		}
 	};
 
@@ -63,7 +80,7 @@ const Submission = (props: Props) => {
 			<div className="flex items-center">
 				<img
 					className="w-24 h-12 rounded-sm"
-					src="http://placekitten.com/500/500"
+					src={getImgSource(submission)}
 				/>
 				<div className="flex flex-row text-lg text-gray-100 ml-4">
 					<div className="flex flex-col">
