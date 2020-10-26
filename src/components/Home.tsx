@@ -9,6 +9,7 @@ import LinkDiscord from './LinkDiscord';
 const { useState, useEffect } = React;
 
 const Home = () => {
+	const [loading, setLoading] = useState<boolean>(true);
 	const [discordAuthenticated, setDiscordAuthenticated] = useState(false);
 	const [userData, setUserData] = useState<UserBasicData>({
 		avatar: undefined,
@@ -47,9 +48,10 @@ const Home = () => {
 			setDiscordAuthenticated(true);
 		}
 		setUserData(response.userData);
+		setLoading(false);
 	};
 
-	if (!discordAuthenticated) {
+	if (!discordAuthenticated && !loading) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="">

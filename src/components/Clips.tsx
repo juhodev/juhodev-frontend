@@ -6,7 +6,6 @@ import {
 	ClipsRouteResponse,
 	ClipsError,
 } from '../api/types';
-import { startAuthFlow } from '../ts/auth';
 import LinkDiscord from './LinkDiscord';
 import SubmissionFeed from './SubmissionFeed';
 import User from './User';
@@ -57,7 +56,7 @@ const Clips = () => {
 		setLoading(false);
 	};
 
-	if (!discordAuthenticated) {
+	if (!discordAuthenticated && !loading) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="">

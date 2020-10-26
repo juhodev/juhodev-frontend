@@ -7,7 +7,6 @@ import {
 } from '../api/types';
 import { fetchImages } from '../api/api';
 import User from './User';
-import { startAuthFlow } from '../ts/auth';
 import SubmissionFeed from './SubmissionFeed';
 import LinkDiscord from './LinkDiscord';
 
@@ -57,7 +56,7 @@ const Images = () => {
 		setLoading(false);
 	};
 
-	if (!discordAuthenticated) {
+	if (!discordAuthenticated && !loading) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="">
