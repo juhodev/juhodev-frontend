@@ -15,6 +15,7 @@ export async function sendUserCode(code: string): Promise<CodeResponse> {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
 		},
 		body: JSON.stringify({ code }),
 	});
@@ -36,5 +37,11 @@ export async function getToken(password: string): Promise<string> {
 }
 
 function getURL() {
+	const { hostname } = window.location;
+
+	if (hostname === 'localhost') {
+		return 'http://localhost:8080';
+	}
+
 	return window.location.origin;
 }

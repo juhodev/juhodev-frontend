@@ -8,7 +8,7 @@ export const startAuthFlow = () => {
 
 	let redirectUrl: string;
 
-	if (window.location.origin === 'http://localhost:8080') {
+	if (window.location.hostname === 'localhost') {
 		redirectUrl = 'http%3A%2F%2Flocalhost%3A8888%2Fauth';
 	} else {
 		redirectUrl = 'https%3A%2F%2Fjuho.dev%2Fauth';

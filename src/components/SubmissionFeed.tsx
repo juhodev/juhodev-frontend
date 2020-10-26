@@ -15,7 +15,11 @@ const SubmissionFeed = (props: Props) => {
 		},
 	);
 
-	return <div className="flex flex-col border-solid border-2 border-gray-800 w-1/3 p-4 m-4 h-3/4">{submissionComponents}</div>;
+	return (
+		<div className="flex flex-col border-solid border-2 border-gray-800 w-1/3 p-4 m-4 h-3/4 overflow-y-scroll">
+			{submissionComponents}
+		</div>
+	);
 };
 
 export default SubmissionFeed;
