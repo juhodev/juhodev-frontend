@@ -45,9 +45,7 @@ const ImageUpload = (props: Props) => {
 	};
 
 	const imgSrcLink: string =
-		previewLink === undefined
-			? 'http://via.placeholder.com/500x500'
-			: previewLink;
+		previewLink === '' ? 'http://via.placeholder.com/500x500' : previewLink;
 
 	return (
 		<div className="flex flex-row border-solid border-2 border-gray-800 p-4 m-4">
@@ -68,7 +66,9 @@ const ImageUpload = (props: Props) => {
 				/>
 			</div>
 			<div className="flex flex-col justify-center items-center mx-16">
-				<img className="w-30 h-20 rounded mb-4" src={imgSrcLink} />
+				<div className="w-30 h-20 rounded mb-4 bg-gray-700 flex justify-center items-center">
+					<img className="max-w-full max-h-20" src={imgSrcLink} />
+				</div>
 				<button
 					className="bg-blue-500 px-6 py-1 rounded text-gray-200"
 					onClick={() => sendImageAndUpdateSubmissions()}

@@ -50,6 +50,10 @@ const Submission = (props: Props) => {
 	};
 
 	const getImgSource = (submission: UserSubmission) => {
+		if (submission.name === 'Nothing here') {
+			return (submission as ImageSubmission).original_link;
+		}
+
 		switch (submission.submission_type) {
 			case SubmissionType.QUOTE:
 			case SubmissionType.CLIP:
