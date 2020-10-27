@@ -51,6 +51,16 @@ export async function fetchImages(): Promise<ImageRouteResponse> {
 	return response.json();
 }
 
+export async function fetchImage(image: string): Promise<ImageRouteResponse> {
+	const response = await fetch(`${getURL()}/api/images/${image}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
 export async function fetchClips(): Promise<ClipsRouteResponse> {
 	const response = await fetch(`${getURL()}/api/clips`, {
 		method: 'GET',
@@ -77,7 +87,7 @@ export async function sendImage(
 	return response.json();
 }
 
-function getURL() {
+export function getURL() {
 	const { hostname } = window.location;
 
 	if (hostname === 'localhost') {

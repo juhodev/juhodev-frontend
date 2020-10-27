@@ -5,6 +5,7 @@ import Auth from './Auth';
 import Clips from './Clips';
 import Home from './Home';
 import Images from './images/Images';
+import ImageView from './images/ImageView';
 import Landing from './Landing';
 import Navigation from './Navigation';
 
@@ -15,6 +16,7 @@ const Main = () => {
 			<Route exact path="/" component={Landing} />
 			<Route path="/home" component={Home} />
 			<Route path="/images" component={Images} />
+			<Route path="/image" component={ImageView} />
 			<Route path="/clips" component={Clips} />
 			<Route path="/auth" component={Auth} />
 		</Router>

@@ -63,12 +63,33 @@ const Submission = (props: Props) => {
 		}
 	};
 
+	const getSubmissionName = (submission: UserSubmission) => {
+		switch (submission.submission_type) {
+			case SubmissionType.IMAGE:
+				return (
+					<span className="font-bold text-xl text-purple-800 flex-1">
+						<a
+							href={`${window.location.origin}/image?image=${submission.name}`}
+						>
+							{' '}
+							{submission.name}{' '}
+						</a>
+					</span>
+				);
+
+			default:
+				return (
+					<span className="font-bold text-xl text-purple-800 flex-1">
+						{submission.name}
+					</span>
+				);
+		}
+	};
+
 	return (
 		<div className="flex flex-col py-2 border-b-2 border-gray-800">
 			<div className="flex flex-row text-gray-100">
-				<span className="font-bold text-xl text-purple-800 flex-1">
-					{submission.name}
-				</span>
+				{getSubmissionName(submission)}
 				<TextIcon
 					src={Today}
 					text={`${timeSince(
