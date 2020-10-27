@@ -1,29 +1,36 @@
 import * as React from 'react';
-import { fetchImage } from '../../api/api';
-import { ImageError, SubmissionType } from '../../api/types';
-import { ImageRouteResponse, ImageSubmission, UserData } from '../../api/types';
+import { fetchClip } from '../../api/api';
+import {
+	ClipsRouteResponse,
+	ClipSubmission,
+	ERROR,
+	SubmissionType,
+	UserData,
+} from '../../api/types';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
-import Image from './Image';
+import Clip from './Clip';
 
 const { useState, useEffect } = React;
 
-const ImageView = () => {
+const ClipView = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
 		false,
 	);
-	const [submission, setSubmission] = useState<ImageSubmission>({
+	const [submission, setSubmission] = useState<ClipSubmission>({
 		name: 'Loading',
-		original_link:
-			'https://cdn.discordapp.com/attachments/324620441195118592/770571708365013032/xkcd.PNG',
+		original_link: '',
+		clip_length: 30,
+		clip_start: 0,
 		submission_by: 'User#0000',
 		submission_date: 0,
-		submission_type: SubmissionType.IMAGE,
+		submission_type: SubmissionType.CLIP,
 		views: 0,
 	});
 	const [userData, setUserData] = useState<UserData>({
-		avatar: 'http://placekitten/500/500',
+		avatar:
+			'https://cdn.discordapp.com/attachments/324620441195118592/770571708365013032/xkcd.PNG',
 		name: 'User',
 		snowflake: '',
 		tag: '0000',
@@ -39,31 +46,29 @@ const ImageView = () => {
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
-		const image: string = searchParams.get('image');
+		const image: string = searchParams.get('clip');
 
 		fetchData(image);
 	}, []);
 
-	const fetchData = async (image: string) => {
-		const response: ImageRouteResponse = await fetchImage(image);
+	const fetchData = async (clip: string) => {
+		const response: ClipsRouteResponse = await fetchClip(clip);
 
 		if (response.error) {
-			if (response.errorCode === ImageError.DISCORD_NOT_AUTHENTICATED) {
-				setDiscordAuthenticated(false);
-			}
+			switch (response.errorCode) {
+				case ERROR.DISCORD_NOT_AUTHENTICATED:
+					setDiscordAuthenticated(false);
+					break;
 
-			if (response.errorCode === ImageError.USER_NOT_ON_SERVER) {
-				window.alert('You are not on the server');
-			}
+				case ERROR.USER_NOT_ON_SERVER:
+					window.alert('You are not on the server');
+					break;
 
-			if (response.errorCode === ImageError.NAME_ALREADY_EXISTS) {
-				window.alert('Image with that name already exists!');
-			}
-
-			if (response.errorCode === ImageError.IMAGE_DOES_NOT_EXIST) {
-				setDiscordAuthenticated(true);
-				setSubmission(response.submissions[0]);
-				setUserData(response.userData);
+				case ERROR.CLIP_DOES_NOT_EXIST:
+					setDiscordAuthenticated(true);
+					setSubmission(response.submissions[0]);
+					setUserData(response.userData);
+					break;
 			}
 
 			setLoading(false);
@@ -103,10 +108,10 @@ const ImageView = () => {
 				/>
 			</div>
 			<div className="w-1/3">
-				<Image image={submission} />
+				<Clip clip={submission} />
 			</div>
 		</div>
 	);
 };
 
-export default ImageView;
+export default ClipView;

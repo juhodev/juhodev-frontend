@@ -80,6 +80,17 @@ const Submission = (props: Props) => {
 					</span>
 				);
 
+			case SubmissionType.CLIP:
+				return (
+					<span className="font-bold text-xl text-purple-800 flex-1">
+						<a
+							href={`${window.location.origin}/clip?clip=${submission.name}`}
+						>
+							{submission.name}
+						</a>
+					</span>
+				);
+
 			default:
 				return (
 					<span className="font-bold text-xl text-purple-800 flex-1">

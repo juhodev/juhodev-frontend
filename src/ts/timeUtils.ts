@@ -35,3 +35,12 @@ export function dateFormat(date: Date): string {
 		date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
 	}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
 }
+
+export function formatSeconds(seconds: number): string {
+	const minutes: number = Math.floor(seconds / 60);
+	const leftoverSeconds: number = seconds - minutes * 60;
+
+	return `${minutes}:${
+		leftoverSeconds < 10 ? '0' + leftoverSeconds : leftoverSeconds
+	}`;
+}

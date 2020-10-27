@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { fetchClips } from '../api/api';
+import { fetchClips } from '../../api/api';
 import {
 	ClipSubmission,
 	UserData,
 	ClipsRouteResponse,
 	ClipsError,
-} from '../api/types';
-import LinkDiscord from './LinkDiscord';
-import SubmissionFeed from './SubmissionFeed';
-import User from './User';
+} from '../../api/types';
+import LinkDiscord from '../LinkDiscord';
+import SubmissionFeed from '../SubmissionFeed';
+import User from '../User';
 
 const { useState, useEffect } = React;
 

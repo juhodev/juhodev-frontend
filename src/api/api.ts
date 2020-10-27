@@ -71,6 +71,16 @@ export async function fetchClips(): Promise<ClipsRouteResponse> {
 	return response.json();
 }
 
+export async function fetchClip(clip: string): Promise<ClipsRouteResponse> {
+	const response = await fetch(`${getURL()}/api/clips/${clip}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
 export async function sendImage(
 	name: string,
 	link: string,

@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-type Props = { title: string; subText: string; truncate?: boolean };
+type Props = {
+	title: string;
+	subText: string;
+	truncate?: boolean;
+	link?: boolean;
+};
 
 const Text = (props: Props) => {
 	let subTextClass: string;
@@ -17,7 +22,13 @@ const Text = (props: Props) => {
 			<span className="text-gray-500 text-base leading-none">
 				{props.title}
 			</span>
-			<span className={subTextClass}>{props.subText}</span>
+			<span className={subTextClass}>
+				{props.link ? (
+					<a href={props.subText}>{props.subText}</a>
+				) : (
+					<span>{props.subText}</span>
+				)}
+			</span>
 		</div>
 	);
 };
