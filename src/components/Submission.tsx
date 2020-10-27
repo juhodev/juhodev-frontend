@@ -132,6 +132,10 @@ const Submission = (props: Props) => {
 								src={Source}
 								text={submissionContent}
 								truncate={true}
+								link={
+									submission.submission_type !==
+									SubmissionType.QUOTE
+								}
 							/>
 						)}
 					</div>

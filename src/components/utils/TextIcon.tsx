@@ -4,6 +4,7 @@ type Props = {
 	src: string;
 	text: string;
 	truncate?: boolean;
+	link?: boolean;
 };
 
 const TextIcon = (props: Props) => {
@@ -18,7 +19,13 @@ const TextIcon = (props: Props) => {
 	return (
 		<div className="flex flex-row mr-2">
 			<img src={props.src} className="w-6 h-6" />
-			<span className={textClass}>{props.text}</span>
+			<span className={textClass}>
+				{props.link ? (
+					<a href={props.text}>{props.text}</a>
+				) : (
+					<span>{props.text}</span>
+				)}
+			</span>
 		</div>
 	);
 };
