@@ -71,8 +71,7 @@ const Submission = (props: Props) => {
 						<a
 							href={`${window.location.origin}/image?image=${submission.name}`}
 						>
-							{' '}
-							{submission.name}{' '}
+							{submission.name}
 						</a>
 					</span>
 				);
@@ -99,10 +98,12 @@ const Submission = (props: Props) => {
 				<img src={More} className="w-6 h-6 cursor-pointer" />
 			</div>
 			<div className="flex items-center">
-				<img
-					className="w-24 h-12 rounded-sm"
-					src={getImgSource(submission)}
-				/>
+				<div className="w-24 h-12 flex justify-center items-center rounded-sm bg-gray-700">
+					<img
+						className="max-w-full max-h-12"
+						src={getImgSource(submission)}
+					/>
+				</div>
 				<div className="flex flex-row text-lg text-gray-100 ml-4">
 					<div className="flex flex-col">
 						<TextIcon

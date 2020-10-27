@@ -16,10 +16,12 @@ const Image = (props: Props) => {
 
 	return (
 		<div className="flex flex-col border-solid border-2 border-gray-800 m-4">
-			<img
-				className="w-full max-h-80"
-				src={`${getURL()}/img/${image.name}`}
-			/>
+			<div className="w-full h-80 flex justify-center items-center bg-gray-700">
+				<img
+					className="max-w-full max-h-80"
+					src={`${getURL()}/img/${image.name}`}
+				/>
+			</div>
 			<div className="px-4">
 				<div className="my-4">
 					<div className="flex flex-row text-gray-100">
