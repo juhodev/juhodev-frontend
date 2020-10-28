@@ -38,7 +38,22 @@ const Navigation = () => {
 		},
 	);
 
-	return <div className="pl-12 mt-2 mb-4 mx-1/5">{links}</div>;
+	const logout = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
+
+	return (
+		<div className="flex flex-row pl-12 mt-2 mb-4 mx-1/5">
+			<div className="flex-1">{links}</div>
+			<span
+				className="mx-5 text-3xl text-gray-200 cursor-pointer"
+				onClick={logout}
+			>
+				Logout
+			</span>
+		</div>
+	);
 };
 
 export default Navigation;
