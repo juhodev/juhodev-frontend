@@ -11,3 +11,11 @@ export function makeid(length: number): string {
 	}
 	return result;
 }
+
+export function randomRGBA(): string {
+	const red: number = Math.floor(Math.random() * 255);
+	const green: number = Math.floor(Math.random() * 255);
+	const blue: number = Math.floor(Math.random() * 255);
+
+	return `rgba(${red}, ${green}, ${blue}, .2)`;
+}

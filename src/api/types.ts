@@ -101,3 +101,30 @@ export const ClipsError = {
 	DISCORD_NOT_AUTHENTICATED: 0,
 	USER_NOT_ON_SERVER: 1,
 };
+
+export type ProfileRouteResponse = {
+	error: boolean;
+	errorCode?: number;
+	userData?: UserData;
+	userProfile: UserProfile;
+};
+
+export type UserVoiceLog = {
+	time: number;
+	channel: string;
+};
+
+export type UserCommandLog = {
+	command: string;
+	count: number;
+};
+
+export type UserProfile = {
+	voiceLog: UserVoiceLog[];
+	commandLog: UserCommandLog[];
+};
+
+export const UserError = {
+	DISCORD_NOT_AUTHENTICATED: 0,
+	USER_NOT_ON_SERVER: 1,
+};

@@ -2,6 +2,8 @@ import {
 	ClipsRouteResponse,
 	CodeResponse,
 	ImageRouteResponse,
+	ProfileRouteResponse,
+	UserProfile,
 	UserRouteResponse,
 } from './types';
 
@@ -92,6 +94,26 @@ export async function sendImage(
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
 		},
 		body: JSON.stringify({ name, link }),
+	});
+
+	return response.json();
+}
+
+export async function fetchProfile(
+	snowflake: string,
+): Promise<ProfileRouteResponse> {
+	let url: string;
+	if (snowflake === null) {
+		url = `${getURL()}/api/profile`;
+	} else {
+		url = `${getURL()}/api/profile/${snowflake}`;
+	}
+
+	const response = await fetch(url, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
 	});
 
 	return response.json();

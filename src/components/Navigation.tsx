@@ -15,6 +15,7 @@ const Navigation = () => {
 		{ to: '/home', name: 'Home' },
 		{ to: '/images', name: 'Images' },
 		{ to: '/clips', name: 'Clips' },
+		{ to: '/profile', name: 'Profile' },
 	];
 
 	const links: JSX.Element[] = paths.map(

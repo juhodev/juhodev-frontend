@@ -9,6 +9,7 @@ import Images from './images/Images';
 import ImageView from './images/ImageView';
 import Landing from './Landing';
 import Navigation from './Navigation';
+import Profile from './profile/Profile';
 
 const Main = () => {
 	return (
@@ -20,6 +21,7 @@ const Main = () => {
 			<Route path="/image" component={ImageView} />
 			<Route path="/clips" component={Clips} />
 			<Route path="/clip" component={ClipView} />
+			<Route path="/profile" component={Profile} />
 			<Route path="/auth" component={Auth} />
 		</Router>
 	);
