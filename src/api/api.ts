@@ -3,7 +3,8 @@ import {
 	CodeResponse,
 	ImageRouteResponse,
 	ProfileRouteResponse,
-	UserProfile,
+	SteamRouteResponse,
+	SteamSearchResponse,
 	UserRouteResponse,
 } from './types';
 
@@ -116,6 +117,28 @@ export async function fetchProfile(
 		},
 	});
 
+	return response.json();
+}
+
+export async function fetchCsgoProfile(
+	id: string,
+): Promise<SteamRouteResponse> {
+	const response = await fetch(`${getURL()}/api/steam/${id}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchSearch(q: string): Promise<SteamSearchResponse> {
+	const response = await fetch(`${getURL()}/api/steam/search?q=${q}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
 	return response.json();
 }
 

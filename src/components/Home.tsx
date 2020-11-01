@@ -3,7 +3,6 @@ import User from './User';
 import { fetchUserData } from '../api/api';
 import { ERROR, UserBasicData, UserRouteResponse } from '../api/types';
 import SubmissionFeed from './SubmissionFeed';
-import { startAuthFlow } from '../ts/auth';
 import LinkDiscord from './LinkDiscord';
 
 const { useState, useEffect } = React;

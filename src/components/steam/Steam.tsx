@@ -1,33 +1,33 @@
 import * as React from 'react';
-import { fetchProfile } from '../../api/api';
+import { fetchCsgoProfile, fetchUserData } from '../../api/api';
 import {
-	UserProfile,
+	CsgoProfile,
 	UserData,
-	ProfileRouteResponse,
+	SteamRouteResponse,
 	UserError,
+	UserRouteResponse,
+	UserBasicData,
 } from '../../api/types';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
-import CommandLog from './CommandLog';
-import VoiceLog from './VoiceLog';
+import CsgoProfileView from './CsgoProfile';
+import SteamInput from './SteamInput';
 
 const { useState, useEffect } = React;
 
-const Profile = () => {
+const Steam = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
 		false,
 	);
-	const [userProfile, setUserProfile] = useState<UserProfile>({
-		commandLog: [],
-		voiceLog: [],
-	});
-	const [userData, setUserData] = useState<UserData>({
+	const [userData, setUserData] = useState<UserBasicData>({
 		avatar: 'http://placekitten/500/500',
-		name: 'User',
+		discord_name: '',
+		discord_tag: '',
+		submissions: [],
 		snowflake: '',
-		tag: '0000',
 	});
+	const [steamId, setSteamId] = useState<string>('');
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
@@ -39,13 +39,16 @@ const Profile = () => {
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
-		const snowflake: string = searchParams.get('snowflake');
+		const id: string = searchParams.get('id');
+		if (id !== null) {
+			setSteamId(id);
+		}
 
-		fetchData(snowflake);
+		fetchData();
 	}, []);
 
-	const fetchData = async (snowflake: string) => {
-		const response: ProfileRouteResponse = await fetchProfile(snowflake);
+	const fetchData = async () => {
+		const response: UserRouteResponse = await fetchUserData();
 
 		if (response.error) {
 			if (response.errorCode === UserError.DISCORD_NOT_AUTHENTICATED) {
@@ -61,7 +64,6 @@ const Profile = () => {
 		}
 
 		setDiscordAuthenticated(true);
-		setUserProfile(response.userProfile);
 		setUserData(response.userData);
 		setLoading(false);
 	};
@@ -72,8 +74,8 @@ const Profile = () => {
 				<div className="">
 					<User
 						avatar={userData.avatar}
-						discordName={userData.name}
-						discordTag={userData.tag}
+						discordName={userData.discord_name}
+						discordTag={userData.discord_tag}
 						snowflake={userData.snowflake}
 					/>
 				</div>
@@ -87,17 +89,24 @@ const Profile = () => {
 			<div className="">
 				<User
 					avatar={userData.avatar}
-					discordName={userData.name}
-					discordTag={userData.tag}
+					discordName={userData.discord_name}
+					discordTag={userData.discord_tag}
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<div className="flex flex-col border-solid border-2 border-gray-800 m-4 w-1/2">
-				<VoiceLog userVoiceLogs={userProfile.voiceLog} />
-				<CommandLog userCommandLog={userProfile.commandLog} />
+			<div className="w-1/2">
+				{steamId.length === 0 ? (
+					<SteamInput
+						onSubmit={(value) => {
+							setSteamId(value);
+						}}
+					/>
+				) : (
+					<CsgoProfileView steamId={steamId} />
+				)}
 			</div>
 		</div>
 	);
 };
 
-export default Profile;
+export default Steam;

@@ -40,8 +40,10 @@ export function formatSeconds(seconds: number): string {
 	const minutes: number = Math.floor(seconds / 60);
 	const leftoverSeconds: number = seconds - minutes * 60;
 
-	return `${minutes}:${
-		leftoverSeconds < 10 ? '0' + leftoverSeconds : leftoverSeconds
+	return `${Math.round(minutes)}:${
+		leftoverSeconds < 10
+			? '0' + Math.round(leftoverSeconds)
+			: Math.round(leftoverSeconds)
 	}`;
 }
 export function msToTime(ms: number) {

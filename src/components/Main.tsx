@@ -10,6 +10,7 @@ import ImageView from './images/ImageView';
 import Landing from './Landing';
 import Navigation from './Navigation';
 import Profile from './profile/Profile';
+import Steam from './steam/Steam';
 
 const Main = () => {
 	return (
@@ -22,6 +23,7 @@ const Main = () => {
 			<Route path="/clips" component={Clips} />
 			<Route path="/clip" component={ClipView} />
 			<Route path="/profile" component={Profile} />
+			<Route path="/steam" component={Steam} />
 			<Route path="/auth" component={Auth} />
 		</Router>
 	);
