@@ -2,7 +2,7 @@ import * as React from 'react';
 import { fetchSearch } from '../../api/api';
 import { CsgoUser, SteamSearchResponse } from '../../api/types';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 type Props = {
 	onSubmit: (value: string) => void;
@@ -12,8 +12,8 @@ const SteamInput = (props: Props) => {
 	const [value, setValue] = useState<string>('');
 	const [csgoUsers, setCsgoUsers] = useState<CsgoUser[]>([]);
 
-	const fetchData = async () => {
-		const response: SteamSearchResponse = await fetchSearch(value);
+	const fetchData = async (q: string) => {
+		const response: SteamSearchResponse = await fetchSearch(q);
 
 		if (response.error) {
 			window.alert('error');
@@ -38,6 +38,7 @@ const SteamInput = (props: Props) => {
 			}}
 		>
 			<span className="text-gray-100 text-xl">{user.name}</span>
+			<span className="ml-2 text-gray-500 text-sm">{user.id}</span>
 		</div>
 	));
 
@@ -48,17 +49,12 @@ const SteamInput = (props: Props) => {
 					onChange={(evt) => {
 						const q: string = evt.target.value;
 						setValue(q);
-						fetchData();
+						fetchData(q);
 					}}
+					placeholder="Player name..."
 					value={value}
 					className="flex-1 p-1"
 				/>
-				<button
-					className="w-28 bg-blue-500 rounded text-gray-100 mx-2"
-					onClick={() => props.onSubmit(value)}
-				>
-					Search
-				</button>
 			</div>
 			<div className="flex flex-col">{userComponents}</div>
 		</div>
