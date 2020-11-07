@@ -203,3 +203,10 @@ export type SteamMatchResponse = {
 	errorCode?: number;
 	csgoMatch: CsgoMatch;
 };
+
+export type SteamUploadCodeResponse = {
+	error: boolean;
+	userData?: UserData;
+	errorCode?: number;
+	uploadCode?: string;
+};

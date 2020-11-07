@@ -7,6 +7,7 @@ import {
 	SteamRouteResponse,
 	SteamSearchResponse,
 	UserRouteResponse,
+	SteamUploadCodeResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -147,6 +148,16 @@ export async function fetchCsgoMatch(
 	matchId: number,
 ): Promise<SteamMatchResponse> {
 	const response = await fetch(`${getURL()}/api/steam/match?id=${matchId}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchCsgoUploadCode(): Promise<SteamUploadCodeResponse> {
+	const response = await fetch(`${getURL()}/api/steam/uploadCode`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,

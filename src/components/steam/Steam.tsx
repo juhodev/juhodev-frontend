@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { fetchCsgoProfile, fetchUserData } from '../../api/api';
+import {
+	fetchCsgoProfile,
+	fetchCsgoUploadCode,
+	fetchUserData,
+} from '../../api/api';
 import {
 	CsgoProfile,
 	UserData,
@@ -7,11 +11,13 @@ import {
 	UserError,
 	UserRouteResponse,
 	UserBasicData,
+	SteamUploadCodeResponse,
 } from '../../api/types';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import CsgoProfileView from './CsgoProfile';
 import SteamInput from './SteamInput';
+import SteamUploadCode from './SteamUploadCode';
 
 const { useState, useEffect } = React;
 
@@ -95,6 +101,7 @@ const Steam = () => {
 				/>
 			</div>
 			<div className="w-1/2">
+				<SteamUploadCode />
 				{steamId.length === 0 ? (
 					<SteamInput
 						onSubmit={(value) => {
