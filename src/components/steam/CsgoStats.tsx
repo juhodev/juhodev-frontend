@@ -4,6 +4,7 @@ type Props = {
 	name: string;
 	average: string;
 	highest?: string;
+	matchId?: number;
 };
 
 const CsgoStats = (props: Props) => {
@@ -29,7 +30,17 @@ const CsgoStats = (props: Props) => {
 					{props.average}
 				</span>
 				{props.highest !== undefined && (
-					<span className="ml-1 text-lg text-gray-500 leading-0">{`(${props.highest})`}</span>
+					<span className="ml-1 text-lg text-gray-500 leading-0">
+						{props.matchId !== undefined ? (
+							<a
+								href={`${window.location.origin}/match?id=${props.matchId}`}
+							>
+								{`(${props.highest})`}
+							</a>
+						) : (
+							`(${props.highest})`
+						)}
+					</span>
 				)}
 			</div>
 		</div>

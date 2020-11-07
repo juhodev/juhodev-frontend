@@ -10,6 +10,7 @@ import ImageView from './images/ImageView';
 import Landing from './Landing';
 import Navigation from './Navigation';
 import Profile from './profile/Profile';
+import CsgoMatchView from './steam/CsgoMatchView';
 import Steam from './steam/Steam';
 
 const Main = () => {
@@ -24,6 +25,7 @@ const Main = () => {
 			<Route path="/clip" component={ClipView} />
 			<Route path="/profile" component={Profile} />
 			<Route path="/steam" component={Steam} />
+			<Route path="/match" component={CsgoMatchView} />
 			<Route path="/auth" component={Auth} />
 		</Router>
 	);

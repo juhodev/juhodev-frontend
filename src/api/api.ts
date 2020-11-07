@@ -3,6 +3,7 @@ import {
 	CodeResponse,
 	ImageRouteResponse,
 	ProfileRouteResponse,
+	SteamMatchResponse,
 	SteamRouteResponse,
 	SteamSearchResponse,
 	UserRouteResponse,
@@ -134,6 +135,18 @@ export async function fetchCsgoProfile(
 
 export async function fetchSearch(q: string): Promise<SteamSearchResponse> {
 	const response = await fetch(`${getURL()}/api/steam/search?q=${q}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchCsgoMatch(
+	matchId: number,
+): Promise<SteamMatchResponse> {
+	const response = await fetch(`${getURL()}/api/steam/match?id=${matchId}`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,

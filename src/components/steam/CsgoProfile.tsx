@@ -61,23 +61,28 @@ const CsgoProfileView = (props: Props) => {
 							<CsgoStats
 								name="Kills"
 								average={Math.round(
-									csgoProfile.gameAverages.kills,
+									csgoProfile.gameAverages.kills.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.kills.toString()}
+								highest={csgoProfile.gameHighest.kills.value.toString()}
+								matchId={csgoProfile.gameHighest.kills.matchId}
 							/>
 							<CsgoStats
 								name="Deaths"
 								average={Math.round(
-									csgoProfile.gameAverages.deaths,
+									csgoProfile.gameAverages.deaths.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.deaths.toString()}
+								highest={csgoProfile.gameHighest.deaths.value.toString()}
+								matchId={csgoProfile.gameHighest.deaths.matchId}
 							/>
 							<CsgoStats
 								name="Assists"
 								average={Math.round(
-									csgoProfile.gameAverages.assists,
+									csgoProfile.gameAverages.assists.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.assists.toString()}
+								highest={csgoProfile.gameHighest.assists.value.toString()}
+								matchId={
+									csgoProfile.gameHighest.assists.matchId
+								}
 							/>
 						</div>
 					</div>
@@ -89,30 +94,34 @@ const CsgoProfileView = (props: Props) => {
 							<CsgoStats
 								name="HS %"
 								average={Math.round(
-									csgoProfile.gameAverages.hsp,
+									csgoProfile.gameAverages.hsp.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.hsp.toString()}
+								highest={csgoProfile.gameHighest.hsp.value.toString()}
+								matchId={csgoProfile.gameHighest.hsp.matchId}
 							/>
 							<CsgoStats
 								name="MVPs"
 								average={Math.round(
-									csgoProfile.gameAverages.mvps,
+									csgoProfile.gameAverages.mvps.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.mvps.toString()}
+								highest={csgoProfile.gameHighest.mvps.value.toString()}
+								matchId={csgoProfile.gameHighest.mvps.matchId}
 							/>
 							<CsgoStats
 								name="Score"
 								average={Math.round(
-									csgoProfile.gameAverages.score,
+									csgoProfile.gameAverages.score.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.score.toString()}
+								highest={csgoProfile.gameHighest.score.value.toString()}
+								matchId={csgoProfile.gameHighest.score.matchId}
 							/>
 							<CsgoStats
 								name="Ping"
 								average={Math.round(
-									csgoProfile.gameAverages.ping,
+									csgoProfile.gameAverages.ping.value,
 								).toString()}
-								highest={csgoProfile.gameHighest.ping.toString()}
+								highest={csgoProfile.gameHighest.ping.value.toString()}
+								matchId={csgoProfile.gameHighest.ping.matchId}
 							/>
 						</div>
 					</div>
@@ -124,20 +133,28 @@ const CsgoProfileView = (props: Props) => {
 							<CsgoStats
 								name="Wait time"
 								average={formatSeconds(
-									csgoProfile.gameAverages.waitTime,
+									csgoProfile.gameAverages.waitTime.value,
 								)}
 								highest={formatSeconds(
-									csgoProfile.gameHighest.waitTime,
+									csgoProfile.gameHighest.waitTime.value,
 								)}
+								matchId={
+									csgoProfile.gameHighest.waitTime.matchId
+								}
 							/>
 							<CsgoStats
 								name="Match length"
 								average={formatSeconds(
-									csgoProfile.gameAverages.matchDuration,
+									csgoProfile.gameAverages.matchDuration
+										.value,
 								)}
 								highest={formatSeconds(
-									csgoProfile.gameHighest.matchDuration,
+									csgoProfile.gameHighest.matchDuration.value,
 								)}
+								matchId={
+									csgoProfile.gameHighest.matchDuration
+										.matchId
+								}
 							/>
 						</div>
 					</div>

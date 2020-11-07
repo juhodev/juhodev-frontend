@@ -4,7 +4,7 @@ import CsgoStats from './CsgoStats';
 
 const { useState, useEffect } = React;
 
-type Props = {
+type Props = { 
 	map: string;
 	waitTime: number;
 	matchDuration: number;
@@ -37,11 +37,8 @@ const lazyLoadImage = async (map: string) => {
 			break;
 	}
 
-	console.log(file);
-
 	const asset = await import(
 		/* webpackMode: "lazy-once" */
-		// path
 		`../../../assets/${file}`
 	);
 	return asset.default;
@@ -61,7 +58,7 @@ const MapStats = (props: Props) => {
 
 	return (
 		<div className="flex flex-col">
-			<div className="w-full h-36 overflow-hidden">
+			<div className="w-80 h-36 overflow-hidden">
 				<img src={img} />
 			</div>
 			<div className="flex justify-center">
