@@ -1,18 +1,6 @@
 import * as React from 'react';
-import {
-	fetchCsgoProfile,
-	fetchCsgoUploadCode,
-	fetchUserData,
-} from '../../api/api';
-import {
-	CsgoProfile,
-	UserData,
-	SteamRouteResponse,
-	UserError,
-	UserRouteResponse,
-	UserBasicData,
-	SteamUploadCodeResponse,
-} from '../../api/types';
+import { fetchUserData } from '../../api/api';
+import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import CsgoProfileView from './CsgoProfile';
@@ -27,13 +15,13 @@ const Steam = () => {
 		false,
 	);
 	const [userData, setUserData] = useState<UserBasicData>({
-		avatar: 'http://placekitten/500/500',
+		avatar: '79f69cac11fa3d31848ef11fc2b77c83',
 		discord_name: '',
 		discord_tag: '',
 		submissions: [],
-		snowflake: '',
+		snowflake: '138256190227480576',
 	});
-	const [steamId, setSteamId] = useState<string>('');
+	const [steamId, setSteamId] = useState<string>(undefined);
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
@@ -48,6 +36,8 @@ const Steam = () => {
 		const id: string = searchParams.get('id');
 		if (id !== null) {
 			setSteamId(id);
+		} else {
+			setSteamId('');
 		}
 
 		fetchData();
@@ -74,7 +64,7 @@ const Steam = () => {
 		setLoading(false);
 	};
 
-	if (!discordAuthenticated && !loading) {
+	if ((!discordAuthenticated && !loading) || steamId === undefined) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="">
@@ -101,7 +91,7 @@ const Steam = () => {
 				/>
 			</div>
 			<div className="w-1/2">
-				<SteamUploadCode />
+				{steamId.length === 0 && <SteamUploadCode />}
 				{steamId.length === 0 ? (
 					<SteamInput
 						onSubmit={(value) => {

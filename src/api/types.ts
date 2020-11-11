@@ -156,6 +156,16 @@ export type CsgoProfile = {
 	gameAverages: CsgoGameStats;
 	gameHighest: CsgoGameStats;
 	mapStats: CsgoMapStats[];
+	tenBestGames: GameWithStats[];
+};
+
+export type GameWithStats = {
+	map: string;
+	id: number;
+	matchDuration: number;
+	ctRounds: number;
+	tRounds: number;
+	player: CsgoPlayer;
 };
 
 export type CsgoGameStats = {
@@ -180,6 +190,7 @@ export type CsgoMapStats = {
 export type CsgoPlayer = {
 	name: string;
 	playerId: string;
+	steamLink: string;
 	avatar: string;
 	ping: number;
 	kills: number;
@@ -188,6 +199,7 @@ export type CsgoPlayer = {
 	mvps: number;
 	hsp: number;
 	score: number;
+	side: string;
 };
 
 export type CsgoMatch = {
@@ -195,6 +207,9 @@ export type CsgoMatch = {
 	map: string;
 	matchDuration: number;
 	waitTime: number;
+	ctRounds: number;
+	tRounds: number;
+	winner: string;
 };
 
 export type SteamMatchResponse = {

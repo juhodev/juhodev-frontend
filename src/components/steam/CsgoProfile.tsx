@@ -4,6 +4,7 @@ import { CsgoMapStats, CsgoProfile, SteamRouteResponse } from '../../api/types';
 import CsgoStats from './CsgoStats';
 import { formatSeconds } from '../../ts/timeUtils';
 import MapStats from './MapStats';
+import CsgoMatchPreview from './CsgoMatchPreview';
 
 const { useState, useEffect } = React;
 
@@ -36,6 +37,22 @@ const CsgoProfileView = (props: Props) => {
 		.sort((a, b) => a.timesPlayed - b.timesPlayed)
 		.reverse()
 		.shift();
+
+	const tenGames: JSX.Element[] = csgoProfile.tenBestGames.map((game) => {
+		return <CsgoMatchPreview match={game} />;
+	});
+
+	let tenKills: number = 0;
+	let tenAssists: number = 0;
+	let tenDeaths: number = 0;
+	let tenScore: number = 0;
+
+	for (const game of csgoProfile.tenBestGames) {
+		tenKills += game.player.kills;
+		tenAssists += game.player.assists;
+		tenDeaths += game.player.deaths;
+		tenScore += game.player.score;
+	}
 
 	return (
 		<div className="flex flex-col border-solid border-2 border-gray-800 m-4 p-4">
@@ -170,6 +187,30 @@ const CsgoProfileView = (props: Props) => {
 						timesPlayed={favoriteMap.timesPlayed}
 					/>
 				</div>
+			</div>
+			<div className="flex flex-col">
+				<span className="text-blue-500 text-2xl font-bold">
+					Ten best games in a row
+				</span>
+				<div className="flex flex-row">
+					<CsgoStats
+						name="Total kills"
+						average={tenKills.toString()}
+					/>
+					<CsgoStats
+						name="Total assists"
+						average={tenAssists.toString()}
+					/>
+					<CsgoStats
+						name="Total deaths"
+						average={tenDeaths.toString()}
+					/>
+					<CsgoStats
+						name="Total score"
+						average={tenScore.toString()}
+					/>
+				</div>
+				{tenGames}
 			</div>
 		</div>
 	);

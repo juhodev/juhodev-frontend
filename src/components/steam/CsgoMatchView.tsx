@@ -19,9 +19,9 @@ const CsgoMatchView = () => {
 		false,
 	);
 	const [userData, setUserData] = useState<UserData>({
-		avatar: 'http://placekitten/500/500',
+		avatar: '79f69cac11fa3d31848ef11fc2b77c83',
 		name: 'User',
-		snowflake: '',
+		snowflake: '138256190227480576',
 		tag: '0000',
 	});
 	const [csgoMatch, setCsgoMatch] = useState<CsgoMatch>({
@@ -29,6 +29,9 @@ const CsgoMatchView = () => {
 		players: [],
 		matchDuration: 0,
 		waitTime: 0,
+		ctRounds: 0,
+		tRounds: 0,
+		winner: '',
 	});
 	const [img, setImg] = useState<string>('');
 
@@ -72,7 +75,7 @@ const CsgoMatchView = () => {
 		setCsgoMatch(response.csgoMatch);
 		setUserData(response.userData);
 
-		await updateResource(response.csgoMatch.map);
+		updateResource(response.csgoMatch.map);
 		setLoading(false);
 	};
 
@@ -170,11 +173,20 @@ const CsgoMatchView = () => {
 		);
 	};
 
-	const sortedPlayers: CsgoPlayer[] = csgoMatch.players
+	const tPlayers: CsgoPlayer[] = csgoMatch.players
+		.filter((p) => p.side === 'T')
+		.sort((a, b) => a.score - b.score)
+		.reverse();
+	const ctPlayers: CsgoPlayer[] = csgoMatch.players
+		.filter((p) => p.side === 'CT')
 		.sort((a, b) => a.score - b.score)
 		.reverse();
 
-	const tableRows: JSX.Element[] = sortedPlayers.map((player, i) => {
+	const tRows: JSX.Element[] = tPlayers.map((player, i) => {
+		return createPlayerRow(player, i);
+	});
+
+	const ctRows: JSX.Element[] = ctPlayers.map((player, i) => {
 		return createPlayerRow(player, i);
 	});
 
@@ -202,11 +214,11 @@ const CsgoMatchView = () => {
 						)}`}</span>
 					</div>
 				</div>
-				<div className="border-solid border-2 border-gray-800">
+				<div className="flex flex-col border-solid border-2 border-gray-800">
 					<table className="w-full">
 						<tbody>
-							<tr className="text-gray-100 text-xl">
-								<td className="px-4 pb-2">Player</td>
+							<tr className="text-gray-500 text-xl">
+								<td className="px-4">Player</td>
 								<td className="px-4">Ping</td>
 								<td className="px-4">Kills</td>
 								<td className="px-4">Assists</td>
@@ -215,7 +227,18 @@ const CsgoMatchView = () => {
 								<td className="px-4">HS %</td>
 								<td className="px-4">Score</td>
 							</tr>
-							{tableRows}
+							<tr>
+								<td className="pl-8 text-yellow-400 font-bold text-xl">
+									{`T - ${csgoMatch.tRounds}`}
+								</td>
+							</tr>
+							{tRows}
+							<tr>
+								<td className="pl-8 text-blue-500 font-bold text-xl">
+									{`CT - ${csgoMatch.ctRounds}`}
+								</td>
+							</tr>
+							{ctRows}
 						</tbody>
 					</table>
 				</div>

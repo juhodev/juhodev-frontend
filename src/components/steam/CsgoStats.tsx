@@ -19,7 +19,7 @@ const CsgoStats = (props: Props) => {
 	if (props.highest !== undefined) {
 		containerClassName = 'flex flex-col mr-16';
 	} else {
-		containerClassName = 'flex flex-col mr-2';
+		containerClassName = 'flex flex-col mr-4';
 	}
 
 	return (
