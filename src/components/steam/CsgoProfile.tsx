@@ -196,7 +196,7 @@ const CsgoProfileView = (props: Props) => {
 					/>
 				</div>
 			</div>
-			<div className="flex flex-col">
+			<div className="flex flex-col mt-4">
 				<span className="text-blue-500 text-2xl font-bold">
 					Ten best games in a row
 				</span>
