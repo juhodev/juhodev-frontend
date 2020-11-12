@@ -66,7 +66,15 @@ const CsgoProfileView = (props: Props) => {
 						<span className="text-gray-500">{csgoProfile.id}</span>
 					</div>
 				</div>
-				<span className="font-bold text-gray-500 text-2xl">{`${csgoProfile.matchesPlayed} games saved`}</span>
+				<div className="flex flex-col">
+					<span className="font-bold text-gray-500 text-2xl leading-none">{`${csgoProfile.matchesPlayed} games saved`}</span>
+					<a
+						className="text-sm text-gray-100 text-right"
+						href={`${window.location.origin}/matches?id=${csgoProfile.id}&page=0`}
+					>
+						View full history
+					</a>
+				</div>
 			</div>
 			<div className="flex flex-row">
 				<div className="flex flex-col flex-1">

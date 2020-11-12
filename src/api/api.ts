@@ -8,6 +8,8 @@ import {
 	SteamSearchResponse,
 	UserRouteResponse,
 	SteamUploadCodeResponse,
+	SteamGamesResponse,
+	SteamUserResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -158,6 +160,32 @@ export async function fetchCsgoMatch(
 
 export async function fetchCsgoUploadCode(): Promise<SteamUploadCodeResponse> {
 	const response = await fetch(`${getURL()}/api/steam/uploadCode`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchCsgoMatchesForUser(
+	id: string,
+	page: number,
+): Promise<SteamGamesResponse> {
+	const response = await fetch(
+		`${getURL()}/api/steam/games?id=${id}&page=${page}`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+			},
+		},
+	);
+	return response.json();
+}
+
+export async function fetchCsgoUser(id: string): Promise<SteamUserResponse> {
+	const response = await fetch(`${getURL()}/api/steam/user?id=${id}`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,

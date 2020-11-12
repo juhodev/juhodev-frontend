@@ -160,8 +160,9 @@ export type CsgoProfile = {
 };
 
 export type GameWithStats = {
-	map: string;
 	id: number;
+	date: number;
+	map: string;
 	matchDuration: number;
 	ctRounds: number;
 	tRounds: number;
@@ -224,4 +225,23 @@ export type SteamUploadCodeResponse = {
 	userData?: UserData;
 	errorCode?: number;
 	uploadCode?: string;
+};
+
+export type SteamGamesResponse = {
+	error: boolean;
+	errorCode?: number;
+	games: GameWithStats[];
+};
+
+export type SteamUserResponse = {
+	error: boolean;
+	errorCode?: number;
+	user?: SteamUser;
+};
+
+export type SteamUser = {
+	name: string;
+	steamId: string;
+	steamLink: string;
+	avatar: string;
 };

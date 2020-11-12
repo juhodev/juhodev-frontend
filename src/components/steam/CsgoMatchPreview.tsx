@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GameWithStats } from '../../api/types';
+import { dateFormat } from '../../ts/timeUtils';
 
 type Props = {
 	match: GameWithStats;
@@ -14,8 +15,11 @@ const CsgoMatchPreview = (props: Props) => {
 			href={`${window.location.origin}/match?id=${match.id}`}
 		>
 			<span className="mr-2">{match.map}</span>
-			<span className="text-gray-500 mr-2 flex-1">
+			<span className="text-gray-500 mr-2">
 				{match.ctRounds} - {match.tRounds}
+			</span>
+			<span className="text-gray-500 text-sm flex-1">
+				{dateFormat(new Date(match.date))}
 			</span>
 			<span>{`${match.player.kills} kills - ${match.player.assists} assists - ${match.player.deaths} deaths - ${match.player.score} score`}</span>
 		</a>
