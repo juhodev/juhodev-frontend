@@ -230,7 +230,8 @@ export type SteamUploadCodeResponse = {
 export type SteamGamesResponse = {
 	error: boolean;
 	errorCode?: number;
-	games: GameWithStats[];
+	games?: GameWithStats[];
+	mapStatistics: MapStatistics;
 };
 
 export type SteamUserResponse = {
@@ -244,4 +245,13 @@ export type SteamUser = {
 	steamId: string;
 	steamLink: string;
 	avatar: string;
+};
+
+export type CsgoMap = {
+	name: string;
+	timesPlayed: number;
+};
+
+export type MapStatistics = {
+	maps: CsgoMap[];
 };

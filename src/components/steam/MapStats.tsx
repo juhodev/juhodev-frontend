@@ -6,9 +6,10 @@ const { useState, useEffect } = React;
 
 type Props = {
 	map: string;
-	waitTime: number;
-	matchDuration: number;
 	timesPlayed: number;
+	waitTime?: number;
+	matchDuration?: number;
+	compact?: boolean;
 };
 
 const lazyLoadImage = async (map: string) => {
@@ -56,35 +57,44 @@ const MapStats = (props: Props) => {
 		setImg(resource);
 	};
 
+	let containerClassName: string;
+	if(props.compact) {
+		containerClassName = 'w-64 h-28 overflow-hidden relative rounded';
+	} else {
+		containerClassName = 'w-80 h-36 overflow-hidden relative rounded';
+	}
+
 	return (
 		<div className="flex flex-col">
-			<div className="w-80 h-36 overflow-hidden relative rounded">
+			<div className={containerClassName}>
 				<img className="absolute" src={img} />
-				<div className="absolute w-80 h-36 p-2 bg-black bg-opacity-75">
+				<div className="absolute w-full h-full p-2 bg-black bg-opacity-75">
 					<span className="text-gray-100 text-2xl font-bold">
 						{props.map}
 					</span>
 					<span className="ml-2 text-gray-100 text-2xl">{`${props.timesPlayed} matches`}</span>
-					<div className="flex w-full h-full">
-						<div className="flex flex-row items-center justify-center w-full">
-							<div className="flex flex-col mx-2">
-								<span className="text-blue-500 text-xl font-bold">
-									Wait time
-								</span>
-								<span className="text-gray-100 text-center">
-									{formatSeconds(props.waitTime)}
-								</span>
-							</div>
-							<div className="flex flex-col mx-2">
-								<span className="text-blue-500 text-xl font-bold">
-									Match duration
-								</span>
-								<span className="text-gray-100 text-center">
-									{formatSeconds(props.matchDuration)}
-								</span>
+					{props.matchDuration !== undefined && (
+						<div className="flex w-full h-full">
+							<div className="flex flex-row items-center justify-center w-full">
+								<div className="flex flex-col mx-2">
+									<span className="text-blue-500 text-xl font-bold">
+										Wait time
+									</span>
+									<span className="text-gray-100 text-center">
+										{formatSeconds(props.waitTime)}
+									</span>
+								</div>
+								<div className="flex flex-col mx-2">
+									<span className="text-blue-500 text-xl font-bold">
+										Match duration
+									</span>
+									<span className="text-gray-100 text-center">
+										{formatSeconds(props.matchDuration)}
+									</span>
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
 				<div className="flex justify-center"></div>
 			</div>
