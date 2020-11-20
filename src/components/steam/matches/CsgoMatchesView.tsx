@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { fetchCsgoUser } from '../../api/api';
-import { SteamUser, SteamUserResponse } from '../../api/types';
+import { fetchCsgoUser } from '../../../api/api';
+import { SteamUser, SteamUserResponse } from '../../../api/types';
 import CsgoMatches from './CsgoMatches';
 
 const { useState, useEffect } = React;
@@ -44,7 +44,7 @@ const CsgoMatchesView = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center w-full">
-			<div className="flex flex-row w-1/2 mb-4">
+			<div className="flex flex-row w-1/2 mb-4 border-2 border-gray-800 p-4">
 				<div className="flex justify-center items-center overflow-hidden w-16 h-16 rounded-full bg-gray-800">
 					<img className="w-16 h-16" src={user.avatar} />
 				</div>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { GameWithStats } from '../../api/types';
-import { dateFormat } from '../../ts/timeUtils';
+import { GameWithStats } from '../../../api/types';
+import { dateFormat } from '../../../ts/timeUtils';
 
 type Props = {
 	match: GameWithStats;
@@ -11,7 +11,7 @@ const CsgoMatchPreview = (props: Props) => {
 
 	return (
 		<a
-			className="flex flex-row w-full items-center m-1 p-2 border-2 border-gray-800 text-gray-100 text-lg"
+			className="flex flex-row w-full items-center m-1 p-2 border-b-2 border-gray-800 text-gray-100 text-lg"
 			href={`${window.location.origin}/match?id=${match.id}`}
 		>
 			<span className="mr-2">{match.map}</span>

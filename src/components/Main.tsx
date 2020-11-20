@@ -10,7 +10,7 @@ import ImageView from './images/ImageView';
 import Landing from './Landing';
 import Navigation from './Navigation';
 import Profile from './profile/Profile';
-import CsgoMatchesView from './steam/CsgoMatchesView';
+import CsgoMatchesView from './steam/matches/CsgoMatchesView';
 import CsgoMatchView from './steam/CsgoMatchView';
 import Steam from './steam/Steam';
 

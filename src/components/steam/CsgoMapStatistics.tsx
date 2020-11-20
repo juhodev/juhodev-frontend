@@ -23,7 +23,7 @@ const CsgoMapStatistics = (props: Props) => {
 	const mapStats: JSX.Element[] = sortedMaps.map(
 		(x): JSX.Element => {
 			return (
-				<div className="mx-2 my-2">
+				<div className="mx-2 my-2" key={x.name}>
 					<MapStats
 						map={x.name}
 						timesPlayed={x.timesPlayed}

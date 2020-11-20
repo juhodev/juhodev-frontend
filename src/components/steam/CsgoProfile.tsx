@@ -4,7 +4,7 @@ import { CsgoMapStats, CsgoProfile, SteamRouteResponse } from '../../api/types';
 import CsgoStats from './CsgoStats';
 import { formatSeconds } from '../../ts/timeUtils';
 import MapStats from './MapStats';
-import CsgoMatchPreview from './CsgoMatchPreview';
+import CsgoMatchPreview from './matches/CsgoMatchPreview';
 
 const { useState, useEffect } = React;
 

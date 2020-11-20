@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { fetchCsgoMatchesForUser } from '../../api/api';
+import { fetchCsgoMatchesForUser } from '../../../api/api';
 import {
 	GameWithStats,
 	MapStatistics,
 	SteamGamesResponse,
-} from '../../api/types';
-import CsgoMapStatistics from './CsgoMapStatistics';
+} from '../../../api/types';
+import CsgoMapStatistics from '../CsgoMapStatistics';
+import CsgoMatchesControls from './CsgoMatchesControls';
 import CsgoMatchPreview from './CsgoMatchPreview';
 
 type Props = {
 	steamId: string;
 };
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useMemo } = React;
 
 const CsgoMatches = (props: Props) => {
 	const [page, setPage] = useState<number>(0);
@@ -22,10 +23,10 @@ const CsgoMatches = (props: Props) => {
 	});
 
 	useEffect(() => {
-		fetchData();
+		fetchData('initial');
 	}, []);
 
-	const fetchData = async () => {
+	const fetchData = async (from: string) => {
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
@@ -42,8 +43,11 @@ const CsgoMatches = (props: Props) => {
 			parseInt(newPage),
 		);
 
-		setGames([...response.games]);
-		setMapStatistics(response.mapStatistics);
+		setGames(response.games);
+
+		if (from === 'initial') {
+			setMapStatistics(response.mapStatistics);
+		}
 	};
 
 	const changePage = (by: number) => {
@@ -58,33 +62,24 @@ const CsgoMatches = (props: Props) => {
 			'Csgo match history',
 			`/matches?id=${props.steamId}&page=${newPage}`,
 		);
-		fetchData();
+		fetchData('page_change');
 	};
 
 	const gameComponents: JSX.Element[] = games.map((game) => {
 		return <CsgoMatchPreview key={game.id} match={game} />;
 	});
 
+	const mapStatisticsComponent: JSX.Element = useMemo(
+		() => <CsgoMapStatistics statistics={mapStatistics} />,
+		[mapStatistics],
+	);
+
 	return (
 		<div className="flex flex-col w-1/2">
 			{gameComponents}
-			<div className="flex flex-row justify-center items-center">
-				<button
-					className="text-4xl text-gray-100 cursor-pointer"
-					onClick={() => changePage(-1)}
-				>
-					{'<'}
-				</button>
-				<span className="text-xl text-gray-100 mx-6">{`Page ${page}`}</span>
-				<button
-					className="text-4xl text-gray-100 cursor-pointer"
-					onClick={() => changePage(1)}
-				>
-					{'>'}
-				</button>
-			</div>
+			<CsgoMatchesControls changePage={changePage} currentPage={page} />
 			<span className="border-b border-w-2 border-gray-500 my-4"></span>
-			<CsgoMapStatistics statistics={mapStatistics} />
+			{mapStatisticsComponent}
 		</div>
 	);
 };
