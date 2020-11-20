@@ -231,7 +231,8 @@ export type SteamGamesResponse = {
 	error: boolean;
 	errorCode?: number;
 	games?: GameWithStats[];
-	mapStatistics: MapStatistics;
+	mapStatistics?: MapStatistics;
+	matchFrequency?: DateMatches[];
 };
 
 export type SteamUserResponse = {
@@ -254,4 +255,9 @@ export type CsgoMap = {
 
 export type MapStatistics = {
 	maps: CsgoMap[];
+};
+
+export type DateMatches = {
+	date: number;
+	matches: number;
 };

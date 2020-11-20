@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { fetchCsgoMatchesForUser } from '../../../api/api';
 import {
+	DateMatches,
 	GameWithStats,
 	MapStatistics,
 	SteamGamesResponse,
 } from '../../../api/types';
-import CsgoMapStatistics from '../CsgoMapStatistics';
+import CsgoMapStatistics from './CsgoMapStatistics';
 import CsgoMatchesControls from './CsgoMatchesControls';
 import CsgoMatchPreview from './CsgoMatchPreview';
 
@@ -21,6 +22,7 @@ const CsgoMatches = (props: Props) => {
 	const [mapStatistics, setMapStatistics] = useState<MapStatistics>({
 		maps: [],
 	});
+	const [dateMatches, setDateMatches] = useState<DateMatches[]>([]);
 
 	useEffect(() => {
 		fetchData('initial');
@@ -47,6 +49,7 @@ const CsgoMatches = (props: Props) => {
 
 		if (from === 'initial') {
 			setMapStatistics(response.mapStatistics);
+			setDateMatches(response.matchFrequency);
 		}
 	};
 
@@ -70,8 +73,13 @@ const CsgoMatches = (props: Props) => {
 	});
 
 	const mapStatisticsComponent: JSX.Element = useMemo(
-		() => <CsgoMapStatistics statistics={mapStatistics} />,
-		[mapStatistics],
+		() => (
+			<CsgoMapStatistics
+				statistics={mapStatistics}
+				matches={dateMatches}
+			/>
+		),
+		[mapStatistics, dateMatches],
 	);
 
 	return (

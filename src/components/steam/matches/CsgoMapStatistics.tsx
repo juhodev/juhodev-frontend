@@ -1,10 +1,17 @@
 import * as React from 'react';
-import { CsgoMap, MapStatistics } from '../../api/types';
-import PieChart from '../utils/PieChart';
-import MapStats from './MapStats';
+import {
+	CsgoMap,
+	DateMatches,
+	GameWithStats,
+	MapStatistics,
+} from '../../../api/types';
+import LineChart from '../../utils/LineChart';
+import PieChart from '../../utils/PieChart';
+import MapStats from '../MapStats';
 
 type Props = {
 	statistics: MapStatistics;
+	matches: DateMatches[];
 };
 
 const CsgoMapStatistics = (props: Props) => {
@@ -47,9 +54,16 @@ const CsgoMapStatistics = (props: Props) => {
 		/>
 	);
 
+	const lineChart: JSX.Element = (
+		<LineChart name="Match frequency" dates={props.matches} />
+	);
+
 	return (
 		<div className="">
-			{chart}
+			<div className="flex flex-row h-32 p-4 my-8">
+				{chart}
+				{lineChart}
+			</div>
 			<div
 				className="mt-2 flex"
 				style={{ flexWrap: 'wrap', justifyContent: 'space-evenly' }}

@@ -30,8 +30,16 @@ export function timeSince(date: Date): string {
 	return Math.floor(seconds) + ' seconds';
 }
 
-export function dateFormat(date: Date): string {
-	return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${
+export function dateFormat(date: Date, onlyDate?: boolean): string {
+	const realDate: number = date.getDate();
+	const month: number = date.getMonth() + 1;
+	const year: number = date.getFullYear();
+
+	if (onlyDate) {
+		return `${realDate}.${month}.${year}`;
+	}
+
+	return `${realDate}.${month}.${year} ${
 		date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
 	}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
 }
@@ -51,4 +59,20 @@ export function msToTime(ms: number) {
 	const minutes = Math.floor((ms / (1000 * 60)) % 60);
 
 	return `${hours} hours ${minutes} minutes`;
+}
+
+export function getAllDatesBetweenTwoDates(
+	firstDate: Date,
+	lastDate: Date,
+): Date[] {
+	const array: Date[] = [];
+	const dayInMilliseconds: number = 1000 * 60 * 60 * 24;
+
+	let currentDate: Date = firstDate;
+	while (currentDate.getTime() < lastDate.getTime()) {
+		array.push(new Date(currentDate.getTime()));
+		currentDate = new Date(currentDate.getTime() + dayInMilliseconds);
+	}
+
+	return array;
 }
