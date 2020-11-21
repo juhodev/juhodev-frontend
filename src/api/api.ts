@@ -10,6 +10,7 @@ import {
 	SteamUploadCodeResponse,
 	SteamGamesResponse,
 	SteamUserResponse,
+	SteamLeaderboardResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -198,6 +199,16 @@ export async function fetchCsgoMatchesForUser(
 
 export async function fetchCsgoUser(id: string): Promise<SteamUserResponse> {
 	const response = await fetch(`${getURL()}/api/steam/user?id=${id}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function fetchCsgoLeaderboard(): Promise<SteamLeaderboardResponse> {
+	const response = await fetch(`${getURL()}/api/steam/leaderboard`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,

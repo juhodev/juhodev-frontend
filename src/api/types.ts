@@ -265,3 +265,9 @@ export type DateMatches = {
 	date: number;
 	matches: number;
 };
+
+export type SteamLeaderboardResponse = {
+	error: boolean;
+	errorCode?: number;
+	leaderboard?: CsgoPlayer[];
+};

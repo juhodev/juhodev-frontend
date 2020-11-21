@@ -4,6 +4,7 @@ import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
 import { jwtDecode } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
+import CsgoLeaderboard from './CsgoLeaderboard';
 import CsgoProfileView from './CsgoProfile';
 import SteamInput from './SteamInput';
 import SteamUploadCode from './SteamUploadCode';
@@ -17,6 +18,7 @@ const Steam = () => {
 	);
 	const [steamId, setSteamId] = useState<string>(undefined);
 	const [isPreview, setIsPreview] = useState<boolean>(true);
+	const [page, setPage] = useState<string>('search');
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
@@ -72,12 +74,42 @@ const Steam = () => {
 		setLoading(false);
 	};
 
+	const renderSearchOrLeaderboard = () => {
+		if (page === 'search') {
+			return <SteamInput onSubmit={(value) => setSteamId(value)} />;
+		} else {
+			return <CsgoLeaderboard />;
+		}
+	};
+
+	const searchOrLeaderboardWithControls = () => (
+		<div className="">
+			<div className="flex flex-row justify-center">
+				<button
+					className={
+						page === 'search' ? selectedClassName : normalClassName
+					}
+					onClick={() => setPage('search')}
+				>
+					Search
+				</button>
+				<button
+					className={
+						page !== 'search' ? selectedClassName : normalClassName
+					}
+					onClick={() => setPage('leaderboard')}
+				>
+					Leaderboard
+				</button>
+			</div>
+			{renderSearchOrLeaderboard()}
+		</div>
+	);
+
 	if (isPreview && (steamId === undefined || steamId.length === 0)) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="w-2/3">
-					<SteamInput onSubmit={(value) => setSteamId(value)} />
-				</div>
+				<div className="w-2/3">{searchOrLeaderboardWithControls}</div>
 			</div>
 		);
 	}
@@ -100,16 +132,16 @@ const Steam = () => {
 		);
 	}
 
+	const selectedClassName: string =
+		'text-lg mx-2 text-gray-200 font-bold border-b-2 border-blue-600';
+	const normalClassName: string = 'text-lg mx-2 text-gray-200';
+
 	return (
 		<div className="flex flex-row justify-center overflow-auto flex-1">
 			<div className="w-2/3">
 				{steamId.length === 0 && <SteamUploadCode />}
 				{steamId.length === 0 ? (
-					<SteamInput
-						onSubmit={(value) => {
-							setSteamId(value);
-						}}
-					/>
+					searchOrLeaderboardWithControls()
 				) : (
 					<CsgoProfileView steamId={steamId} />
 				)}
