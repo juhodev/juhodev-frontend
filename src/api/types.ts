@@ -204,6 +204,7 @@ export type CsgoPlayer = {
 };
 
 export type CsgoMatch = {
+	date: number;
 	players: CsgoPlayer[];
 	map: string;
 	matchDuration: number;

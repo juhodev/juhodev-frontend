@@ -7,7 +7,7 @@ import {
 	UserError,
 	CsgoPlayer,
 } from '../../api/types';
-import { formatSeconds } from '../../ts/timeUtils';
+import { dateFormat, formatSeconds } from '../../ts/timeUtils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 
@@ -19,6 +19,7 @@ const CsgoMatchView = () => {
 		false,
 	);
 	const [csgoMatch, setCsgoMatch] = useState<CsgoMatch>({
+		date: 0,
 		map: '',
 		players: [],
 		matchDuration: 0,
@@ -183,8 +184,11 @@ const CsgoMatchView = () => {
 						<img src={img} />
 					</div>
 					<div className="ml-2 mt-1 flex flex-col">
-						<span className="text-gray-100 text-4xl">
+						<span className="text-gray-100 text-4xl leading-none">
 							{csgoMatch.map}
+						</span>
+						<span className="text-gray-500 text-lg">
+							{dateFormat(new Date(csgoMatch.date))}
 						</span>
 						<span className="text-gray-500 text-lg">{`Match duration: ${formatSeconds(
 							csgoMatch.matchDuration,
