@@ -83,7 +83,7 @@ const CsgoMatches = (props: Props) => {
 	);
 
 	return (
-		<div className="flex flex-col w-1/2">
+		<div className="flex flex-col w-2/3">
 			{gameComponents}
 			<CsgoMatchesControls changePage={changePage} currentPage={page} />
 			<span className="border-b border-w-2 border-gray-500 my-4"></span>

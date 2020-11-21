@@ -48,6 +48,18 @@ export async function getToken(password: string): Promise<string> {
 	return json['token'];
 }
 
+export async function getPreviewToken(): Promise<string> {
+	const response = await fetch(`${getURL()}/api/auth/preview`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	const json = await response.json();
+
+	return json['token'];
+}
+
 export async function fetchImages(): Promise<ImageRouteResponse> {
 	const response = await fetch(`${getURL()}/api/images`, {
 		method: 'GET',

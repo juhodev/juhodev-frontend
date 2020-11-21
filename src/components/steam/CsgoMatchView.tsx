@@ -18,12 +18,6 @@ const CsgoMatchView = () => {
 	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
 		false,
 	);
-	const [userData, setUserData] = useState<UserData>({
-		avatar: '79f69cac11fa3d31848ef11fc2b77c83',
-		name: 'User',
-		snowflake: '138256190227480576',
-		tag: '0000',
-	});
 	const [csgoMatch, setCsgoMatch] = useState<CsgoMatch>({
 		map: '',
 		players: [],
@@ -73,7 +67,6 @@ const CsgoMatchView = () => {
 
 		setDiscordAuthenticated(true);
 		setCsgoMatch(response.csgoMatch);
-		setUserData(response.userData);
 
 		updateResource(response.csgoMatch.map);
 		setLoading(false);
@@ -82,14 +75,6 @@ const CsgoMatchView = () => {
 	if (!discordAuthenticated && !loading) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="">
-					<User
-						avatar={userData.avatar}
-						discordName={userData.name}
-						discordTag={userData.tag}
-						snowflake={userData.snowflake}
-					/>
-				</div>
 				<LinkDiscord />
 			</div>
 		);
@@ -192,15 +177,7 @@ const CsgoMatchView = () => {
 
 	return (
 		<div className="flex flex-row justify-center overflow-auto flex-1">
-			<div className="">
-				<User
-					avatar={userData.avatar}
-					discordName={userData.name}
-					discordTag={userData.tag}
-					snowflake={userData.snowflake}
-				/>
-			</div>
-			<div className="flex flex-col m-4 w-1/2">
+			<div className="flex flex-col m-4 w-2/3">
 				<div className="border-solid border-2 border-gray-800 flex flex-row mb-8">
 					<div className="w-60 overflow-hidden">
 						<img src={img} />

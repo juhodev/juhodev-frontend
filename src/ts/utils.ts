@@ -19,3 +19,18 @@ export function randomRGBA(): string {
 
 	return `rgba(${red}, ${green}, ${blue}, .2)`;
 }
+
+// Copied from here https://stackoverflow.com/a/47115113
+// DO NOT TRUST THIS JWT
+//
+// I can't verify the JWT on the client side so it shouldn't be trusted. I decode it
+// for a quick check if a user should be able to connect their discord account. If the JWT has been
+// changed to something that allows a discord login then we will still verify it on the back end.
+export function jwtDecode(t: string) {
+	let token: { raw?: string; header?: object; payload?: object } = {};
+
+	token.raw = t;
+	token.header = JSON.parse(window.atob(t.split('.')[0]));
+	token.payload = JSON.parse(window.atob(t.split('.')[1]));
+	return token;
+}

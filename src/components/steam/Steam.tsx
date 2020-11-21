@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { fetchUserData } from '../../api/api';
 import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
+import { jwtDecode } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import CsgoProfileView from './CsgoProfile';
@@ -14,14 +15,8 @@ const Steam = () => {
 	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
 		false,
 	);
-	const [userData, setUserData] = useState<UserBasicData>({
-		avatar: '79f69cac11fa3d31848ef11fc2b77c83',
-		discord_name: '',
-		discord_tag: '',
-		submissions: [],
-		snowflake: '138256190227480576',
-	});
 	const [steamId, setSteamId] = useState<string>(undefined);
+	const [isPreview, setIsPreview] = useState<boolean>(true);
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
@@ -44,6 +39,20 @@ const Steam = () => {
 	}, []);
 
 	const fetchData = async () => {
+		const jwt: string = localStorage.getItem('jwt');
+		if (jwt === null) {
+			window.alert('Please log in');
+			return;
+		}
+
+		const decodedJWT: any = jwtDecode(jwt);
+		if (decodedJWT['payload'].userType === 'PREVIEW_ONLY') {
+			setLoading(false);
+			return;
+		}
+
+		setIsPreview(false);
+
 		const response: UserRouteResponse = await fetchUserData();
 
 		if (response.error) {
@@ -60,21 +69,32 @@ const Steam = () => {
 		}
 
 		setDiscordAuthenticated(true);
-		setUserData(response.userData);
 		setLoading(false);
 	};
+
+	if (isPreview && (steamId === undefined || steamId.length === 0)) {
+		return (
+			<div className="flex flex-row justify-center overflow-auto flex-1">
+				<div className="w-2/3">
+					<SteamInput onSubmit={(value) => setSteamId(value)} />
+				</div>
+			</div>
+		);
+	}
+
+	if (isPreview && (steamId !== undefined || steamId.length !== 0)) {
+		return (
+			<div className="flex flex-row justify-center overflow-auto flex-1">
+				<div className="w-2/3">
+					<CsgoProfileView steamId={steamId} />
+				</div>
+			</div>
+		);
+	}
 
 	if ((!discordAuthenticated && !loading) || steamId === undefined) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="">
-					<User
-						avatar={userData.avatar}
-						discordName={userData.discord_name}
-						discordTag={userData.discord_tag}
-						snowflake={userData.snowflake}
-					/>
-				</div>
 				<LinkDiscord />
 			</div>
 		);
@@ -82,15 +102,7 @@ const Steam = () => {
 
 	return (
 		<div className="flex flex-row justify-center overflow-auto flex-1">
-			<div className="">
-				<User
-					avatar={userData.avatar}
-					discordName={userData.discord_name}
-					discordTag={userData.discord_tag}
-					snowflake={userData.snowflake}
-				/>
-			</div>
-			<div className="w-1/2">
+			<div className="w-2/3">
 				{steamId.length === 0 && <SteamUploadCode />}
 				{steamId.length === 0 ? (
 					<SteamInput

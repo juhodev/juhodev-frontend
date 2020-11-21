@@ -1,8 +1,21 @@
-import { makeid } from './utils';
+import { jwtDecode, makeid } from './utils';
 
 const DISCORD_CLIENT_ID = '764492992949780520';
 
 export const startAuthFlow = () => {
+	const jwt: string = localStorage.getItem('jwt');
+
+	if (jwt === null) {
+		window.alert('Please log in with a password');
+		return;
+	}
+
+	const decodedJWT: any = jwtDecode(jwt);
+	if (decodedJWT['payload'].userType === 'PREVIEW_ONLY') {
+		window.alert('Please log in with a password');
+		return;
+	}
+
 	const randomState: string = makeid(12);
 	localStorage.setItem('auth_state', randomState);
 
