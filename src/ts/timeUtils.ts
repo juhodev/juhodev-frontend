@@ -60,19 +60,3 @@ export function msToTime(ms: number) {
 
 	return `${hours} hours ${minutes} minutes`;
 }
-
-export function getAllDatesBetweenTwoDates(
-	firstDate: Date,
-	lastDate: Date,
-): Date[] {
-	const array: Date[] = [];
-	const dayInMilliseconds: number = 1000 * 60 * 60 * 24;
-
-	let currentDate: Date = firstDate;
-	while (currentDate.getTime() < lastDate.getTime()) {
-		array.push(new Date(currentDate.getTime()));
-		currentDate = new Date(currentDate.getTime() + dayInMilliseconds);
-	}
-
-	return array;
-}

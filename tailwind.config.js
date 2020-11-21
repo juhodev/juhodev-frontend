@@ -1,8 +1,5 @@
 module.exports = {
-	purge: {
-		enabled: false,
-		content: ['./**/*.html', './src/**/*.tsx'],
-	},
+	purge: ['./**/*.html', './src/**/*.tsx'],
 	plugins: [require('@tailwindcss/ui')],
 	theme: {
 		fontFamily: {
