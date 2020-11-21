@@ -153,6 +153,9 @@ export type CsgoProfile = {
 	steamLink: string;
 	avatarLink: string;
 	matchesPlayed: number;
+	won: number;
+	lost: number;
+	tied: number;
 	gameAverages: CsgoGameStats;
 	gameHighest: CsgoGameStats;
 	mapStats: CsgoMapStats[];

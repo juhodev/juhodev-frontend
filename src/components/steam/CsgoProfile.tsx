@@ -181,6 +181,18 @@ const CsgoProfileView = (props: Props) => {
 										.matchId
 								}
 							/>
+							<CsgoStats
+								name="Won"
+								average={csgoProfile.won.toString()}
+							/>
+							<CsgoStats
+								name="Lost"
+								average={csgoProfile.lost.toString()}
+							/>
+							<CsgoStats
+								name="Tied"
+								average={csgoProfile.tied.toString()}
+							/>
 						</div>
 					</div>
 				</div>
