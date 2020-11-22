@@ -8,8 +8,8 @@ import {
 	CsgoPlayer,
 } from '../../api/types';
 import { dateFormat, formatSeconds } from '../../ts/timeUtils';
+import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
-import User from '../User';
 
 const { useState, useEffect } = React;
 
@@ -30,12 +30,6 @@ const CsgoMatchView = () => {
 	});
 	const [img, setImg] = useState<string>('');
 
-	const jwt = localStorage.getItem('jwt');
-	if (jwt === null) {
-		window.location.href = window.location.origin;
-		return;
-	}
-
 	useEffect(() => {
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
@@ -46,6 +40,12 @@ const CsgoMatchView = () => {
 		}
 
 		const id: number = parseInt(searchParams.get('id'));
+
+		const jwt = localStorage.getItem('jwt');
+		if (jwt === null) {
+			redirectFrom(window.location.origin, `match?id=${id}`);
+			return;
+		}
 
 		fetchData(id);
 	}, []);

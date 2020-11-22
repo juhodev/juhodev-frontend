@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fetchUserData } from '../../api/api';
 import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
-import { jwtDecode } from '../../ts/utils';
+import { jwtDecode, redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import CsgoLeaderboard from './CsgoLeaderboard';
@@ -20,20 +20,24 @@ const Steam = () => {
 	const [isPreview, setIsPreview] = useState<boolean>(true);
 	const [page, setPage] = useState<string>('search');
 
-	const jwt = localStorage.getItem('jwt');
-	if (jwt === null) {
-		window.location.href = window.location.origin;
-		return;
-	}
-
 	useEffect(() => {
+		const jwt = localStorage.getItem('jwt');
+
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
 		const id: string = searchParams.get('id');
 		if (id !== null) {
+			if (jwt === null) {
+				redirectFrom(window.location.origin, `steam?id=${id}`);
+				return;
+			}
 			setSteamId(id);
 		} else {
+			if (jwt === null) {
+				redirectFrom(window.location.origin, 'steam');
+				return;
+			}
 			setSteamId('');
 		}
 
@@ -82,6 +86,10 @@ const Steam = () => {
 		}
 	};
 
+	const selectedClassName: string =
+		'text-lg mx-2 text-gray-200 font-bold border-b-2 border-blue-600';
+	const normalClassName: string = 'text-lg mx-2 text-gray-200';
+
 	const searchOrLeaderboardWithControls = () => (
 		<div className="">
 			<div className="flex flex-row justify-center">
@@ -109,7 +117,7 @@ const Steam = () => {
 	if (isPreview && (steamId === undefined || steamId.length === 0)) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="w-2/3">{searchOrLeaderboardWithControls}</div>
+				<div className="w-2/3">{searchOrLeaderboardWithControls()}</div>
 			</div>
 		);
 	}
@@ -131,10 +139,6 @@ const Steam = () => {
 			</div>
 		);
 	}
-
-	const selectedClassName: string =
-		'text-lg mx-2 text-gray-200 font-bold border-b-2 border-blue-600';
-	const normalClassName: string = 'text-lg mx-2 text-gray-200';
 
 	return (
 		<div className="flex flex-row justify-center overflow-auto flex-1">

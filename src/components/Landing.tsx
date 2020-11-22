@@ -15,8 +15,13 @@ const Landing = () => {
 		const token: string = await getToken(password);
 
 		if (token !== undefined) {
+			const searchParams: URLSearchParams = new URLSearchParams(
+				window.location.search,
+			);
+			const from: string = searchParams.get('from');
+
 			localStorage.setItem('jwt', token);
-			window.location.href = `${window.location.origin}/home`;
+			window.location.href = `${window.location.origin}/${from}`;
 		} else {
 			window.alert('Wrong password');
 		}
@@ -26,8 +31,13 @@ const Landing = () => {
 		const token: string = await getPreviewToken();
 
 		if (token !== undefined) {
+			const searchParams: URLSearchParams = new URLSearchParams(
+				window.location.search,
+			);
+			const from: string = searchParams.get('from');
+
 			localStorage.setItem('jwt', token);
-			window.location.href = `${window.location.origin}/home`;
+			window.location.href = `${window.location.origin}/${from}`;
 		} else {
 			window.alert('Something went wrong');
 		}

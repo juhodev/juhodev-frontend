@@ -7,6 +7,7 @@ import {
 	SubmissionType,
 	UserData,
 } from '../../api/types';
+import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import Clip from './Clip';
@@ -36,17 +37,17 @@ const ClipView = () => {
 		tag: '0000',
 	});
 
-	const jwt = localStorage.getItem('jwt');
-	if (jwt === null) {
-		window.location.href = window.location.origin;
-		return;
-	}
-
 	useEffect(() => {
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
 		const image: string = searchParams.get('clip');
+
+		const jwt = localStorage.getItem('jwt');
+		if (jwt === null) {
+			redirectFrom(window.location.origin, `clip?clip=${image}`);
+			return;
+		}
 
 		fetchData(image);
 	}, []);

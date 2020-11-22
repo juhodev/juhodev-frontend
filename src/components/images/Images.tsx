@@ -10,6 +10,7 @@ import User from '../User';
 import SubmissionFeed from '../SubmissionFeed';
 import LinkDiscord from '../LinkDiscord';
 import ImageUpload from './ImageUpload';
+import { redirectFrom } from '../../ts/utils';
 
 const { useState, useEffect } = React;
 
@@ -28,7 +29,7 @@ const Images = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		window.location.href = window.location.origin;
+		redirectFrom(window.location.origin, 'images');
 		return;
 	}
 

@@ -6,6 +6,7 @@ import {
 	ProfileRouteResponse,
 	UserError,
 } from '../../api/types';
+import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
 import CommandLog from './CommandLog';
@@ -31,7 +32,7 @@ const Profile = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		window.location.href = window.location.origin;
+		redirectFrom(window.location.origin, 'profile');
 		return;
 	}
 

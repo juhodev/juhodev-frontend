@@ -4,6 +4,7 @@ import { fetchUserData } from '../api/api';
 import { ERROR, UserBasicData, UserRouteResponse } from '../api/types';
 import SubmissionFeed from './SubmissionFeed';
 import LinkDiscord from './LinkDiscord';
+import { redirectFrom } from '../ts/utils';
 
 const { useState, useEffect } = React;
 
@@ -20,7 +21,7 @@ const Home = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		window.location.href = window.location.origin;
+		redirectFrom(window.location.origin, 'home');
 		return;
 	}
 

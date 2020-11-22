@@ -34,3 +34,7 @@ export function jwtDecode(t: string) {
 	token.payload = JSON.parse(window.atob(t.split('.')[1]));
 	return token;
 }
+
+export function redirectFrom(to: string, from: string) {
+	window.location.href = `${to}?from=${from}`;
+}
