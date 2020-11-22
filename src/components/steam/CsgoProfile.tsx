@@ -90,6 +90,13 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.kills.value.toString()}
 								matchId={csgoProfile.gameHighest.kills.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.kills
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.kills.standardError
+								}
 							/>
 							<CsgoStats
 								name="Deaths"
@@ -98,6 +105,14 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.deaths.value.toString()}
 								matchId={csgoProfile.gameHighest.deaths.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.deaths
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.deaths
+										.standardError
+								}
 							/>
 							<CsgoStats
 								name="Assists"
@@ -107,6 +122,14 @@ const CsgoProfileView = (props: Props) => {
 								highest={csgoProfile.gameHighest.assists.value.toString()}
 								matchId={
 									csgoProfile.gameHighest.assists.matchId
+								}
+								standardDeviation={
+									csgoProfile.gameAverages.assists
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.assists
+										.standardError
 								}
 							/>
 						</div>
@@ -123,6 +146,13 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.hsp.value.toString()}
 								matchId={csgoProfile.gameHighest.hsp.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.hsp
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.hsp.standardError
+								}
 							/>
 							<CsgoStats
 								name="MVPs"
@@ -131,6 +161,13 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.mvps.value.toString()}
 								matchId={csgoProfile.gameHighest.mvps.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.mvps
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.mvps.standardError
+								}
 							/>
 							<CsgoStats
 								name="Score"
@@ -139,6 +176,13 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.score.value.toString()}
 								matchId={csgoProfile.gameHighest.score.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.score
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.score.standardError
+								}
 							/>
 							<CsgoStats
 								name="Ping"
@@ -147,6 +191,13 @@ const CsgoProfileView = (props: Props) => {
 								).toString()}
 								highest={csgoProfile.gameHighest.ping.value.toString()}
 								matchId={csgoProfile.gameHighest.ping.matchId}
+								standardDeviation={
+									csgoProfile.gameAverages.ping
+										.standardDeviation
+								}
+								standardError={
+									csgoProfile.gameAverages.ping.standardError
+								}
 							/>
 						</div>
 					</div>
