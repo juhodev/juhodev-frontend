@@ -60,9 +60,12 @@ const CsgoProfileView = (props: Props) => {
 				<div className="flex-1 flex items-center">
 					<img className="w-12 h-12" src={csgoProfile.avatarLink} />
 					<div className="mx-4 flex flex-col">
-						<span className="text-3xl text-gray-100 leading-none">
+						<a
+							className="text-3xl text-gray-100 leading-none"
+							href={csgoProfile.steamLink}
+						>
 							{csgoProfile.name}
-						</span>
+						</a>
 						<span className="text-gray-500">{csgoProfile.id}</span>
 					</div>
 				</div>
