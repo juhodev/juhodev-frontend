@@ -84,7 +84,7 @@ const ClipView = () => {
 
 	if (!discordAuthenticated && !loading) {
 		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
+			<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 				<div className="">
 					<User
 						avatar={userData.avatar}
@@ -99,7 +99,7 @@ const ClipView = () => {
 	}
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
+		<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 			<div className="">
 				<User
 					avatar={userData.avatar}
@@ -108,7 +108,7 @@ const ClipView = () => {
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<div className="w-1/3">
+			<div className="xl:w-1/3">
 				<Clip clip={submission} />
 			</div>
 		</div>
