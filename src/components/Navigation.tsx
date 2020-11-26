@@ -41,6 +41,19 @@ const Navigation = () => {
 		}
 	}, []);
 
+	const updateTab = (newTab: string) => {
+		console.log(currentTab, newTab);
+		if (currentTab.toLowerCase() === '/steam' && currentTab === newTab) {
+			// This refreshes the page. Profiles have the same url as the search page so by clicking the Steam link
+			// on a profile page would not refresh the page but only change the url to /steam (you would not get to the search
+			// page that would be the expected behavior)
+			window.location.replace('/steam');
+			return;
+		}
+
+		setCurrentTab(newTab);
+	};
+
 	const links: JSX.Element[] = paths.map(
 		(path): JSX.Element => {
 			let className = 'mx-5 text-3xl text-gray-200';
@@ -54,7 +67,7 @@ const Navigation = () => {
 					key={path.name}
 					className={className}
 					to={path.to}
-					onClick={() => setCurrentTab(path.to)}
+					onClick={() => updateTab(path.to)}
 				>
 					{path.name}
 				</Link>
