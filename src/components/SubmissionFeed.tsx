@@ -39,7 +39,7 @@ const SubmissionFeed = (props: Props) => {
 	};
 
 	return (
-		<div className="border-solid border-2 border-gray-800 p-4 m-4 overflow-y-scroll">
+		<div className="border-solid border-2 border-gray-800 xl:p-4 p-2 xl:m-4 m-2 overflow-y-scroll">
 			<div className="flex flex-row mb-2">
 				<span className="text-gray-100 flex-1">{props.title}</span>
 				<Sort onChange={(sortType) => setSortType(sortType)} />

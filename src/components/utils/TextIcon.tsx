@@ -11,14 +11,14 @@ const TextIcon = (props: Props) => {
 	let textClass: string;
 
 	if (props.truncate) {
-		textClass = 'mx-2 whitespace-nowrap w-64 overflow-hidden truncate';
+		textClass = 'lg:mx-2 mx-1 whitespace-nowrap lg:w-64 md:w-48 w-32 overflow-hidden truncate lg:text-xl md:text-md text-sm';
 	} else {
-		textClass = 'mx-2';
+		textClass = 'lg:mx-2 mx-1 lg:text-xl md:text-md text-sm';
 	}
 
 	return (
-		<div className="flex flex-row mr-2">
-			<img src={props.src} className="w-6 h-6" />
+		<div className="flex flex-row mr-2 items-center">
+			<img src={props.src} className="lg:w-6 lg:h-6 md:w-5 md:h-5 w-4 h-4" />
 			<span className={textClass}>
 				{props.link ? (
 					<a href={props.text}>{props.text}</a>

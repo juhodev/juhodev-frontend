@@ -54,7 +54,7 @@ const Home = () => {
 
 	if (!discordAuthenticated && !loading) {
 		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
+			<div className="flex xl:flex-row flex-col xl:justify-center overflow-auto flex-1">
 				<div className="">
 					<User
 						avatar={userData.avatar}
@@ -69,7 +69,7 @@ const Home = () => {
 	}
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
+		<div className="flex xl:flex-row flex-col xl:justify-center overflow-auto flex-1">
 			<div className="">
 				<User
 					avatar={userData.avatar}

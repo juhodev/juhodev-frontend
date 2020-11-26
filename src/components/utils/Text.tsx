@@ -18,7 +18,7 @@ const Text = (props: Props) => {
 	}
 
 	return (
-		<div className="pb-4 pr-4 flex flex-col">
+		<div className="xl:pb-4 xl:pr-4 mr-2 flex flex-col justify-center xl:justify-start">
 			<span className="text-gray-500 text-base leading-none">
 				{props.title}
 			</span>

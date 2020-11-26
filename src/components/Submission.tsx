@@ -71,7 +71,7 @@ const Submission = (props: Props) => {
 		switch (submission.submission_type) {
 			case SubmissionType.IMAGE:
 				return (
-					<span className="font-bold text-xl text-purple-800 flex-1">
+					<span className="font-bold lg:text-xl md:text-md sm:text-sm text-purple-800 flex-1">
 						<a
 							href={`${window.location.origin}/image?image=${submission.name}`}
 						>
@@ -82,7 +82,7 @@ const Submission = (props: Props) => {
 
 			case SubmissionType.CLIP:
 				return (
-					<span className="font-bold text-xl text-purple-800 flex-1">
+					<span className="font-bold lg:text-xl md:text-md sm:text-sm text-purple-800 flex-1">
 						<a
 							href={`${window.location.origin}/clip?clip=${submission.name}`}
 						>
@@ -93,7 +93,7 @@ const Submission = (props: Props) => {
 
 			default:
 				return (
-					<span className="font-bold text-xl text-purple-800 flex-1">
+					<span className="font-bold lg:text-xl md:text-md sm:text-sm text-purple-800 flex-1">
 						{submission.name}
 					</span>
 				);
@@ -113,9 +113,9 @@ const Submission = (props: Props) => {
 				<img src={More} className="w-6 h-6 cursor-pointer" />
 			</div>
 			<div className="flex items-center">
-				<div className="w-24 h-12 flex justify-center items-center rounded-sm bg-gray-700">
+				<div className="md:w-24 md:h-12 w-12 h-6 flex justify-center items-center rounded-sm bg-gray-700">
 					<img
-						className="max-w-full max-h-12"
+						className="md:max-w-full md:max-h-12 max-w-full max-h-6"
 						src={getImgSource(submission)}
 					/>
 				</div>

@@ -18,9 +18,9 @@ const User = (props: Props) => {
 	}
 
 	return (
-		<div className="p-4 m-4 border-solid border-2 border-gray-800 w-80">
-			<div className="flex w-full justify-center items-center">
-				<img className="rounded-full w-32 h-32" src={avatarUrl} />
+		<div className="flex xl:flex-col flex-row xl:p-4 p-2 xl:mx-4 mx-2 border-solid border-2 border-gray-800 xl:w-80">
+			<div className="flex xl:w-full justify-center items-center mr-2 xl:mr-0">
+				<img className="rounded-full xl:w-32 xl:h-32 w-12 h-12" src={avatarUrl} />
 			</div>
 			<Text
 				title="Discord"

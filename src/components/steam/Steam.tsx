@@ -121,7 +121,7 @@ const Steam = () => {
 	if (isPreview && (steamId === undefined || steamId.length === 0)) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="xl:w-2/3 lg:w-5/6 md:w-full">{searchOrLeaderboardWithControls()}</div>
+				<div className="2xl:w-2/3 xl:w-5/6 w-full">{searchOrLeaderboardWithControls()}</div>
 			</div>
 		);
 	}
@@ -129,7 +129,7 @@ const Steam = () => {
 	if (isPreview && (steamId !== undefined || steamId.length !== 0)) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="xl:w-2/3 lg:w-5/6 w-full">
+				<div className="2xl:w-2/3 xl:w-5/6 w-full">
 					<CsgoProfileView steamId={steamId} />
 				</div>
 			</div>
