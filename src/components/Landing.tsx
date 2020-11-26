@@ -20,6 +20,11 @@ const Landing = () => {
 			);
 			const from: string = searchParams.get('from');
 
+			if (from === null) {
+				window.location.href = `${window.location.origin}/home`;
+				return;
+			}
+
 			localStorage.setItem('jwt', token);
 			window.location.href = `${window.location.origin}/${from}`;
 		} else {

@@ -60,7 +60,6 @@ const Steam = () => {
 		setIsPreview(false);
 
 		const response: UserRouteResponse = await fetchUserData();
-
 		if (response.error) {
 			if (response.errorCode === UserError.DISCORD_NOT_AUTHENTICATED) {
 				setDiscordAuthenticated(false);
