@@ -24,7 +24,7 @@ const LineChart = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center w-1/2">
+		<div className="md:flex flex-col justify-center items-center w-1/2 hidden">
 			<span className="pb-2 text-gray-100">{props.name}</span>
 			<Line
 				options={{

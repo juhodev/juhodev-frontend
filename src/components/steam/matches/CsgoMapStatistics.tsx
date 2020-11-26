@@ -60,7 +60,7 @@ const CsgoMapStatistics = (props: Props) => {
 
 	return (
 		<div className="">
-			<div className="flex flex-row h-32 p-4 my-8">
+			<div className="md:flex flex-row h-32 p-4 my-8 hidden">
 				{chart}
 				{lineChart}
 			</div>

@@ -27,7 +27,7 @@ const PieChart = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center w-64">
+		<div className="md:flex flex-col justify-center items-center w-64 hidden">
 			<span className="pb-2 text-gray-100">{props.total}</span>
 			<Pie
 				options={{

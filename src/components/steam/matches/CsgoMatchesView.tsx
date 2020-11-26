@@ -44,24 +44,26 @@ const CsgoMatchesView = () => {
 	}
 
 	return (
-		<div className="flex flex-col justify-center items-center w-full">
-			<div className="flex flex-row w-2/3 mb-4 border-2 border-gray-800 p-4">
-				<div className="flex justify-center items-center overflow-hidden w-16 h-16 rounded-full bg-gray-800">
-					<img className="w-16 h-16" src={user.avatar} />
+		<div className="flex flex-col m-2 lg:m-4 p-2 lg:p-4">
+			<div className="flex-1 flex flex-col items-center">
+				<div className="flex flex-row xl:w-2/3 w-full mb-4 mx-2 border-2 border-gray-800 xl:p-4 p-2">
+					<div className="flex justify-center items-center overflow-hidden w-16 h-16 rounded-full bg-gray-800">
+						<img className="w-16 h-16" src={user.avatar} />
+					</div>
+					<div className="flex flex-col ml-4">
+						<a
+							href={user.steamLink}
+							className="text-gray-100 text-2xl leading-none"
+						>
+							{user.name}
+						</a>
+						<span className="text-gray-500 text-sm">
+							{user.steamId}
+						</span>
+					</div>
 				</div>
-				<div className="flex flex-col ml-4">
-					<a
-						href={user.steamLink}
-						className="text-gray-100 text-2xl leading-none"
-					>
-						{user.name}
-					</a>
-					<span className="text-gray-500 text-sm">
-						{user.steamId}
-					</span>
-				</div>
+				<CsgoMatches steamId={steamId} />
 			</div>
-			<CsgoMatches steamId={steamId} />
 		</div>
 	);
 };

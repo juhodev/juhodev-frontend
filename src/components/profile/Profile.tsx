@@ -69,7 +69,7 @@ const Profile = () => {
 
 	if (!discordAuthenticated && !loading) {
 		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
+			<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 				<div className="">
 					<User
 						avatar={userData.avatar}
@@ -84,7 +84,7 @@ const Profile = () => {
 	}
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
+		<div className="flex xl:flex-row flex-col xl:justify-center overflow-auto flex-1">
 			<div className="">
 				<User
 					avatar={userData.avatar}
@@ -93,7 +93,7 @@ const Profile = () => {
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<div className="flex flex-col border-solid border-2 border-gray-800 m-4 w-1/2">
+			<div className="flex flex-col border-solid border-2 border-gray-800 xl:m-4 m-2 xl:w-1/2">
 				<VoiceLog userVoiceLogs={userProfile.voiceLog} />
 				<CommandLog userCommandLog={userProfile.commandLog} />
 			</div>
