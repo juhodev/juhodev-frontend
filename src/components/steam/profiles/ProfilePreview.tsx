@@ -15,7 +15,7 @@ const ProfilePreview = (props: Props) => {
 				<img className="w-10 h-10 rounded" src={profile.avatarLink} />
 				<div className="mx-2 flex flex-col self-end">
 					<a
-						className="text-xl text-gray-100 whitespace-no-wrap overflow-hidden truncate w-40"
+						className="text-xl text-gray-100 whitespace-nowrap overflow-hidden truncate w-40"
 						href={`${window.location.origin}/steam?id=${profile.id}`}
 					>
 						{profile.name}

@@ -12,7 +12,7 @@ const Text = (props: Props) => {
 
 	if (props.truncate) {
 		subTextClass =
-			'text-gray-100 text-lg whitespace-no-wrap w-64 overflow-hidden truncate';
+			'text-gray-100 text-lg whitespace-nowrap w-64 overflow-hidden truncate';
 	} else {
 		subTextClass = 'text-gray-100 text-lg';
 	}
