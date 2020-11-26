@@ -48,7 +48,7 @@ const ImageUpload = (props: Props) => {
 		previewLink === '' ? 'http://via.placeholder.com/500x500' : previewLink;
 
 	return (
-		<div className="flex flex-row border-solid border-2 border-gray-800 p-4 m-4">
+		<div className="flex-row border-solid border-2 border-gray-800 xl:p-4 p-2 xl:m-4 m-2 xl:flex hidden">
 			<div className="flex flex-col flex-1">
 				<span className="text-gray-500">New submission</span>
 				<TextInput

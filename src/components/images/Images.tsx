@@ -68,7 +68,7 @@ const Images = () => {
 
 	if (!discordAuthenticated && !loading) {
 		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
+			<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 				<div className="">
 					<User
 						avatar={userData.avatar}
@@ -83,7 +83,7 @@ const Images = () => {
 	}
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
+		<div className="flex xl:flex-row flex-col overflow-auto">
 			<div className="">
 				<User
 					avatar={userData.avatar}
@@ -92,7 +92,7 @@ const Images = () => {
 					snowflake={userData.snowflake}
 				/>
 			</div>
-			<div className="flex flex-col">
+			<div className="flex flex-col overflow-auto">
 				<ImageUpload
 					onUpdate={(response) => handleResponse(response)}
 				/>
