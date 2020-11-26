@@ -59,8 +59,8 @@ const CsgoProfileView = (props: Props) => {
 	}
 
 	return (
-		<div className="flex flex-col border-solid border-2 border-gray-800 m-4 p-4">
-			<div className="flex flex-row items-end">
+		<div className="flex flex-col m-2 lg:m-4 p-2 lg:p-4">
+			<div className="flex flex-col lg:flex-row lg:items-end">
 				<div className="flex-1 flex items-center">
 					<img className="w-12 h-12" src={csgoProfile.avatarLink} />
 					<div className="mx-4 flex flex-col">
@@ -74,17 +74,17 @@ const CsgoProfileView = (props: Props) => {
 					</div>
 				</div>
 				<div className="flex flex-col">
-					<span className="font-bold text-gray-500 text-2xl leading-none">{`${csgoProfile.matchesPlayed} games saved`}</span>
+					<span className="hidden lg:block font-bold text-gray-500 text-2xl leading-none">{`${csgoProfile.matchesPlayed} games saved`}</span>
 					<a
-						className="text-sm text-gray-100 text-right"
+						className="text-sm text-gray-100 lg:text-right"
 						href={`${window.location.origin}/matches?id=${csgoProfile.id}&page=0`}
 					>
 						View full history
 					</a>
 				</div>
 			</div>
-			<div className="flex flex-row">
-				<div className="flex flex-col flex-1">
+			<div className="flex lg:flex-row flex-col">
+				<div className="flex flex-col lg:flex-1">
 					<div className="flex flex-col mt-4">
 						<span className="font-bold text-2xl text-blue-500">
 							KDA
@@ -212,49 +212,54 @@ const CsgoProfileView = (props: Props) => {
 						<span className="font-bold text-2xl text-blue-500">
 							Matchmaking
 						</span>
-						<div className="flex flex-row">
-							<CsgoStats
-								name="Wait time"
-								average={formatSeconds(
-									csgoProfile.gameAverages.waitTime.value,
-								)}
-								highest={formatSeconds(
-									csgoProfile.gameHighest.waitTime.value,
-								)}
-								matchId={
-									csgoProfile.gameHighest.waitTime.matchId
-								}
-							/>
-							<CsgoStats
-								name="Match length"
-								average={formatSeconds(
-									csgoProfile.gameAverages.matchDuration
-										.value,
-								)}
-								highest={formatSeconds(
-									csgoProfile.gameHighest.matchDuration.value,
-								)}
-								matchId={
-									csgoProfile.gameHighest.matchDuration
-										.matchId
-								}
-							/>
-							<CsgoStats
-								name="Won"
-								average={csgoProfile.won.toString()}
-							/>
-							<CsgoStats
-								name="Lost"
-								average={csgoProfile.lost.toString()}
-							/>
-							<CsgoStats
-								name="Tied"
-								average={csgoProfile.tied.toString()}
-							/>
+						<div className="flex lg:flex-row flex-col">
+							<div className="flex flex-row">
+								<CsgoStats
+									name="Wait time"
+									average={formatSeconds(
+										csgoProfile.gameAverages.waitTime.value,
+									)}
+									highest={formatSeconds(
+										csgoProfile.gameHighest.waitTime.value,
+									)}
+									matchId={
+										csgoProfile.gameHighest.waitTime.matchId
+									}
+								/>
+								<CsgoStats
+									name="Match length"
+									average={formatSeconds(
+										csgoProfile.gameAverages.matchDuration
+											.value,
+									)}
+									highest={formatSeconds(
+										csgoProfile.gameHighest.matchDuration
+											.value,
+									)}
+									matchId={
+										csgoProfile.gameHighest.matchDuration
+											.matchId
+									}
+								/>
+							</div>
+							<div className="flex flex-row">
+								<CsgoStats
+									name="Won"
+									average={csgoProfile.won.toString()}
+								/>
+								<CsgoStats
+									name="Lost"
+									average={csgoProfile.lost.toString()}
+								/>
+								<CsgoStats
+									name="Tied"
+									average={csgoProfile.tied.toString()}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-col items-end">
+				<div className="flex flex-col lg:items-end justify-center lg:mt-0 mt-4">
 					<span className="font-bold text-2xl text-blue-500">
 						Favorite map
 					</span>

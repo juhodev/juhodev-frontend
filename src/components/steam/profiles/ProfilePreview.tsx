@@ -10,7 +10,7 @@ const ProfilePreview = (props: Props) => {
 	const { profile } = props;
 
 	return (
-		<div className="flex flex-col border-2 border-gray-800 w-64 p-2 m-2">
+		<div className="flex flex-col border-2 border-gray-800 md:w-64 w-full p-2">
 			<div className="flex items-center">
 				<img className="w-10 h-10 rounded" src={profile.avatarLink} />
 				<div className="mx-2 flex flex-col self-end">

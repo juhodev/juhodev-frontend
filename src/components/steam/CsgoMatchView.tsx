@@ -148,13 +148,13 @@ const CsgoMatchView = () => {
 						{name}
 					</a>
 				</td>
-				<td className="px-4">{ping}</td>
-				<td className="px-4">{kills}</td>
-				<td className="px-4">{assists}</td>
-				<td className="px-4">{deaths}</td>
-				<td className="px-4">{mvps}</td>
-				<td className="px-4">{hsp}</td>
-				<td className="px-4">{score}</td>
+				<td className="px-1 sm:px-4">{kills}</td>
+				<td className="px-1 xl:table-cell hidden xl:px-4">{ping}</td>
+				<td className="px-1 sm:table-cell hidden sm:px-4">{assists}</td>
+				<td className="px-1 sm:px-4">{deaths}</td>
+				<td className="px-1 sm:table-cell hidden sm:px-4">{mvps}</td>
+				<td className="px-1 sm:table-cell hidden sm:px-4">{hsp}</td>
+				<td className="px-1 sm:px-4">{score}</td>
 			</tr>
 		);
 	};
@@ -177,36 +177,44 @@ const CsgoMatchView = () => {
 	});
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
-			<div className="flex flex-col m-4 w-2/3">
+		<div className="flex flex-row justify-center">
+			<div className="flex flex-col w-full mx-2 lg:w-2/3">
 				<div className="border-solid border-2 border-gray-800 flex flex-row mb-8">
-					<div className="w-60 overflow-hidden">
+					<div className="sm:w-60 w-32 overflow-hidden">
 						<img src={img} />
 					</div>
 					<div className="ml-2 mt-1 flex flex-col">
-						<span className="text-gray-100 text-4xl leading-none">
+						<span className="text-gray-100 text-2xl sm:text-4xl leading-none">
 							{csgoMatch.map}
 						</span>
-						<span className="text-gray-500 text-lg">
+						<span className="text-gray-500 text-sm sm:text-lg">
 							{dateFormat(new Date(csgoMatch.date))}
 						</span>
-						<span className="text-gray-500 text-lg">{`Match duration: ${formatSeconds(
+						<span className="text-gray-500 text-md sm:text-lg">{`Match duration: ${formatSeconds(
 							csgoMatch.matchDuration,
 						)}`}</span>
 					</div>
 				</div>
-				<div className="flex flex-col border-solid border-2 border-gray-800">
+				<div className="flex flex-col">
 					<table className="w-full">
 						<tbody>
 							<tr className="text-gray-500 text-xl">
-								<td className="px-4">Player</td>
-								<td className="px-4">Ping</td>
-								<td className="px-4">Kills</td>
-								<td className="px-4">Assists</td>
-								<td className="px-4">Deaths</td>
-								<td className="px-4">MVPs</td>
-								<td className="px-4">HS %</td>
-								<td className="px-4">Score</td>
+								<td className="px-1 sm:px-4">Player</td>
+								<td className="px-1 xl:table-cell hidden xl:px-4">
+									Ping
+								</td>
+								<td className="px-1 sm:px-4">Kills</td>
+								<td className="px-1 sm:table-cell hidden sm:px-4">
+									Assists
+								</td>
+								<td className="px-1 sm:px-4">Deaths</td>
+								<td className="px-1 sm:table-cell hidden sm:px-4">
+									MVPs
+								</td>
+								<td className="px-1 sm:table-cell hidden sm:px-4">
+									HS %
+								</td>
+								<td className="px-1 sm:px-4">Score</td>
 							</tr>
 							<tr>
 								<td className="pl-8 text-yellow-400 font-bold text-xl">

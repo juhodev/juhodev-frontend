@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fetchBuiltCsgoProfiles } from '../../../api/api';
 import { BuiltProfile, SteamProfilesResponse } from '../../../api/types';
-import { pluralize } from '../../../ts/utils';
 import ProfilePreview from './ProfilePreview';
 
 const { useState, useEffect } = React;
@@ -30,7 +29,7 @@ const ProfilePreviews = () => {
 			<span className="text-blue-500 text-xl mb-4 mx-2">
 				Quick search
 			</span>
-			<div className="grid grid-cols-4 gap-2">{profileComponents}</div>
+			<div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">{profileComponents}</div>
 		</div>
 	);
 };

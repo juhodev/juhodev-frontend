@@ -228,10 +228,11 @@ export async function fetchBuiltCsgoProfiles(): Promise<SteamLeaderboardResponse
 }
 
 export function getURL() {
-	const { hostname } = window.location;
+	const { port } = window.location;
 
-	if (hostname === 'localhost') {
-		return 'http://localhost:8080';
+	if (port === '8888') {
+		const localApi: string = `http://${window.location.hostname}:8080`;
+		return localApi;
 	}
 
 	return window.location.origin;

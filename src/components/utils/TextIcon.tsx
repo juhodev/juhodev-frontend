@@ -11,7 +11,7 @@ const TextIcon = (props: Props) => {
 	let textClass: string;
 
 	if (props.truncate) {
-		textClass = 'mx-2 whitespace-no-wrap w-64 overflow-hidden truncate';
+		textClass = 'mx-2 whitespace-nowrap w-64 overflow-hidden truncate';
 	} else {
 		textClass = 'mx-2';
 	}

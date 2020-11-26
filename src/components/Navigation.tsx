@@ -55,7 +55,7 @@ const Navigation = () => {
 
 	const links: JSX.Element[] = paths.map(
 		(path): JSX.Element => {
-			let className = 'mx-5 text-3xl text-gray-200';
+			let className = 'sm:mx-5 text-gray-200 mx-2';
 
 			if (currentTab === path.to) {
 				className += ' font-bold border-b-2 border-blue-600';
@@ -84,10 +84,10 @@ const Navigation = () => {
 	}
 
 	return (
-		<div className="flex flex-row pl-12 mt-2 mb-4 mx-1/5">
-			<div className="flex-1">{links}</div>
+		<div className="flex flex-row md:text-3xl text-lg justify-evenly mb-2">
+			<div className="flex justify-center">{links}</div>
 			<button
-				className="mx-5 text-3xl text-gray-200 cursor-pointer"
+				className="mx-5 text-gray-200 cursor-pointer"
 				onClick={logout}
 			>
 				Logout

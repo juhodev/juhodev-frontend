@@ -43,7 +43,7 @@ const SteamInput = (props: Props) => {
 	));
 
 	return (
-		<div className="flex flex-col border-solid border-2 border-gray-800 mx-4 my-4 p-4">
+		<div className="flex flex-col border-solid border-2 border-gray-800 mx-2 sm:mx-4 my-4 p-4">
 			<span className="text-gray-200 mb-2">
 				You can search for players by starting to type their name in the
 				search box below. You'll see results after two characters.
