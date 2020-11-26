@@ -42,7 +42,6 @@ const Navigation = () => {
 	}, []);
 
 	const updateTab = (newTab: string) => {
-		console.log(currentTab, newTab);
 		if (currentTab.toLowerCase() === '/steam' && currentTab === newTab) {
 			// This refreshes the page. Profiles have the same url as the search page so by clicking the Steam link
 			// on a profile page would not refresh the page but only change the url to /steam (you would not get to the search

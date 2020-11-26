@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { fetchCsgoProfile } from '../../../api/api';
-import { CsgoMapStats, CsgoProfile, SteamRouteResponse } from '../../../api/types';
+import {
+	CsgoMapStats,
+	CsgoProfile,
+	SteamRouteResponse,
+} from '../../../api/types';
 import CsgoStats from '../CsgoStats';
 import { formatSeconds } from '../../../ts/timeUtils';
 import MapStats from '../MapStats';
@@ -39,7 +43,7 @@ const CsgoProfileView = (props: Props) => {
 		.shift();
 
 	const tenGames: JSX.Element[] = csgoProfile.tenBestGames.map((game) => {
-		return <CsgoMatchPreview match={game} />;
+		return <CsgoMatchPreview key={game.id} match={game} />;
 	});
 
 	let tenKills: number = 0;
