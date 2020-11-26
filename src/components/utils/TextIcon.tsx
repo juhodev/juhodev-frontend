@@ -17,7 +17,7 @@ const TextIcon = (props: Props) => {
 	}
 
 	return (
-		<div className="flex flex-row mr-2 items-center">
+		<div className="flex flex-row xl:mr-2 mr-0 items-center">
 			<img src={props.src} className="lg:w-6 lg:h-6 md:w-5 md:h-5 w-4 h-4" />
 			<span className={textClass}>
 				{props.link ? (

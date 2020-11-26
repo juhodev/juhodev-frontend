@@ -60,7 +60,7 @@ const Clips = () => {
 
 	if (!discordAuthenticated && !loading) {
 		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
+			<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 				<div className="">
 					<User
 						avatar={userData.avatar}
@@ -75,7 +75,7 @@ const Clips = () => {
 	}
 
 	return (
-		<div className="flex flex-row justify-center overflow-auto flex-1">
+		<div className="flex xl:flex-row flex-col justify-center overflow-auto flex-1">
 			<div className="">
 				<User
 					avatar={userData.avatar}
