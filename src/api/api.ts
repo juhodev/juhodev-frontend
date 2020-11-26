@@ -217,6 +217,16 @@ export async function fetchCsgoLeaderboard(): Promise<SteamLeaderboardResponse> 
 	return response.json();
 }
 
+export async function fetchBuiltCsgoProfiles(): Promise<SteamLeaderboardResponse> {
+	const response = await fetch(`${getURL()}/api/steam/profiles`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
 export function getURL() {
 	const { hostname } = window.location;
 

@@ -316,3 +316,17 @@ export type SteamLeaderboardResponse = {
 	errorCode?: number;
 	leaderboard?: CsgoPlayer[];
 };
+
+export type SteamProfilesResponse = {
+	error: boolean;
+	errorCode?: number;
+	profiles?: BuiltProfile[];
+};
+
+export type BuiltProfile = {
+	name: string;
+	id: string;
+	steamLink: string;
+	avatarLink: string;
+	matchesCount: number;
+};

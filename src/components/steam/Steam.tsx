@@ -3,9 +3,9 @@ import { fetchUserData } from '../../api/api';
 import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
 import { jwtDecode, redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
-import User from '../User';
 import CsgoLeaderboard from './CsgoLeaderboard';
-import CsgoProfileView from './CsgoProfile';
+import CsgoProfileView from './profiles/CsgoProfile';
+import ProfilePreviews from './profiles/ProfilePreviews';
 import SteamInput from './SteamInput';
 import SteamUploadCode from './SteamUploadCode';
 
@@ -79,7 +79,12 @@ const Steam = () => {
 
 	const renderSearchOrLeaderboard = () => {
 		if (page === 'search') {
-			return <SteamInput onSubmit={(value) => setSteamId(value)} />;
+			return (
+				<>
+					<SteamInput onSubmit={(value) => setSteamId(value)} />
+					<ProfilePreviews />
+				</>
+			);
 		} else {
 			return <CsgoLeaderboard />;
 		}

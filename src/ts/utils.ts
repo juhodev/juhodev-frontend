@@ -38,3 +38,15 @@ export function jwtDecode(t: string) {
 export function redirectFrom(to: string, from: string) {
 	window.location.href = `${to}?from=${from}`;
 }
+
+export function pluralize(
+	text: string,
+	textPlural: string,
+	count: number,
+): string {
+	if (count === 1) {
+		return text;
+	} else {
+		return textPlural;
+	}
+}
