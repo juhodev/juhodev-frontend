@@ -15,14 +15,14 @@ const Image = (props: Props) => {
 	const { image } = props;
 
 	return (
-		<div className="flex flex-col border-solid border-2 border-gray-800 m-4">
+		<div className="flex flex-col border-solid border-2 border-gray-800 xl:m-4 m-2">
 			<div className="w-full h-80 flex justify-center items-center bg-gray-700">
 				<img
 					className="max-w-full max-h-80"
 					src={`${getURL()}/img/${image.name}`}
 				/>
 			</div>
-			<div className="px-4">
+			<div className="px-4 pb-2">
 				<div className="my-4">
 					<div className="flex flex-row text-gray-100">
 						<span className="font-bold text-2xl text-purple-800 flex-1">

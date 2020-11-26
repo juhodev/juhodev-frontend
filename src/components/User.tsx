@@ -18,7 +18,7 @@ const User = (props: Props) => {
 	}
 
 	return (
-		<div className="flex xl:flex-col flex-row xl:p-4 p-2 xl:mx-4 mx-2 border-solid border-2 border-gray-800 xl:w-80">
+		<div className="flex xl:flex-col flex-row xl:p-4 p-2 xl:m-4 mx-2 border-solid border-2 border-gray-800 xl:w-80">
 			<div className="flex xl:w-full justify-center items-center mr-2 xl:mr-0">
 				<img className="rounded-full xl:w-32 xl:h-32 w-12 h-12" src={avatarUrl} />
 			</div>
