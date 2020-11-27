@@ -17,7 +17,7 @@ const SteamUploadCode = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col border-solid border-2 border-gray-800 m-4 p-4">
+		<div className="flex flex-col border-solid border-2 border-gray-800 xl:m-4 m-2 xl:p-4 p-2">
 			<span className="text-gray-500 text-sm">Upload code</span>
 			<div className="flex flex-row">
 				<span className="text-gray-500 text-xl mr-1">

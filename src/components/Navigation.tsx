@@ -84,7 +84,7 @@ const Navigation = () => {
 	}
 
 	return (
-		<div className="flex flex-row md:text-3xl text-lg justify-evenly mb-2">
+		<div className="flex flex-row md:text-3xl text-lg justify-evenly my-2">
 			<div className="flex justify-center">{links}</div>
 			<button
 				className="mx-5 text-gray-200 cursor-pointer"

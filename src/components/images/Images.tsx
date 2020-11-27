@@ -83,21 +83,24 @@ const Images = () => {
 	}
 
 	return (
-		<div className="flex xl:flex-row flex-col overflow-auto">
-			<div className="">
-				<User
-					avatar={userData.avatar}
-					discordName={userData.name}
-					discordTag={userData.tag}
-					snowflake={userData.snowflake}
-				/>
-			</div>
-			<div className="flex flex-col overflow-auto">
-				<ImageUpload
-					onUpdate={(response) => handleResponse(response)}
-				/>
-				<SubmissionFeed title="Submissions" submissions={submissions} />
-			</div>
+		<div className="flex xl:flex-row flex-col xl:justify-center overflow-auto">
+				<div className="">
+					<User
+						avatar={userData.avatar}
+						discordName={userData.name}
+						discordTag={userData.tag}
+						snowflake={userData.snowflake}
+					/>
+				</div>
+				<div className="flex flex-col overflow-auto">
+					<ImageUpload
+						onUpdate={(response) => handleResponse(response)}
+					/>
+					<SubmissionFeed
+						title="Submissions"
+						submissions={submissions}
+					/>
+				</div>
 		</div>
 	);
 };

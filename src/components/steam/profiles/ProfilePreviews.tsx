@@ -25,7 +25,7 @@ const ProfilePreviews = () => {
 	));
 
 	return (
-		<div className="flex flex-col mx-2">
+		<div className="flex flex-col xl:mx-4 mx-2">
 			<span className="text-blue-500 text-xl mb-4 mx-2">
 				Quick search
 			</span>
