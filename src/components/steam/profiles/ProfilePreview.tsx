@@ -11,7 +11,7 @@ const ProfilePreview = (props: Props) => {
 
 	return (
 		<a
-			className="flex flex-col border-2 border-gray-800 w-full p-2 transition duration-150 ease-in-out hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+			className="flex flex-col border-2 border-gray-800 w-full p-2 transition duration-150 ease-in-out hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 rounded hover:bg-gray-800"
 			href={`${window.location.origin}/steam?id=${profile.id}`}
 		>
 			<div className="flex items-center">
