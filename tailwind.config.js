@@ -16,4 +16,7 @@ module.exports = {
 			},
 		},
 	},
+	variants: {
+		transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
+	},
 };

@@ -59,15 +59,12 @@ const CsgoMapStatistics = (props: Props) => {
 	);
 
 	return (
-		<div className="">
+		<div className="w-full">
 			<div className="md:flex flex-row h-32 p-4 my-8 hidden">
 				{chart}
 				{lineChart}
 			</div>
-			<div
-				className="mt-2 flex"
-				style={{ flexWrap: 'wrap', justifyContent: 'space-evenly' }}
-			>
+			<div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 				{mapStats}
 			</div>
 		</div>
