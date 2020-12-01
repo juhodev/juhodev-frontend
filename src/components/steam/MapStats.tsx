@@ -17,7 +17,6 @@ const lazyLoadImage = async (map: string) => {
 
 	switch (map) {
 		case 'train':
-		case 'vertigo':
 		case 'overpass':
 		case 'breach':
 		case 'cache':
@@ -59,9 +58,9 @@ const MapStats = (props: Props) => {
 
 	let containerClassName: string;
 	if(props.compact) {
-		containerClassName = 'w-64 h-28 overflow-hidden relative rounded';
+		containerClassName = 'w-full h-28 overflow-hidden relative rounded flex items-center';
 	} else {
-		containerClassName = 'w-80 h-36 overflow-hidden relative rounded';
+		containerClassName = 'w-full h-36 overflow-hidden relative rounded flex items-center';
 	}
 
 	return (

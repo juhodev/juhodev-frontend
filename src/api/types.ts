@@ -160,6 +160,8 @@ export type CsgoProfile = {
 	gameHighest: CsgoGameStats;
 	mapStats: CsgoMapStats[];
 	tenBestGames: GameWithStats[];
+	dateMatches: DateMatches[];
+	mapStatistics: MapStatistics;
 };
 
 export type GameWithStats = {

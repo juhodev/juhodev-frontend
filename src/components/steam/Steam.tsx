@@ -4,7 +4,7 @@ import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
 import { jwtDecode, redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import CsgoLeaderboard from './CsgoLeaderboard';
-import CsgoProfileView from './profiles/CsgoProfile';
+import CsgoProfileView from './profiles/CsgoProfileView';
 import ProfilePreviews from './profiles/ProfilePreviews';
 import SteamInput from './SteamInput';
 import SteamUploadCode from './SteamUploadCode';

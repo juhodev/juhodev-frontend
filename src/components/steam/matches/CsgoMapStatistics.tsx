@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
 	CsgoMap,
 	DateMatches,
-	GameWithStats,
 	MapStatistics,
 } from '../../../api/types';
 import LineChart from '../../utils/LineChart';
