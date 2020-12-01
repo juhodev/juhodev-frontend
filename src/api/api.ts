@@ -11,6 +11,7 @@ import {
 	SteamGamesResponse,
 	SteamUserResponse,
 	SteamLeaderboardResponse,
+	SteamStatisticsResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -224,6 +225,22 @@ export async function fetchBuiltCsgoProfiles(): Promise<SteamLeaderboardResponse
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
 		},
 	});
+	return response.json();
+}
+
+export async function fetchCsgoStatistics(
+	playerId: string,
+	type: string,
+): Promise<SteamStatisticsResponse> {
+	const response = await fetch(
+		`${getURL()}/api/steam/statistics?playerId=${playerId}&type=${type}`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+			},
+		},
+	);
 	return response.json();
 }
 

@@ -332,3 +332,9 @@ export type BuiltProfile = {
 	avatarLink: string;
 	matchesCount: number;
 };
+
+export type SteamStatisticsResponse = {
+	error: boolean;
+	errorCode?: number;
+	data: number[];
+};

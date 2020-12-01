@@ -5,6 +5,7 @@ import CsgoMapHistory from './overview/CsgoMapHistory';
 import CsgoUserInfo from './overview/CsgoUserInfo';
 import MapFrequency from './overview/MatchFrequency';
 import QuickStats from './overview/QuickStats';
+import CsgoProfileStats from './stats/CsgoProfileStats';
 
 type Props = {
 	csgoProfile: CsgoProfile;
@@ -16,6 +17,8 @@ const CsgoProfileOverview = (props: Props) => {
 	const totalGamesPlayed: number = csgoProfile.mapStatistics.maps
 		.map((x) => x.timesPlayed)
 		.reduce((prev, curr) => (prev += curr));
+
+	return <CsgoProfileStats csgoProfile={csgoProfile} />;
 
 	return (
 		<div className="flex flex-col">
