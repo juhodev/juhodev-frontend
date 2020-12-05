@@ -18,10 +18,8 @@ const CsgoProfileOverview = (props: Props) => {
 		.map((x) => x.timesPlayed)
 		.reduce((prev, curr) => (prev += curr));
 
-	return <CsgoProfileStats csgoProfile={csgoProfile} />;
-
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col w-full">
 			<CsgoUserInfo csgoProfile={csgoProfile} />
 			<div className="flex flex-row">
 				<MapFrequency mapFrequency={csgoProfile.dateMatches} />

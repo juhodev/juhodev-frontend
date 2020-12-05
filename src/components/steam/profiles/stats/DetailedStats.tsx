@@ -11,7 +11,7 @@ const DetailedStats = (props: Props) => {
 	const { csgoProfile } = props;
 
 	return (
-		<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+		<div className="grid grid-cols-1 gap-2 md:grid-cols-2 w-full">
 			<StatsSection
 				name="Kills / Assists / Deaths"
 				data={[
