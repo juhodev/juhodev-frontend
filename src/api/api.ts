@@ -231,9 +231,10 @@ export async function fetchBuiltCsgoProfiles(): Promise<SteamLeaderboardResponse
 export async function fetchCsgoStatistics(
 	playerId: string,
 	type: string,
+	soloQueue: boolean,
 ): Promise<SteamStatisticsResponse> {
 	const response = await fetch(
-		`${getURL()}/api/steam/statistics?playerId=${playerId}&type=${type}`,
+		`${getURL()}/api/steam/statistics?playerId=${playerId}&type=${type}&soloQueue=${soloQueue}`,
 		{
 			method: 'GET',
 			headers: {

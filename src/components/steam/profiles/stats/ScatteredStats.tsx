@@ -16,15 +16,17 @@ const ScatteredStats = (props: Props) => {
 	const [currentType, setCurrentType] = useState<SelectionType>(
 		props.types[0],
 	);
+	const [onlySoloQueue, setOnlySoloQueue] = useState<boolean>(false);
 
 	useEffect(() => {
 		fetchData();
-	}, [currentType]);
+	}, [currentType, onlySoloQueue]);
 
 	const fetchData = async () => {
 		const response: SteamStatisticsResponse = await fetchCsgoStatistics(
 			props.playerId,
 			currentType.type,
+			onlySoloQueue,
 		);
 		setData(response.data);
 	};
@@ -51,6 +53,14 @@ const ScatteredStats = (props: Props) => {
 						setCurrentType(type);
 					}}
 				/>
+				<div className="mx-2">
+					<input
+						type="checkbox"
+						checked={onlySoloQueue}
+						onChange={() => setOnlySoloQueue(!onlySoloQueue)}
+					/>
+					<span className="ml-2 text-gray-500 text-sm">Only show solo queue games</span>
+				</div>
 				<div className="flex-1"></div>
 			</div>
 			<Scatter
