@@ -12,6 +12,7 @@ import {
 	SteamUserResponse,
 	SteamLeaderboardResponse,
 	SteamStatisticsResponse,
+	SteamLinkResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -242,6 +243,26 @@ export async function fetchCsgoStatistics(
 			},
 		},
 	);
+	return response.json();
+}
+
+export async function linkSteamAccount(
+	profileLink: string,
+	authCode: string,
+	sharingCode: string,
+): Promise<SteamLinkResponse> {
+	const response = await fetch(`${getURL()}/api/steam/link`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			profile: profileLink,
+			authenticationCode: authCode,
+			knownCode: sharingCode,
+		}),
+	});
+
 	return response.json();
 }
 

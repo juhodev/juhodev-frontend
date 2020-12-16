@@ -4,6 +4,7 @@ import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
 import { jwtDecode, redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import CsgoLeaderboard from './CsgoLeaderboard';
+import LinkSteamAccount from './LinkSteamAccount';
 import CsgoProfileView from './profiles/CsgoProfileView';
 import ProfilePreviews from './profiles/ProfilePreviews';
 import SteamInput from './SteamInput';
@@ -85,8 +86,10 @@ const Steam = () => {
 					<ProfilePreviews />
 				</>
 			);
-		} else {
+		} else if (page === 'leaderboard') {
 			return <CsgoLeaderboard />;
+		} else {
+			return <LinkSteamAccount />;
 		}
 	};
 
@@ -94,26 +97,23 @@ const Steam = () => {
 		'text-lg mx-2 text-gray-200 font-bold border-b-2 border-blue-600';
 	const normalClassName: string = 'text-lg mx-2 text-gray-200';
 
+	const paths: string[] = ['Search', 'Leaderboard', 'Track'];
+	const pathComponents: React.ReactNode = paths.map((path) => (
+		<button
+			className={
+				page === path.toLowerCase()
+					? selectedClassName
+					: normalClassName
+			}
+			onClick={() => setPage(path.toLowerCase())}
+		>
+			{path}
+		</button>
+	));
+
 	const searchOrLeaderboardWithControls = () => (
 		<div className="">
-			<div className="flex flex-row justify-center">
-				<button
-					className={
-						page === 'search' ? selectedClassName : normalClassName
-					}
-					onClick={() => setPage('search')}
-				>
-					Search
-				</button>
-				<button
-					className={
-						page !== 'search' ? selectedClassName : normalClassName
-					}
-					onClick={() => setPage('leaderboard')}
-				>
-					Leaderboard
-				</button>
-			</div>
+			<div className="flex flex-row justify-center">{pathComponents}</div>
 			{renderSearchOrLeaderboard()}
 		</div>
 	);
@@ -121,7 +121,9 @@ const Steam = () => {
 	if (isPreview && (steamId === undefined || steamId.length === 0)) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<div className="2xl:w-2/3 xl:w-5/6 w-full">{searchOrLeaderboardWithControls()}</div>
+				<div className="2xl:w-2/3 xl:w-5/6 w-full">
+					{searchOrLeaderboardWithControls()}
+				</div>
 			</div>
 		);
 	}
