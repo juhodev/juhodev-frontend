@@ -152,8 +152,8 @@ const CsgoMatchView = () => {
 						{name}
 					</a>
 				</td>
-				<td className="px-1 sm:px-4">{ping}</td>
-				<td className="px-1 xl:table-cell hidden xl:px-4">{kills}</td>
+				<td className="px-1 xl:table-cell hidden xl:px-4">{ping}</td>
+				<td className="px-1 sm:px-4">{kills}</td>
 				<td className="px-1 sm:table-cell hidden sm:px-4">{assists}</td>
 				<td className="px-1 sm:px-4">{deaths}</td>
 				<td className="px-1 sm:table-cell hidden sm:px-4">{mvps}</td>
