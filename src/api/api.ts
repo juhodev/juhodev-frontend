@@ -266,6 +266,11 @@ export async function linkSteamAccount(
 	return response.json();
 }
 
+export async function fetchDemoWorkerStatus() {
+	const response = await fetch(`${getURL()}/api/demoworker/status`);
+	return response.json();
+}
+
 export function getURL() {
 	const { port } = window.location;
 

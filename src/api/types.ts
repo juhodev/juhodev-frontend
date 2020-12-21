@@ -349,3 +349,15 @@ export const SteamError = {
 	USER_NOT_ON_SERVER: 1,
 	COULD_NOT_FETCH_MATCH_CODE: 2,
 };
+
+export type WorkerStatus = {
+	working: boolean;
+	alive: boolean;
+	processing: ProcessingMetrics;
+};
+
+export type ProcessingMetrics = {
+	average: number;
+	longest: number;
+	all: number[];
+};
