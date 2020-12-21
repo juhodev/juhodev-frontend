@@ -23,9 +23,20 @@ const MetricGraph = (props: Props) => {
 		],
 	};
 
+	const average: number =
+		props.data.reduce((prev, curr) => (prev += curr)) / props.data.length;
+	const highest: number = props.data.reduce((prev, curr) =>
+		prev <= curr ? (prev = curr) : prev,
+	);
+
+	const averageFormat: string | number =
+		props.dataFormat !== undefined ? props.dataFormat(average) : average;
+	const highestFormat: string | number =
+		props.dataFormat !== undefined ? props.dataFormat(highest) : highest;
+
 	return (
 		<div className="m-2 flex flex-col justify-center items-center">
-			<span className="pb-2 text-gray-100">{props.name}</span>
+			<span className="pb-2 text-gray-100">{`${props.name} (avrg: ${averageFormat}, ${highestFormat})`}</span>
 			<div className="w-full">
 				<Line
 					options={{
