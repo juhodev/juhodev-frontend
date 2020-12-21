@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
 import { WorkerStatus } from '../../api/types';
-import { formatSeconds } from '../../ts/timeUtils';
+import { millisecondsToSeconds } from '../../ts/timeUtils';
 
 type Props = {
 	status: WorkerStatus;
@@ -12,7 +12,7 @@ const DemoWorkerStatus = (props: Props) => {
 	const { processing } = props.status;
 
 	const chartData = {
-		labels: processing.all.map((data) => formatSeconds(data / 1000)),
+		labels: processing.all.map((data) => millisecondsToSeconds(data)),
 		datasets: [
 			{
 				label: props.name,
@@ -34,10 +34,14 @@ const DemoWorkerStatus = (props: Props) => {
 					</span>
 					<span>Processing times:</span>
 					<span>
-						Average: {formatSeconds(processing.average / 1000)}
+						{`Average: ${millisecondsToSeconds(
+							processing.average,
+						)}s`}
 					</span>
 					<span>
-						Highest: {formatSeconds(processing.longest / 1000)}
+						{`Highest: ${millisecondsToSeconds(
+							processing.longest,
+						)}s`}
 					</span>
 				</div>
 				<div className="w-full">
@@ -51,7 +55,7 @@ const DemoWorkerStatus = (props: Props) => {
 									title: (tooltipItem, data) => {
 										return `${
 											data.labels[tooltipItem[0].index]
-										}`;
+										}s`;
 									},
 									beforeLabel: (tooltipItem, data) => {
 										return undefined;

@@ -60,3 +60,7 @@ export function msToTime(ms: number) {
 
 	return `${hours} hours ${minutes} minutes`;
 }
+
+export function millisecondsToSeconds(milliseconds: number): string {
+	return (milliseconds / 1000).toPrecision(2);
+}
