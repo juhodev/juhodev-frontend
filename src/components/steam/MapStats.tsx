@@ -25,7 +25,7 @@ const lazyLoadImage = async (map: string) => {
 
 		case 'nuke':
 		case 'inferno':
-		case 'dust':
+		case 'dust ii':
 		case 'cobblestone':
 		case 'canals':
 		case 'mirage':
@@ -57,10 +57,12 @@ const MapStats = (props: Props) => {
 	};
 
 	let containerClassName: string;
-	if(props.compact) {
-		containerClassName = 'w-full h-28 overflow-hidden relative rounded flex items-center';
+	if (props.compact) {
+		containerClassName =
+			'w-full h-28 overflow-hidden relative rounded flex items-center';
 	} else {
-		containerClassName = 'w-full h-36 overflow-hidden relative rounded flex items-center';
+		containerClassName =
+			'w-full h-36 overflow-hidden relative rounded flex items-center';
 	}
 
 	return (

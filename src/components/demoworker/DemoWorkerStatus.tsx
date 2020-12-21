@@ -17,7 +17,8 @@ const DemoWorkerStatus = (props: Props) => {
 			{
 				label: props.name,
 				data: processing.all,
-				backgroundColor: '#7d7d7d',
+				backgroundColor: '#00BFFF96',
+				lineTension: .5,
 			},
 		],
 	};
@@ -72,7 +73,6 @@ const DemoWorkerStatus = (props: Props) => {
 									},
 								],
 							},
-							lineTension: 2,
 						}}
 						data={chartData}
 					/>

@@ -95,7 +95,7 @@ const CsgoMatchView = () => {
 
 			case 'nuke':
 			case 'inferno':
-			case 'dust':
+			case 'dust ii':
 			case 'cobblestone':
 			case 'canals':
 			case 'mirage':
