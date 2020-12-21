@@ -60,6 +60,7 @@ const LineChart = (props: Props) => {
 							},
 						],
 					},
+					lineTension: 2,
 				}}
 				data={chartData}
 			/>

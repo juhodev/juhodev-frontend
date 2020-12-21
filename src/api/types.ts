@@ -160,6 +160,8 @@ export type CsgoProfile = {
 	gameHighest: CsgoGameStats;
 	mapStats: CsgoMapStats[];
 	tenBestGames: GameWithStats[];
+	dateMatches: DateMatches[];
+	mapStatistics: MapStatistics;
 };
 
 export type GameWithStats = {
@@ -329,4 +331,33 @@ export type BuiltProfile = {
 	steamLink: string;
 	avatarLink: string;
 	matchesCount: number;
+};
+
+export type SteamStatisticsResponse = {
+	error: boolean;
+	errorCode?: number;
+	data: number[];
+};
+
+export type SteamLinkResponse = {
+	error: boolean;
+	errorCode?: number;
+};
+
+export const SteamError = {
+	DISCORD_NOT_AUTHENTICATED: 0,
+	USER_NOT_ON_SERVER: 1,
+	COULD_NOT_FETCH_MATCH_CODE: 2,
+};
+
+export type WorkerStatus = {
+	working: boolean;
+	alive: boolean;
+	processing: ProcessingMetrics;
+};
+
+export type ProcessingMetrics = {
+	average: number;
+	longest: number;
+	all: number[];
 };

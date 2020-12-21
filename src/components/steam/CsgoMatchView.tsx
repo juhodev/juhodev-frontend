@@ -95,7 +95,7 @@ const CsgoMatchView = () => {
 
 			case 'nuke':
 			case 'inferno':
-			case 'dust':
+			case 'dust ii':
 			case 'cobblestone':
 			case 'canals':
 			case 'mirage':
@@ -133,6 +133,7 @@ const CsgoMatchView = () => {
 			score,
 		} = player;
 
+		debugger;
 		let trClassName: string;
 		if (i % 2 === 0) {
 			trClassName = 'text-gray-100 bg-gray-800';
@@ -143,13 +144,16 @@ const CsgoMatchView = () => {
 		return (
 			<tr className={trClassName}>
 				<td className="px-4 flex flex-row items-center my-1">
-					<img className="mr-2" src={avatar} />
+					<img
+						className="w-8 h-8 overflow-hidden rounded mr-2"
+						src={avatar}
+					/>
 					<a href={`${window.location.origin}/steam?id=${playerId}`}>
 						{name}
 					</a>
 				</td>
-				<td className="px-1 sm:px-4">{kills}</td>
 				<td className="px-1 xl:table-cell hidden xl:px-4">{ping}</td>
+				<td className="px-1 sm:px-4">{kills}</td>
 				<td className="px-1 sm:table-cell hidden sm:px-4">{assists}</td>
 				<td className="px-1 sm:px-4">{deaths}</td>
 				<td className="px-1 sm:table-cell hidden sm:px-4">{mvps}</td>

@@ -11,6 +11,8 @@ import {
 	SteamGamesResponse,
 	SteamUserResponse,
 	SteamLeaderboardResponse,
+	SteamStatisticsResponse,
+	SteamLinkResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -224,6 +226,48 @@ export async function fetchBuiltCsgoProfiles(): Promise<SteamLeaderboardResponse
 			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
 		},
 	});
+	return response.json();
+}
+
+export async function fetchCsgoStatistics(
+	playerId: string,
+	type: string,
+	soloQueue: boolean,
+): Promise<SteamStatisticsResponse> {
+	const response = await fetch(
+		`${getURL()}/api/steam/statistics?playerId=${playerId}&type=${type}&soloQueue=${soloQueue}`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+			},
+		},
+	);
+	return response.json();
+}
+
+export async function linkSteamAccount(
+	profileLink: string,
+	authCode: string,
+	sharingCode: string,
+): Promise<SteamLinkResponse> {
+	const response = await fetch(`${getURL()}/api/steam/link`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			profile: profileLink,
+			authenticationCode: authCode,
+			knownCode: sharingCode,
+		}),
+	});
+
+	return response.json();
+}
+
+export async function fetchDemoWorkerStatus() {
+	const response = await fetch(`${getURL()}/api/demoworker/status`);
 	return response.json();
 }
 
