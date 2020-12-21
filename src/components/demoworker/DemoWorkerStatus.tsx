@@ -18,7 +18,7 @@ const DemoWorkerStatus = (props: Props) => {
 				label: props.name,
 				data: processing.all,
 				backgroundColor: '#00BFFF96',
-				lineTension: .5,
+				lineTension: 0.5,
 			},
 		],
 	};
@@ -70,6 +70,9 @@ const DemoWorkerStatus = (props: Props) => {
 								yAxes: [
 									{
 										gridLines: { color: '#3d3d3d' },
+										ticks: {
+											beginAtZero: true,
+										},
 									},
 								],
 							},
