@@ -271,6 +271,11 @@ export async function fetchDemoWorkerStatus() {
 	return response.json();
 }
 
+export async function fetchMetrics() {
+	const response = await fetch(`${getURL()}/api/metrics`);
+	return response.json();
+}
+
 export function getURL() {
 	const { port } = window.location;
 

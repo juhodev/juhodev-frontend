@@ -361,3 +361,8 @@ export type ProcessingMetrics = {
 	longest: number;
 	all: number[];
 };
+
+export type SiteMetric = {
+	name: string;
+	values: number[];
+};

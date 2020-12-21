@@ -14,6 +14,7 @@ import CsgoMatchesView from './steam/matches/CsgoMatchesView';
 import CsgoMatchView from './steam/CsgoMatchView';
 import Steam from './steam/Steam';
 import DemoWorkerDashboard from './demoworker/DemoWorkerDashboard';
+import Metrics from './metrics/Metrics';
 
 const Main = () => {
 	return (
@@ -30,7 +31,8 @@ const Main = () => {
 			<Route path="/match" component={CsgoMatchView} />
 			<Route path="/auth" component={Auth} />
 			<Route path="/matches" component={CsgoMatchesView} />
-			<Route path="/metrics" component={DemoWorkerDashboard} />
+			<Route path="/metrics" component={Metrics} />
+			<Route path="/workermetrics" component={DemoWorkerDashboard} />
 		</Router>
 	);
 };
