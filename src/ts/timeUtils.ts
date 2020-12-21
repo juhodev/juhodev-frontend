@@ -50,7 +50,7 @@ export function formatSeconds(seconds: number): string {
 
 	return `${Math.round(minutes)}:${
 		leftoverSeconds < 10
-			? '0' + Math.round(leftoverSeconds)
+			? '0' + Math.floor(leftoverSeconds)
 			: Math.round(leftoverSeconds)
 	}`;
 }
