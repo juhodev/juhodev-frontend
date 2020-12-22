@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fetchCsgoProfile } from '../../../api/api';
 import { CsgoProfile, SteamRouteResponse } from '../../../api/types';
-import CsgoProfileOverview from './CsgoProfileOverview';
+import CsgoProfileOverview from './overview/CsgoProfileOverview';
 import CsgoProfileStats from './stats/CsgoProfileStats';
 
 const { useState, useEffect } = React;

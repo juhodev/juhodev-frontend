@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { CsgoProfile, GameWithStats } from '../../../api/types';
-import CsgoKDA from './overview/CsgoKDA';
-import CsgoMapHistory from './overview/CsgoMapHistory';
-import CsgoUserInfo from './overview/CsgoUserInfo';
-import MapFrequency from './overview/MatchFrequency';
-import QuickStats from './overview/QuickStats';
-import CsgoProfileStats from './stats/CsgoProfileStats';
+import { CsgoProfile, GameWithStats } from '../../../../api/types';
+import CsgoKDA from './CsgoKDA';
+import CsgoMapHistory from './CsgoMapHistory';
+import CsgoUserInfo from './CsgoUserInfo';
+import MapFrequency from './MatchFrequency';
+import QuickStats from './QuickStats';
+import CsgoProfileStats from '../stats/CsgoProfileStats';
 
 type Props = {
 	csgoProfile: CsgoProfile;
