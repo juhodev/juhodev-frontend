@@ -183,20 +183,17 @@ const CsgoMatchView = () => {
 	return (
 		<div className="flex flex-row justify-center">
 			<div className="flex flex-col w-full mx-2 lg:w-2/3">
-				<div className="border-solid border-2 border-gray-800 flex flex-row mb-8">
-					<div className="sm:w-60 w-32 overflow-hidden">
-						<img src={img} />
-					</div>
-					<div className="ml-2 mt-1 flex flex-col">
-						<span className="text-gray-100 text-2xl sm:text-4xl leading-none">
-							{csgoMatch.map}
-						</span>
-						<span className="text-gray-500 text-sm sm:text-lg">
-							{dateFormat(new Date(csgoMatch.date))}
-						</span>
-						<span className="text-gray-500 text-md sm:text-lg">{`Match duration: ${formatSeconds(
-							csgoMatch.matchDuration,
-						)}`}</span>
+				<div className="flex flex-col rounded-b-lg bg-gray-800 p-4 mb-8">
+					<div className="flex items-center">
+						<img className="w-12 h-12" src={img} />
+						<div className="mx-4 flex flex-col">
+							<span className="text-3xl text-gray-100 leading-none">
+								{csgoMatch.map}
+							</span>
+							<span className="text-gray-500">
+								{dateFormat(new Date(csgoMatch.date))}
+							</span>
+						</div>
 					</div>
 				</div>
 				<div className="flex flex-col">
