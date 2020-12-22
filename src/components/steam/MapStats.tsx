@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { formatSeconds } from '../../ts/timeUtils';
-import CsgoStats from './CsgoStats';
 
 const { useState, useEffect } = React;
 

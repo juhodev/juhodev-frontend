@@ -185,7 +185,9 @@ const CsgoMatchView = () => {
 			<div className="flex flex-col w-full mx-2 lg:w-2/3">
 				<div className="flex flex-col rounded-b-lg bg-gray-800 p-4 mb-8">
 					<div className="flex items-center">
-						<img className="w-12 h-12" src={img} />
+						<div className="w-32 h-16 overflow-hidden rounded items-center justify-center">
+							<img className="w-full" src={img} />
+						</div>
 						<div className="mx-4 flex flex-col">
 							<span className="text-3xl text-gray-100 leading-none">
 								{csgoMatch.map}

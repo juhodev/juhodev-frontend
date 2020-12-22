@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fetchCsgoMatchesForUser } from '../../../api/api';
 import { GameWithStats, SteamGamesResponse } from '../../../api/types';
-import CsgoMapStatistics from './CsgoMapStatistics';
 import CsgoMatchesControls from './CsgoMatchesControls';
 import CsgoMatchPreview from './CsgoMatchPreview';
 
