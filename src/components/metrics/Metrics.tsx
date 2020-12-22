@@ -46,7 +46,7 @@ const Metrics = () => {
 			key={i}
 			name={metric.name}
 			data={metric.values}
-			dataFormat={(data) => `${data}ms`}
+			dataFormat={(data) => `${Math.round(data)}ms`}
 		/>
 	));
 

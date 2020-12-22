@@ -18,16 +18,18 @@ const MetricGraph = (props: Props) => {
 				label: props.name,
 				data: props.data,
 				backgroundColor: '#00BFFF96',
-				lineTension: 0.5,
+				lineTension: 0,
 			},
 		],
 	};
 
 	const average: number =
-		props.data.reduce((prev, curr) => (prev += curr)) / props.data.length;
-	const highest: number = props.data.reduce((prev, curr) =>
-		prev <= curr ? (prev = curr) : prev,
-	);
+		props.data
+			.slice(props.data.length * 0.7, props.data.length)
+			.reduce((prev, curr) => (prev += curr)) / props.data.length;
+	const highest: number = props.data
+		.slice(props.data.length * 0.7, props.data.length)
+		.reduce((prev, curr) => (prev <= curr ? (prev = curr) : prev));
 
 	const averageFormat: string | number =
 		props.dataFormat !== undefined ? props.dataFormat(average) : average;
@@ -36,7 +38,7 @@ const MetricGraph = (props: Props) => {
 
 	return (
 		<div className="m-2 flex flex-col justify-center items-center">
-			<span className="pb-2 text-gray-100">{`${props.name} (avrg: ${averageFormat}, ${highestFormat})`}</span>
+			<span className="pb-2 text-gray-100">{`${props.name} (last 30% avg: ${averageFormat}, ${highestFormat})`}</span>
 			<div className="w-full">
 				<Line
 					options={{
@@ -72,6 +74,11 @@ const MetricGraph = (props: Props) => {
 									},
 								},
 							],
+						},
+						elements: {
+							point: {
+								radius: 0,
+							},
 						},
 					}}
 					data={data}
