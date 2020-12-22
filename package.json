@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "webpack --mode development",
 		"build": "set NODE_ENV=production&& webpack --config webpack.config.prod.js --mode production",
+		"stats": "set NODE_ENV=production&& webpack --config webpack.config.prod.js --mode production --json > stats.json",
 		"start:dev": "webpack-dev-server --config webpack.config.dev.js --mode development"
 	},
 	"keywords": [],

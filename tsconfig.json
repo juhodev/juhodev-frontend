@@ -3,7 +3,8 @@
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
-		"module": "commonjs",
+		"moduleResolution": "Node",
+		"module": "esnext",
 		"target": "es6",
 		"jsx": "react",
 		"esModuleInterop": true

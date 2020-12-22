@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Line } from 'react-chartjs-2';
 import { DateMatches } from '../../api/types';
 import { dateFormat } from '../../ts/timeUtils';
-import { randomRGBA } from '../../ts/utils';
 
 type Props = {
 	dates: DateMatches[];

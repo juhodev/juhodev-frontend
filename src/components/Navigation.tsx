@@ -13,6 +13,7 @@ const Navigation = () => {
 	const [currentTab, setCurrentTab] = useState(window.location.pathname);
 	const [paths, setPaths] = useState<Path[]>([
 		{ to: '/steam', name: 'Steam' },
+		{ to: '/hoi4', name: 'HOI4' },
 	]);
 	const [userType, setUserType] = useState<string>('NOT_LOGGED_IN');
 
@@ -34,6 +35,7 @@ const Navigation = () => {
 				{ to: '/clips', name: 'Clips' },
 				{ to: '/profile', name: 'Profile' },
 				{ to: '/steam', name: 'Steam' },
+				{ to: '/hoi4', name: 'HOI4' },
 			];
 
 			setPaths(loggedInPaths);
