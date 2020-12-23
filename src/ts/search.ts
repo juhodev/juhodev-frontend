@@ -1,4 +1,4 @@
-import { UserSubmission } from '../api/types';
+import { Country, UserSubmission } from '../api/types';
 
 export enum SortType {
 	SUBMISSION_DATE = 'SUBMISSION_DATE',
@@ -35,5 +35,29 @@ function sortSubmissions(
 
 		case SortType.VIEWS:
 			return submissions.sort((a, b) => a.views - b.views).reverse();
+	}
+}
+
+export enum Hoi4SortType {
+	STABILITY = 'STABILITY',
+	NAME = 'NAME',
+}
+
+export function hoi4search(
+	countries: Country[],
+	search: string,
+	sortType: Hoi4SortType,
+) {
+	switch (sortType) {
+		case Hoi4SortType.STABILITY:
+			return countries
+				.sort((a, b) => a.stability - b.stability)
+				.reverse();
+
+		case Hoi4SortType.NAME:
+			return countries.sort((a, b) => a.name.localeCompare(b.name));
+
+		default:
+			return countries;
 	}
 }

@@ -23,14 +23,17 @@ const Hoi4Games = () => {
 	};
 
 	const gameComponents: React.ReactNode[] = games.map((game) => (
-		<div className="flex flex-col bg-gray-800 rounded px-4 py-2">
+		<a
+			className="flex flex-col bg-gray-800 rounded px-4 py-2"
+			href={`/game?id=${game.id}`}
+		>
 			<span className="text-xl text-gray-200 leading-none">
 				{game.name}
 			</span>
 			<span className="text-sm text-gray-500 leading-none">
 				#{game.id}
 			</span>
-		</div>
+		</a>
 	));
 
 	return <div className="grid grid-cols-4 gap-3 m-2">{gameComponents}</div>;

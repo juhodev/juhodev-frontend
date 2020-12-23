@@ -5,14 +5,11 @@ import { Hoi4Save } from '../../api/types';
 
 const { useCallback, useState } = React;
 
-type Props = {
-	responseCallback: (game: Hoi4Save) => void;
-};
-
-const Hoi4Upload = (props: Props) => {
+const Hoi4Upload = () => {
 	const [processing, setProcessing] = useState<boolean>(false);
 
 	const onDrop = useCallback((acceptedFiles) => {
+		setProcessing(true);
 		const reader = new FileReader();
 		reader.readAsArrayBuffer(acceptedFiles[0]);
 
@@ -29,7 +26,7 @@ const Hoi4Upload = (props: Props) => {
 				return;
 			}
 
-			props.responseCallback(response['game']);
+			window.location.href = `${window.location.origin}/game?id=${response['game']}`;
 		};
 	}, []);
 

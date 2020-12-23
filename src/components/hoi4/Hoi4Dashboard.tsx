@@ -7,21 +7,9 @@ import Hoi4Upload from './Hoi4Upload';
 const { useState } = React;
 
 const Hoi4Dashboard = () => {
-	const [game, setGame] = useState<Hoi4Save>(undefined);
-
-	if (game !== undefined) {
-		return (
-			<div className="">
-				<Hoi4GameInfo game={game} />
-			</div>
-		);
-	}
-
 	return (
 		<div className="flex flex-col w-full h-full items-center justify-center">
-			<Hoi4Upload
-				responseCallback={(loadedGame) => setGame(loadedGame)}
-			/>
+			<Hoi4Upload />
 			<Hoi4Games />
 		</div>
 	);

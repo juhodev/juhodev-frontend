@@ -6,8 +6,10 @@ type Props = {
 };
 
 const Hoi4GameInfo = (props: Props) => {
-	const modComponents: React.ReactNode[] = props.game.mods.map((mod) => (
-		<span className="text-sm text-gray-500">{mod}</span>
+	const modComponents: React.ReactNode[] = props.game.mods.map((mod, i) => (
+		<span key={i} className="mx-1">
+			{mod}
+		</span>
 	));
 
 	return (
@@ -18,7 +20,10 @@ const Hoi4GameInfo = (props: Props) => {
 						<span className="text-3xl text-gray-100 leading-none">
 							{props.game.date}
 						</span>
-						<div className="">{modComponents}</div>
+						<div className="text-sm text-gray-500">
+							<span className="mx-1">Mods:</span>
+							{modComponents}
+						</div>
 					</div>
 				</div>
 			</div>

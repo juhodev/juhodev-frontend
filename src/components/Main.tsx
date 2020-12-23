@@ -21,6 +21,7 @@ const Metrics = React.lazy(() => import('./metrics/Metrics'));
 const DemoWorkerDashboard = React.lazy(
 	() => import('./demoworker/DemoWorkerDashboard'),
 );
+const Hoi4Game = React.lazy(() => import('./hoi4/Hoi4Game'));
 
 const Main = () => {
 	return (
@@ -44,7 +45,12 @@ const Main = () => {
 						path="/workermetrics"
 						render={() => <DemoWorkerDashboard />}
 					/>
-					<Route path="/hoi4" render={() => <Hoi4Dashboard />} />
+					<Route
+						exact
+						path="/hoi4"
+						render={() => <Hoi4Dashboard />}
+					/>
+					<Route path="/game" render={() => <Hoi4Game />} />
 				</Switch>
 			</Router>
 		</React.Suspense>

@@ -290,6 +290,11 @@ export async function fetchHoi4Games() {
 	return response.json();
 }
 
+export async function fetchHoi4Game(gameId: string) {
+	const response = await fetch(`${getURL()}/api/hoi4/game/${gameId}`);
+	return response.json();
+}
+
 export function getURL() {
 	const { port } = window.location;
 
