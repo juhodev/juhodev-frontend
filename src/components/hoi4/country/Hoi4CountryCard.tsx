@@ -5,7 +5,7 @@ type Props = {
 	country: Country;
 };
 
-const Hoi4BasicCountryInfo = (props: Props) => {
+const Hoi4CountryCard = (props: Props) => {
 	const rulingParty: PoliticalParty = props.country.politics.parties.find(
 		(party) => party.type === props.country.politics.rulingParty,
 	);
@@ -36,4 +36,4 @@ const Hoi4BasicCountryInfo = (props: Props) => {
 	);
 };
 
-export default Hoi4BasicCountryInfo;
+export default Hoi4CountryCard;
