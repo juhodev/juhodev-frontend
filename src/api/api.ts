@@ -276,6 +276,20 @@ export async function fetchMetrics() {
 	return response.json();
 }
 
+export async function postHoi4Game(formData: FormData) {
+	const response = await fetch(`${getURL()}/api/hoi4/game`, {
+		method: 'POST',
+		body: formData,
+	});
+
+	return response.json();
+}
+
+export async function fetchHoi4Games() {
+	const response = await fetch(`${getURL()}/api/hoi4/games`);
+	return response.json();
+}
+
 export function getURL() {
 	const { port } = window.location;
 
