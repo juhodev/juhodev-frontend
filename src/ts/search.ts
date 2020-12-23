@@ -48,16 +48,22 @@ export function hoi4search(
 	search: string,
 	sortType: Hoi4SortType,
 ) {
+	const filteredCountries: Country[] = countries.filter((country) =>
+		country.name.toLowerCase().startsWith(search.toLowerCase()),
+	);
+
 	switch (sortType) {
 		case Hoi4SortType.STABILITY:
-			return countries
+			return filteredCountries
 				.sort((a, b) => a.stability - b.stability)
 				.reverse();
 
 		case Hoi4SortType.NAME:
-			return countries.sort((a, b) => a.name.localeCompare(b.name));
+			return filteredCountries.sort((a, b) =>
+				a.name.localeCompare(b.name),
+			);
 
 		default:
-			return countries;
+			return filteredCountries;
 	}
 }
