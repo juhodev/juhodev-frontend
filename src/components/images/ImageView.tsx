@@ -2,6 +2,7 @@ import * as React from 'react';
 import { fetchImage } from '../../api/api';
 import { ImageError, SubmissionType } from '../../api/types';
 import { ImageRouteResponse, ImageSubmission, UserData } from '../../api/types';
+import { LOGIN_PAGE } from '../../ts/constants';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
@@ -38,7 +39,7 @@ const ImageView = () => {
 
 		const jwt = localStorage.getItem('jwt');
 		if (jwt === null) {
-			redirectFrom(window.location.origin, `image?image=${image}`);
+			redirectFrom(LOGIN_PAGE, `image?image=${image}`);
 			return;
 		}
 

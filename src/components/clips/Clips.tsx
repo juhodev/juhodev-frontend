@@ -6,6 +6,7 @@ import {
 	ClipsRouteResponse,
 	ClipsError,
 } from '../../api/types';
+import { LOGIN_PAGE } from '../../ts/constants';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import SubmissionFeed from '../SubmissionFeed';
@@ -28,7 +29,7 @@ const Clips = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		redirectFrom(window.location.origin, 'clips');
+		redirectFrom(LOGIN_PAGE, 'clips');
 		return;
 	}
 

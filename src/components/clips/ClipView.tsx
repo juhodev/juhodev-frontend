@@ -7,6 +7,7 @@ import {
 	SubmissionType,
 	UserData,
 } from '../../api/types';
+import { LOGIN_PAGE } from '../../ts/constants';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import User from '../User';
@@ -45,7 +46,7 @@ const ClipView = () => {
 
 		const jwt = localStorage.getItem('jwt');
 		if (jwt === null) {
-			redirectFrom(window.location.origin, `clip?clip=${image}`);
+			redirectFrom(LOGIN_PAGE, `clip?clip=${image}`);
 			return;
 		}
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { fetchUserData } from '../../api/api';
 import { UserError, UserRouteResponse, UserBasicData } from '../../api/types';
+import { LOGIN_PAGE } from '../../ts/constants';
 import { jwtDecode, redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
 import CsgoLeaderboard from './CsgoLeaderboard';
@@ -30,13 +31,13 @@ const Steam = () => {
 		const id: string = searchParams.get('id');
 		if (id !== null) {
 			if (jwt === null) {
-				redirectFrom(window.location.origin, `steam?id=${id}`);
+				redirectFrom(LOGIN_PAGE, `steam?id=${id}`);
 				return;
 			}
 			setSteamId(id);
 		} else {
 			if (jwt === null) {
-				redirectFrom(window.location.origin, 'steam');
+				redirectFrom(LOGIN_PAGE, 'steam');
 				return;
 			}
 			setSteamId('');

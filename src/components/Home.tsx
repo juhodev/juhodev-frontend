@@ -5,6 +5,7 @@ import { ERROR, UserBasicData, UserRouteResponse } from '../api/types';
 import SubmissionFeed from './SubmissionFeed';
 import LinkDiscord from './LinkDiscord';
 import { redirectFrom } from '../ts/utils';
+import { LOGIN_PAGE } from '../ts/constants';
 
 const { useState, useEffect } = React;
 
@@ -21,7 +22,7 @@ const Home = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		redirectFrom(window.location.origin, 'home');
+		redirectFrom(LOGIN_PAGE, 'home');
 		return;
 	}
 

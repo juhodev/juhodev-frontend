@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { fetchCsgoUser } from '../../../api/api';
 import { SteamUser, SteamUserResponse } from '../../../api/types';
+import { LOGIN_PAGE } from '../../../ts/constants';
 import { redirectFrom } from '../../../ts/utils';
 import CsgoMatches from './CsgoMatches';
 
@@ -35,7 +36,7 @@ const CsgoMatchesView = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		redirectFrom(window.location.origin, 'matches');
+		redirectFrom(LOGIN_PAGE, 'matches');
 		return;
 	}
 

@@ -11,6 +11,7 @@ import SubmissionFeed from '../SubmissionFeed';
 import LinkDiscord from '../LinkDiscord';
 import ImageUpload from './ImageUpload';
 import { redirectFrom } from '../../ts/utils';
+import { LOGIN_PAGE } from '../../ts/constants';
 
 const { useState, useEffect } = React;
 
@@ -29,7 +30,7 @@ const Images = () => {
 
 	const jwt = localStorage.getItem('jwt');
 	if (jwt === null) {
-		redirectFrom(window.location.origin, 'images');
+		redirectFrom(LOGIN_PAGE, 'images');
 		return;
 	}
 

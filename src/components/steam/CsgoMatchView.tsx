@@ -7,6 +7,7 @@ import {
 	UserError,
 	CsgoPlayer,
 } from '../../api/types';
+import { LOGIN_PAGE } from '../../ts/constants';
 import { dateFormat, formatSeconds } from '../../ts/timeUtils';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
@@ -43,7 +44,7 @@ const CsgoMatchView = () => {
 
 		const jwt = localStorage.getItem('jwt');
 		if (jwt === null) {
-			redirectFrom(window.location.origin, `match?id=${id}`);
+			redirectFrom(LOGIN_PAGE, `match?id=${id}`);
 			return;
 		}
 
