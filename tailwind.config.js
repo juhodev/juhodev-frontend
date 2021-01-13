@@ -12,7 +12,7 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				discord: '#7289da',
+				discord: '#7289DA',
 			},
 		},
 	},
