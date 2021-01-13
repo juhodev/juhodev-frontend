@@ -21,6 +21,7 @@ const Navigation = () => {
 		const jwt: string = localStorage.getItem('jwt');
 
 		if (jwt === null) {
+			setUserType('PREVIEW_ONLY');
 			return;
 		}
 		const decodedJWT: any = jwtDecode(jwt);

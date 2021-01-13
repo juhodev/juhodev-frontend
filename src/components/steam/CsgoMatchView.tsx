@@ -16,9 +16,6 @@ const { useState, useEffect } = React;
 
 const CsgoMatchView = () => {
 	const [loading, setLoading] = useState<boolean>(true);
-	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
-		false,
-	);
 	const [csgoMatch, setCsgoMatch] = useState<CsgoMatch>({
 		date: 0,
 		map: '',
@@ -41,46 +38,16 @@ const CsgoMatchView = () => {
 		}
 
 		const id: number = parseInt(searchParams.get('id'));
-
-		const jwt = localStorage.getItem('jwt');
-		if (jwt === null) {
-			redirectFrom(LOGIN_PAGE, `match?id=${id}`);
-			return;
-		}
-
 		fetchData(id);
 	}, []);
 
 	const fetchData = async (matchId: number) => {
 		const response: SteamMatchResponse = await fetchCsgoMatch(matchId);
 
-		if (response.error) {
-			if (response.errorCode === UserError.DISCORD_NOT_AUTHENTICATED) {
-				setDiscordAuthenticated(false);
-			}
-
-			if (response.errorCode === UserError.USER_NOT_ON_SERVER) {
-				window.alert('You are not on the server');
-			}
-
-			setLoading(false);
-			return;
-		}
-
-		setDiscordAuthenticated(true);
 		setCsgoMatch(response.csgoMatch);
-
 		updateResource(response.csgoMatch.map);
 		setLoading(false);
 	};
-
-	if (!discordAuthenticated && !loading) {
-		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<LinkDiscord />
-			</div>
-		);
-	}
 
 	const lazyLoadImage = async (map: string) => {
 		let file: string;
@@ -134,7 +101,6 @@ const CsgoMatchView = () => {
 			score,
 		} = player;
 
-		debugger;
 		let trClassName: string;
 		if (i % 2 === 0) {
 			trClassName = 'text-gray-100 bg-gray-800';

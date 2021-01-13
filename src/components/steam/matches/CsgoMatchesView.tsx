@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { fetchCsgoUser } from '../../../api/api';
 import { SteamUser, SteamUserResponse } from '../../../api/types';
-import { LOGIN_PAGE } from '../../../ts/constants';
-import { redirectFrom } from '../../../ts/utils';
 import CsgoMatches from './CsgoMatches';
 
 const { useState, useEffect } = React;
@@ -33,12 +31,6 @@ const CsgoMatchesView = () => {
 		const response: SteamUserResponse = await fetchCsgoUser(id);
 		setUser(response.user);
 	};
-
-	const jwt = localStorage.getItem('jwt');
-	if (jwt === null) {
-		redirectFrom(LOGIN_PAGE, 'matches');
-		return;
-	}
 
 	if (steamId === '') {
 		return <h1>Loading</h1>;

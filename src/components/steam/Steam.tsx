@@ -14,70 +14,20 @@ import SteamUploadCode from './SteamUploadCode';
 const { useState, useEffect } = React;
 
 const Steam = () => {
-	const [loading, setLoading] = useState<boolean>(true);
-	const [discordAuthenticated, setDiscordAuthenticated] = useState<boolean>(
-		false,
-	);
 	const [steamId, setSteamId] = useState<string>(undefined);
-	const [isPreview, setIsPreview] = useState<boolean>(true);
 	const [page, setPage] = useState<string>('search');
 
 	useEffect(() => {
-		const jwt = localStorage.getItem('jwt');
-
 		const searchParams: URLSearchParams = new URLSearchParams(
 			window.location.search,
 		);
 		const id: string = searchParams.get('id');
 		if (id !== null) {
-			if (jwt === null) {
-				redirectFrom(LOGIN_PAGE, `steam?id=${id}`);
-				return;
-			}
 			setSteamId(id);
 		} else {
-			if (jwt === null) {
-				redirectFrom(LOGIN_PAGE, 'steam');
-				return;
-			}
 			setSteamId('');
 		}
-
-		fetchData();
 	}, []);
-
-	const fetchData = async () => {
-		const jwt: string = localStorage.getItem('jwt');
-		if (jwt === null) {
-			window.alert('Please log in');
-			return;
-		}
-
-		const decodedJWT: any = jwtDecode(jwt);
-		if (decodedJWT['payload'].userType === 'PREVIEW_ONLY') {
-			setLoading(false);
-			return;
-		}
-
-		setIsPreview(false);
-
-		const response: UserRouteResponse = await fetchUserData();
-		if (response.error) {
-			if (response.errorCode === UserError.DISCORD_NOT_AUTHENTICATED) {
-				setDiscordAuthenticated(false);
-			}
-
-			if (response.errorCode === UserError.USER_NOT_ON_SERVER) {
-				window.alert('You are not on the server');
-			}
-
-			setLoading(false);
-			return;
-		}
-
-		setDiscordAuthenticated(true);
-		setLoading(false);
-	};
 
 	const renderSearchOrLeaderboard = () => {
 		if (page === 'search') {
@@ -119,7 +69,7 @@ const Steam = () => {
 		</div>
 	);
 
-	if (isPreview && (steamId === undefined || steamId.length === 0)) {
+	if (steamId === undefined || steamId.length === 0) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="2xl:w-2/3 xl:w-5/6 w-full">
@@ -129,20 +79,12 @@ const Steam = () => {
 		);
 	}
 
-	if (isPreview && (steamId !== undefined || steamId.length !== 0)) {
+	if (steamId !== undefined || steamId.length !== 0) {
 		return (
 			<div className="flex flex-row justify-center overflow-auto flex-1">
 				<div className="2xl:w-2/3 xl:w-5/6 w-full">
 					<CsgoProfileView steamId={steamId} />
 				</div>
-			</div>
-		);
-	}
-
-	if ((!discordAuthenticated && !loading) || steamId === undefined) {
-		return (
-			<div className="flex flex-row justify-center overflow-auto flex-1">
-				<LinkDiscord />
 			</div>
 		);
 	}
