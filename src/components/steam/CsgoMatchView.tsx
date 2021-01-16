@@ -11,6 +11,7 @@ import { LOGIN_PAGE } from '../../ts/constants';
 import { dateFormat, formatSeconds } from '../../ts/timeUtils';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
+import StatHighlight from './profiles/StatHighlight';
 
 const { useState, useEffect } = React;
 
@@ -147,9 +148,9 @@ const CsgoMatchView = () => {
 		return createPlayerRow(player, i);
 	});
 
-	return (
-		<div className="flex flex-row justify-center">
-			<div className="flex flex-col w-full mx-2 lg:w-2/3">
+	const renderScoreboard = () => {
+		return (
+			<div className="flex flex-col mx-2">
 				<div className="flex flex-col rounded-b-lg bg-gray-800 p-4 mb-8">
 					<div className="flex items-center">
 						<div className="w-32 h-16 overflow-hidden rounded items-center justify-center">
@@ -201,6 +202,73 @@ const CsgoMatchView = () => {
 						</tbody>
 					</table>
 				</div>
+			</div>
+		);
+	};
+
+	const renderHighlights = () => {
+		if (loading) {
+			return undefined;
+		}
+
+		// Not the most efficient way but fastest to write
+		// TODO: refactor this later
+		const sortedByKills: CsgoPlayer = csgoMatch.players.sort(
+			(a, b) => a.kills - b.kills,
+		)[csgoMatch.players.length - 1];
+
+		const sortedByDeaths: CsgoPlayer = csgoMatch.players.sort(
+			(a, b) => a.deaths - b.deaths,
+		)[csgoMatch.players.length - 1];
+
+		const mostAssists: CsgoPlayer = csgoMatch.players.sort(
+			(a, b) => a.assists - b.assists,
+		)[csgoMatch.players.length - 1];
+
+		const mostMVPs: CsgoPlayer = csgoMatch.players.sort(
+			(a, b) => a.mvps - b.mvps,
+		)[csgoMatch.players.length - 1];
+
+		const mostScore: CsgoPlayer = csgoMatch.players.sort(
+			(a, b) => a.score - b.score,
+		)[csgoMatch.players.length - 1];
+
+		return (
+			<div className="grid grid-cols-5 gap-2">
+				<StatHighlight
+					profile={sortedByKills}
+					text="Most kills"
+					count={sortedByKills.kills}
+				/>
+				<StatHighlight
+					profile={sortedByDeaths}
+					text="Most deaths"
+					count={sortedByDeaths.deaths}
+				/>
+				<StatHighlight
+					profile={mostAssists}
+					text="Most assists"
+					count={mostAssists.assists}
+				/>
+				<StatHighlight
+					profile={mostMVPs}
+					text="Most MVPs"
+					count={mostMVPs.mvps}
+				/>
+				<StatHighlight
+					profile={mostScore}
+					text="Most score"
+					count={mostScore.score}
+				/>
+			</div>
+		);
+	};
+
+	return (
+		<div className="flex flex-col items-center">
+			<div className="w-full lg:w-2/3">
+				{renderScoreboard()}
+				{renderHighlights()}
 			</div>
 		</div>
 	);
