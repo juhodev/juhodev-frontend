@@ -251,6 +251,7 @@ export type CsgoPlayer = {
 	hsp: number;
 	score: number;
 	side: string;
+	unnecessaryStats?: UnnecessaryStats;
 };
 
 export type CsgoMatch = {
@@ -365,4 +366,38 @@ export type ProcessingMetrics = {
 export type SiteMetric = {
 	name: string;
 	values: number[];
+};
+
+export type UnnecessaryStats = {
+	jumps: number;
+	fallDamage: number;
+	weaponFire: WeaponFire[];
+	weaponZooms: number;
+	damageTaken: DamageTaken[];
+	blind: Blind;
+	itemPickup: ItemPickup[];
+	reloads: number;
+	footsteps: number;
+	bombPlants: number;
+};
+
+export type WeaponFire = {
+	weapon: string;
+	count: number;
+};
+
+export type DamageTaken = {
+	weapon: string;
+	amount: number;
+};
+
+export type Blind = {
+	times: number;
+	duration: number;
+};
+
+export type ItemPickup = {
+	item: string;
+	count: number;
+	silent: number;
 };

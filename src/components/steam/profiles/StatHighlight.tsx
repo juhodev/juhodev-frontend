@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CsgoPlayer } from '../../../api/types';
 
-type Props = { profile: CsgoPlayer; text: string; count: number };
+type Props = { profile: CsgoPlayer; text: string; count: number | string };
 
 const StatHighlight = (props: Props) => {
 	const { profile, text, count } = props;

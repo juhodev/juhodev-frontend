@@ -211,39 +211,93 @@ const CsgoMatchView = () => {
 			return undefined;
 		}
 
-		// Not the most efficient way but fastest to write
-		// TODO: refactor this later
-		const sortedByKills: CsgoPlayer = csgoMatch.players.sort(
-			(a, b) => a.kills - b.kills,
-		)[csgoMatch.players.length - 1];
+		let mostKills: CsgoPlayer = csgoMatch.players[0];
+		let mostDeaths: CsgoPlayer = csgoMatch.players[0];
+		let mostAssists: CsgoPlayer = csgoMatch.players[0];
+		let mostMVPs: CsgoPlayer = csgoMatch.players[0];
+		let mostScore: CsgoPlayer = csgoMatch.players[0];
+		let mostJumps: CsgoPlayer = undefined;
+		let mostBombPlants: CsgoPlayer = undefined;
+		let mostBlind: CsgoPlayer = undefined;
+		let mostReloads: CsgoPlayer = undefined;
+		let mostFootsteps: CsgoPlayer = undefined;
 
-		const sortedByDeaths: CsgoPlayer = csgoMatch.players.sort(
-			(a, b) => a.deaths - b.deaths,
-		)[csgoMatch.players.length - 1];
+		for (const player of csgoMatch.players) {
+			if (player.kills > mostKills.kills) {
+				mostKills = player;
+			}
 
-		const mostAssists: CsgoPlayer = csgoMatch.players.sort(
-			(a, b) => a.assists - b.assists,
-		)[csgoMatch.players.length - 1];
+			if (player.deaths > mostKills.deaths) {
+				mostDeaths = player;
+			}
 
-		const mostMVPs: CsgoPlayer = csgoMatch.players.sort(
-			(a, b) => a.mvps - b.mvps,
-		)[csgoMatch.players.length - 1];
+			if (player.assists > mostKills.assists) {
+				mostAssists = player;
+			}
 
-		const mostScore: CsgoPlayer = csgoMatch.players.sort(
-			(a, b) => a.score - b.score,
-		)[csgoMatch.players.length - 1];
+			if (player.mvps > mostKills.mvps) {
+				mostMVPs = player;
+			}
+
+			if (player.score > mostKills.score) {
+				mostScore = player;
+			}
+
+			if (player.unnecessaryStats === undefined) {
+				continue;
+			}
+
+			if (
+				mostJumps === undefined ||
+				player.unnecessaryStats.jumps > mostJumps.unnecessaryStats.jumps
+			) {
+				mostJumps = player;
+			}
+
+			if (
+				mostBombPlants === undefined ||
+				player.unnecessaryStats.bombPlants >
+					mostBombPlants.unnecessaryStats.bombPlants
+			) {
+				mostBombPlants = player;
+			}
+
+			if (
+				mostBlind === undefined ||
+				player.unnecessaryStats.blind.duration >
+					mostBlind.unnecessaryStats.blind.duration
+			) {
+				mostBlind = player;
+			}
+
+			if (
+				mostReloads === undefined ||
+				player.unnecessaryStats.reloads >
+					mostReloads.unnecessaryStats.reloads
+			) {
+				mostReloads = player;
+			}
+
+			if (
+				mostFootsteps === undefined ||
+				player.unnecessaryStats.footsteps >
+					mostFootsteps.unnecessaryStats.footsteps
+			) {
+				mostFootsteps = player;
+			}
+		}
 
 		return (
 			<div className="grid grid-cols-5 gap-2">
 				<StatHighlight
-					profile={sortedByKills}
+					profile={mostKills}
 					text="Most kills"
-					count={sortedByKills.kills}
+					count={mostKills.kills}
 				/>
 				<StatHighlight
-					profile={sortedByDeaths}
+					profile={mostDeaths}
 					text="Most deaths"
-					count={sortedByDeaths.deaths}
+					count={mostDeaths.deaths}
 				/>
 				<StatHighlight
 					profile={mostAssists}
@@ -260,6 +314,37 @@ const CsgoMatchView = () => {
 					text="Most score"
 					count={mostScore.score}
 				/>
+				{mostJumps.unnecessaryStats !== undefined && (
+					<>
+						<StatHighlight
+							profile={mostJumps}
+							text="Most jumps"
+							count={mostJumps.unnecessaryStats.jumps}
+						/>
+						<StatHighlight
+							profile={mostBombPlants}
+							text="Most bomb plants"
+							count={mostJumps.unnecessaryStats.bombPlants}
+						/>
+						<StatHighlight
+							profile={mostBlind}
+							text="Most flashed"
+							count={`${Math.round(
+								mostJumps.unnecessaryStats.blind.duration,
+							)}s`}
+						/>
+						<StatHighlight
+							profile={mostReloads}
+							text="Most reloads"
+							count={mostJumps.unnecessaryStats.reloads}
+						/>
+						<StatHighlight
+							profile={mostFootsteps}
+							text="Most footsteps"
+							count={mostJumps.unnecessaryStats.footsteps}
+						/>
+					</>
+				)}
 			</div>
 		);
 	};
