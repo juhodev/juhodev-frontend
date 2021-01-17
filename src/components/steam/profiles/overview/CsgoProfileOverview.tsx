@@ -5,7 +5,6 @@ import CsgoMapHistory from './CsgoMapHistory';
 import CsgoUserInfo from './CsgoUserInfo';
 import MapFrequency from './MatchFrequency';
 import QuickStats from './QuickStats';
-import CsgoProfileStats from '../stats/CsgoProfileStats';
 
 type Props = {
 	csgoProfile: CsgoProfile;
@@ -21,7 +20,7 @@ const CsgoProfileOverview = (props: Props) => {
 	return (
 		<div className="flex flex-col w-full">
 			<CsgoUserInfo csgoProfile={csgoProfile} />
-			<div className="flex flex-row">
+			<div className="flex xl:flex-row flex-col">
 				<MapFrequency mapFrequency={csgoProfile.dateMatches} />
 				<CsgoKDA
 					kills={csgoProfile.gameAverages.kills.value}
@@ -33,7 +32,7 @@ const CsgoProfileOverview = (props: Props) => {
 					).toPrecision(3)}
 				/>
 			</div>
-			<div className="mx-4 flex flex-row">
+			<div className="mx-0 xl:mx-4 flex flex-col xl:flex-row">
 				<QuickStats
 					total={totalGamesPlayed}
 					won={csgoProfile.won}

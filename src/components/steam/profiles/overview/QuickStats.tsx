@@ -20,7 +20,7 @@ const QuickStats = (props: Props) => {
 	const statsComponents = stats.map((stat) => (
 		<div
 			key={stat.name}
-			className="flex flex-col bg-gray-800 rounded w-32 justify-center items-center my-2 py-1 shadow-lg"
+			className="flex flex-col bg-gray-800 rounded w-32 justify-center items-center my-2 py-1 shadow-lg mx-2 xl:mx-0"
 		>
 			<span className="text-blue-500 text-xl font-bold">
 				{stat.name}
@@ -29,7 +29,7 @@ const QuickStats = (props: Props) => {
 		</div>
 	));
 
-	return <div className="flex flex-col">{statsComponents}</div>;
+	return <div className="flex flex-row xl:flex-col">{statsComponents}</div>;
 };
 
 export default QuickStats;

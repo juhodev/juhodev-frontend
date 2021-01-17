@@ -42,7 +42,7 @@ const CsgoProfileView = (props: Props) => {
 	const notSelectedClassName: string = 'text-lg text-gray-100 cursor-pointer';
 
 	return (
-		<div className="flex flex-row">
+		<div className="flex xl:flex-row flex-col">
 			<div className="flex flex-col mr-6">
 				<span
 					className={
