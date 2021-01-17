@@ -288,7 +288,7 @@ const CsgoMatchView = () => {
 		}
 
 		return (
-			<div className="grid grid-cols-5 gap-2">
+			<div className="mt-4 grid xl:grid-cols-4 lg:grid-cols-3 gap-2">
 				<StatHighlight
 					profile={mostKills}
 					text="Most kills"
