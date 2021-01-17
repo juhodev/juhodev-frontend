@@ -6,7 +6,7 @@ import Steam from '../../assets/steam.svg';
 
 const Landing = () => {
 	return (
-		<div className="px-1/5 grid grid-cols-3 gap-12 h-full py-32">
+		<div className="px-2 lg:px-1/5 grid grid-cols-1 lg:grid-cols-3 gap-2 xl:gap-12 h-full py-32">
 			<ProjectCard name="Discord" link="/home" img={Discord} backgroundColor={'bg-discord'} />
 			<ProjectCard name="Steam" link="/steam" img={Steam} />
 			<ProjectCard name="?" />
