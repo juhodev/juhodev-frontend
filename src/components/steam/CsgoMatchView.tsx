@@ -314,7 +314,7 @@ const CsgoMatchView = () => {
 					text="Most score"
 					count={mostScore.score}
 				/>
-				{mostJumps.unnecessaryStats !== undefined && (
+				{mostJumps !== undefined && (
 					<>
 						<StatHighlight
 							profile={mostJumps}
