@@ -227,19 +227,19 @@ const CsgoMatchView = () => {
 				mostKills = player;
 			}
 
-			if (player.deaths > mostKills.deaths) {
+			if (player.deaths > mostDeaths.deaths) {
 				mostDeaths = player;
 			}
 
-			if (player.assists > mostKills.assists) {
+			if (player.assists > mostAssists.assists) {
 				mostAssists = player;
 			}
 
-			if (player.mvps > mostKills.mvps) {
+			if (player.mvps > mostMVPs.mvps) {
 				mostMVPs = player;
 			}
 
-			if (player.score > mostKills.score) {
+			if (player.score > mostScore.score) {
 				mostScore = player;
 			}
 
