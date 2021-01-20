@@ -13,25 +13,6 @@ type SortType = {
 };
 
 const Sort = (props: Props) => {
-	// const sortTypes: SortType[] = [
-	// 	{
-	// 		displayName: 'Submission date',
-	// 		sortType: SortType.SUBMISSION_DATE,
-	// 	},
-	// 	{
-	// 		displayName: 'Name',
-	// 		sortType: SortType.NAME,
-	// 	},
-	// 	{
-	// 		displayName: 'Submission by',
-	// 		sortType: SortType.SUBMISSION_BY,
-	// 	},
-	// 	{
-	// 		displayName: 'Views',
-	// 		sortType: SortType.VIEWS,
-	// 	},
-	// ];
-
 	const options: JSX.Element[] = props.sortTypes.map(
 		(type): JSX.Element => {
 			return (
