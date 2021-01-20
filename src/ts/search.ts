@@ -1,39 +1,32 @@
 import { UserSubmission } from '../api/types';
 
-export enum SortType {
-	SUBMISSION_DATE = 'SUBMISSION_DATE',
-	NAME = 'NAME',
-	SUBMISSION_BY = 'SUBMISSION_BY',
-	VIEWS = 'VIEWS',
-}
-
 export function filterSearch(
 	submissions: UserSubmission[],
 	searchTerm: string,
-	sortType: SortType,
+	sortType: string,
 ) {
 	return sortSubmissions(submissions, sortType);
 }
 
 function sortSubmissions(
 	submissions: UserSubmission[],
-	sortType: SortType,
+	sortType: string,
 ): UserSubmission[] {
 	switch (sortType) {
-		case SortType.SUBMISSION_DATE:
+		case 'SUBMISSION_DATE':
 			return submissions
 				.sort((a, b) => a.submission_date - b.submission_date)
 				.reverse();
 
-		case SortType.NAME:
+		case 'NAME':
 			return submissions.sort((a, b) => a.name.localeCompare(b.name));
 
-		case SortType.SUBMISSION_BY:
+		case 'SUBMISSION_BY':
 			return submissions.sort((a, b) =>
 				a.submission_by.localeCompare(b.submission_by),
 			);
 
-		case SortType.VIEWS:
+		case 'VIEWS':
 			return submissions.sort((a, b) => a.views - b.views).reverse();
 	}
 }
