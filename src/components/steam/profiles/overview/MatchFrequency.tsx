@@ -23,12 +23,12 @@ const MapFrequency = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col mt-4 mb-2 p-4 flex-1 w-full">
+		<div className="flex flex-col mt-4 mb-2 p-4 flex-1 h-full">
 			<span className="text-2xl text-gray-100 mb-2">
 				Matches played per day
 			</span>
 			<Scatter
-				height={50}
+				height={70}
 				options={{
 					maintainAspectRation: false,
 					legend: { display: false },
