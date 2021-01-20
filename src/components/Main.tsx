@@ -11,11 +11,11 @@ import Landing from './Landing';
 import Navigation from './Navigation';
 import Profile from './profile/Profile';
 import CsgoMatchesView from './steam/matches/CsgoMatchesView';
-import CsgoMatchView from './steam/CsgoMatchView';
 import Steam from './steam/Steam';
 import DemoWorkerDashboard from './demoworker/DemoWorkerDashboard';
 import Metrics from './metrics/Metrics';
 import GA from './projects/ga/GA';
+import Match from './steam/match/Match';
 
 const Main = () => {
 	return (
@@ -29,7 +29,7 @@ const Main = () => {
 			<Route path="/clip" component={ClipView} />
 			<Route path="/profile" component={Profile} />
 			<Route path="/steam" component={Steam} />
-			<Route path="/match" component={CsgoMatchView} />
+			<Route path="/match" component={Match} />
 			<Route path="/auth" component={Auth} />
 			<Route path="/matches" component={CsgoMatchesView} />
 			<Route path="/metrics" component={Metrics} />
