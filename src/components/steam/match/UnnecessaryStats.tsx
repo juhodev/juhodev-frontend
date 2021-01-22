@@ -46,7 +46,7 @@ const UnnecessaryStats = (props: Props) => {
 		let most: PlayerHighlight = undefined;
 
 		for (const player of props.match.players) {
-			if (most === undefined || player[stat] > most[stat]) {
+			if (most === undefined || player[stat] > most.player[stat]) {
 				most = { type: stat, count: player[stat], player };
 			}
 		}
