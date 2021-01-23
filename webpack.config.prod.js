@@ -26,7 +26,7 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' }),
+		new HtmlWebpackPlugin({ title: 'Juhodev', template: 'index.html' }),
 	],
 	module: {
 		rules: [

@@ -11,7 +11,7 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js', '.json'],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' }),
+		new HtmlWebpackPlugin({ title: 'Juhodev', template: 'index.html' }),
 	],
 	module: {
 		rules: [
