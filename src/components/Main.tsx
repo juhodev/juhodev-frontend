@@ -16,6 +16,7 @@ import DemoWorkerDashboard from './demoworker/DemoWorkerDashboard';
 import Metrics from './metrics/Metrics';
 import GA from './projects/ga/GA';
 import Match from './steam/match/Match';
+import Login from './Login';
 
 const Main = () => {
 	return (
@@ -35,6 +36,7 @@ const Main = () => {
 			<Route path="/metrics" component={Metrics} />
 			<Route path="/workermetrics" component={DemoWorkerDashboard} />
 			<Route path="/ga" component={GA} />
+			<Route path="/login" component={Login} />
 		</Router>
 	);
 };
