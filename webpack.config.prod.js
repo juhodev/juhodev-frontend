@@ -28,7 +28,10 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' })],
+	plugins: [
+		new CleanWebpackPlugin(),
+		new HtmlWebpackPlugin({ title: 'Juhodev', template: 'index.html' }),
+	],
 	module: {
 		rules: [
 			{
