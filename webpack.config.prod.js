@@ -22,23 +22,13 @@ module.exports = {
 			cacheGroups: {
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
-					name(module) {
-						// get the name. E.g. node_modules/packageName/not/this/part.js
-						// or node_modules/packageName
-						const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-
-						// npm package names are URL-safe, but some servers don't like @ symbols
-						return `npm.${packageName.replace('@', '')}`;
-					},
+					name: 'vendors',
+					chunks: 'all',
 				},
 			},
 		},
 	},
-	plugins: [
-		new webpack.ids.HashedModuleIdsPlugin(),
-		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' }),
-	],
+	plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' })],
 	module: {
 		rules: [
 			{
