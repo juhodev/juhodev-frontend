@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 type Props = {
 	name: string;
@@ -9,8 +8,25 @@ type Props = {
 	yAxisName?: string;
 };
 
+const { useState, useEffect } = React;
+
 const LineChartWrapper = (props: Props) => {
 	const { name, data, width, height, yAxisName } = props;
+	const [recharts, setRecharts] = useState<any>(undefined);
+
+	useEffect(() => {
+		loadRecharts();
+	}, []);
+
+	const loadRecharts = async () => {
+		setRecharts(await import('recharts'));
+	};
+
+	if (recharts === undefined) {
+		return <span>Loading...</span>;
+	}
+
+	const { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } = recharts;
 
 	return (
 		<ResponsiveContainer width={width} height={height}>

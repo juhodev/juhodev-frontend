@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
-import { msToTime } from '../../ts/timeUtils';
 import { randomRGBA } from '../../ts/utils';
 
 type Props = {
@@ -10,8 +8,25 @@ type Props = {
 	formatter?: Function;
 };
 
+const { useState, useEffect } = React;
+
 const PieChartWrapper = (props: Props) => {
 	const { data, width, height, formatter } = props;
+	const [recharts, setRecharts] = useState<any>(undefined);
+
+	useEffect(() => {
+		loadRecharts();
+	}, []);
+
+	const loadRecharts = async () => {
+		setRecharts(await import('recharts'));
+	};
+
+	if (recharts === undefined) {
+		return <span>Loading...</span>;
+	}
+
+	const { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } = recharts;
 
 	return (
 		<ResponsiveContainer width={width} height={height}>
