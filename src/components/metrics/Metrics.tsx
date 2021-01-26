@@ -58,7 +58,6 @@ const Metrics = () => {
 	const cacheData: SiteMetric[] = metrics.filter((metric) =>
 		metric.name.startsWith('cache'),
 	);
-	console.log(cacheData);
 	const pieCharts: React.ReactNode[] = cacheData.map((data, i) => (
 		<MetricPie
 			key={i}
