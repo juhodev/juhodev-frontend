@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: './src/index.tsx',
@@ -15,16 +16,26 @@ module.exports = {
 	optimization: {
 		runtimeChunk: 'single',
 		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
 			cacheGroups: {
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all',
+					name(module) {
+						// get the name. E.g. node_modules/packageName/not/this/part.js
+						// or node_modules/packageName
+						const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+						// npm package names are URL-safe, but some servers don't like @ symbols
+						return `npm.${packageName.replace('@', '')}`;
+					},
 				},
 			},
 		},
 	},
 	plugins: [
+		new webpack.ids.HashedModuleIdsPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({ title: 'Baavo', template: 'index.html' }),
 	],
