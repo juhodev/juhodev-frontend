@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { fetchDemoWorkerStatus, fetchMetrics } from '../../api/api';
 import { SiteMetric } from '../../api/types';
-import { formatSeconds, millisecondsToSeconds } from '../../ts/timeUtils';
-import PieChart from '../utils/PieChart';
 import MetricGraph from './MetricGraph';
 import MetricPie from './MetricPie';
 
@@ -30,9 +28,7 @@ const Metrics = () => {
 		}
 
 		const metrics = [...response.siteMetrics];
-		const workerData = workerResponse.status.map(
-			(stat) => stat.processing.all,
-		);
+		const workerData = workerResponse.status.map((stat) => stat.processing.all);
 
 		metrics.push(
 			...workerData.map((x, i) => {
@@ -48,39 +44,33 @@ const Metrics = () => {
 		.filter((metric) => !metric.name.startsWith('cache'))
 		.map((metric, i) => (
 			<MetricGraph
-				key={i}
+				key={metric.name}
 				name={metric.name}
 				data={metric.values}
 				dataFormat={(data) => `${Math.round(data)}ms`}
 			/>
 		));
 
-	const cacheData: SiteMetric[] = metrics.filter((metric) =>
-		metric.name.startsWith('cache'),
-	);
+	const cacheData: SiteMetric[] = metrics.filter((metric) => metric.name.startsWith('cache'));
 	const pieCharts: React.ReactNode[] = cacheData.map((data, i) => (
 		<MetricPie
-			key={i}
+			key={data.name}
 			name={data.name}
 			total={data.values.length.toString()}
 			data={[
 				{
 					name: 'Cache hits',
-					num: data.values.filter((x) => x === 1).length,
+					value: data.values.filter((x) => x === 1).length,
 				},
 				{
 					name: 'Cache misses',
-					num: data.values.filter((x) => x === 0).length,
+					value: data.values.filter((x) => x === 0).length,
 				},
 			]}
 		/>
 	));
 
-	return (
-		<div className="grid grid-cols-3 gap-4">
-			{[...lineCharts, ...pieCharts]}
-		</div>
-	);
+	return <div className="grid grid-cols-3 gap-4">{[...lineCharts, ...pieCharts]}</div>;
 };
 
 export default Metrics;

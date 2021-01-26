@@ -1,9 +1,9 @@
 import * as React from 'react';
-import PieChart from '../utils/PieChart';
+import PieChartWrapper from '../charts/PieChartWrapper';
 
 type Data = {
 	name: string;
-	num: number;
+	value: number;
 };
 
 type Props = {
@@ -14,13 +14,13 @@ type Props = {
 
 const MetricPie = (props: Props) => {
 	const infoTexts: React.ReactNode[] = props.data.map((x) => (
-		<span className="text-gray-200 text-md">{`${x.name}: ${x.num}`}</span>
+		<span key={x.name} className="text-gray-200 text-md">{`${x.name}: ${x.value}`}</span>
 	));
 
 	return (
 		<div className="m-2 flex flex-row">
-			<PieChart total={props.total} name={props.name} data={props.data} />
-			<div className="flex flex-col">
+			<PieChartWrapper data={props.data} width={200} height={200} />
+			<div className="flex flex-1 flex-col">
 				<span className="text-gray-200 text-xl mb-4">{props.name}</span>
 				{infoTexts}
 			</div>

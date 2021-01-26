@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Scatter } from 'react-chartjs-2';
 import { fetchCsgoStatistics } from '../../../../api/api';
 import { SteamStatisticsResponse } from '../../../../api/types';
 import ScatterChartWrapper from '../../../charts/ScatterChartWrapper';
