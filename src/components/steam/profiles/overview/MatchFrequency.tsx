@@ -14,7 +14,7 @@ const MapFrequency = (props: Props) => {
 			<ScatterChartWrapper
 				name="Matches played"
 				data={props.mapFrequency.map((date, i) => {
-					return { x: i, y: date.matches, name: `${dateFormat(new Date(date.date), true)}` };
+					return { data: date.matches, name: `${dateFormat(new Date(date.date), true)}` };
 				})}
 				width="100%"
 				height={400}

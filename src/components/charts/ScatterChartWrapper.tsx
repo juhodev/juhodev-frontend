@@ -26,18 +26,29 @@ const ScatterChartWrapper = (props: Props) => {
 		return <span>Loading...</span>;
 	}
 
-	const { CartesianGrid, Legend, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } = recharts;
+	const { CartesianGrid, Legend, ResponsiveContainer, Line, LineChart, Tooltip, XAxis, YAxis } = recharts;
 
+	// This is a hack that makes a linechart to look like a scatterchart
+	// I need to do this because when using scatterchart you can't customize the size of the
+	// dots, resulting in huge datasets to look bad.
+	// I also added a faint line but it's not too visible
 	return (
 		<ResponsiveContainer width={width} height={height}>
-			<ScatterChart margin={{ bottom: 0, top: 0, left: -20, right: 0 }}>
+			<LineChart data={data} margin={{ bottom: 0, top: 0, left: -20, right: 0 }}>
 				<XAxis dataKey="name" name={yAxisName} />
-				<YAxis type="number" dataKey="y" name={name} />
+				<YAxis />
 				<CartesianGrid vertical={false} />
 				<Tooltip />
 				<Legend />
-				<Scatter className="" name={name} data={data} fill="#3182CE" />
-			</ScatterChart>
+				<Line
+					type="monotone"
+					name={name}
+					dataKey="data"
+					strokeWidth={1}
+					strokeOpacity={0.2}
+					dot={{ fill: '#3182CE' }}
+				/>
+			</LineChart>
 		</ResponsiveContainer>
 	);
 };

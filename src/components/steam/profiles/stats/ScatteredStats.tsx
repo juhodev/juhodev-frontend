@@ -49,7 +49,7 @@ const ScatteredStats = (props: Props) => {
 				width="100%"
 				name={currentType.displayName}
 				data={data.map((value, i) => {
-					return { x: i, y: value };
+					return { data: value };
 				})}
 			/>
 		</div>
