@@ -22,8 +22,14 @@ module.exports = {
 			cacheGroups: {
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all',
+					name(module) {
+						// get the name. E.g. node_modules/packageName/not/this/part.js
+						// or node_modules/packageName
+						const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+						// npm package names are URL-safe, but some servers don't like @ symbols
+						return `npm.${packageName.replace('@', '')}`;
+					},
 				},
 			},
 		},
@@ -31,6 +37,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({ title: 'Juhodev', template: 'index.html' }),
+		new webpack.ids.HashedModuleIdsPlugin(),
 	],
 	module: {
 		rules: [
