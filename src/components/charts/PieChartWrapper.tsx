@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { randomRGBA } from '../../ts/utils';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 type Props = {
 	data: any[];
@@ -8,25 +9,8 @@ type Props = {
 	formatter?: Function;
 };
 
-const { useState, useEffect } = React;
-
 const PieChartWrapper = (props: Props) => {
 	const { data, width, height, formatter } = props;
-	const [recharts, setRecharts] = useState<any>(undefined);
-
-	useEffect(() => {
-		loadRecharts();
-	}, []);
-
-	const loadRecharts = async () => {
-		setRecharts(await import('recharts'));
-	};
-
-	if (recharts === undefined) {
-		return <span>Loading...</span>;
-	}
-
-	const { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } = recharts;
 
 	return (
 		<ResponsiveContainer width={width} height={height}>

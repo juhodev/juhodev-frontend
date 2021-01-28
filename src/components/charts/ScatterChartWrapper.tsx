@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CartesianGrid, Legend, ResponsiveContainer, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 type Props = {
 	name: string;
@@ -8,25 +9,8 @@ type Props = {
 	yAxisName?: string;
 };
 
-const { useState, useEffect } = React;
-
 const ScatterChartWrapper = (props: Props) => {
 	const { name, data, width, height, yAxisName } = props;
-	const [recharts, setRecharts] = useState<any>(undefined);
-
-	useEffect(() => {
-		loadRecharts();
-	}, []);
-
-	const loadRecharts = async () => {
-		setRecharts(await import('recharts'));
-	};
-
-	if (recharts === undefined) {
-		return <span>Loading...</span>;
-	}
-
-	const { CartesianGrid, Legend, ResponsiveContainer, Line, LineChart, Tooltip, XAxis, YAxis } = recharts;
 
 	// This is a hack that makes a linechart to look like a scatterchart
 	// I need to do this because when using scatterchart you can't customize the size of the
