@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CsgoMatch, CsgoPlayer } from '../../../api/types';
+import { CsgoMatch, PlayerStatistics } from '../../../api/types';
 import StatHighlight from '../profiles/StatHighlight';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 type PlayerHighlight = {
 	type: string;
 	count: number;
-	player: CsgoPlayer;
+	player: PlayerStatistics;
 };
 
 const HighlightDisplayName = {
@@ -26,19 +26,8 @@ const HighlightDisplayName = {
 };
 
 const UnnecessaryStats = (props: Props) => {
-	const standardStats: string[] = [
-		'kills',
-		'deaths',
-		'assists',
-		'mvps',
-		'score',
-	];
-	const unnecessaryStats: string[] = [
-		'jumps',
-		'bombPlants',
-		'reloads',
-		'footsteps',
-	];
+	const standardStats: string[] = ['kills', 'deaths', 'assists', 'mvps', 'score'];
+	const unnecessaryStats: string[] = ['jumps', 'bombPlants', 'reloads', 'footsteps'];
 
 	const highest: PlayerHighlight[] = [];
 
@@ -58,11 +47,7 @@ const UnnecessaryStats = (props: Props) => {
 		for (const stat of unnecessaryStats) {
 			let most: PlayerHighlight = undefined;
 			for (const player of props.match.players) {
-				if (
-					most === undefined ||
-					player['unnecessaryStats'][stat] >
-						most.player['unnecessaryStats'][stat]
-				) {
+				if (most === undefined || player['unnecessaryStats'][stat] > most.player['unnecessaryStats'][stat]) {
 					most = {
 						type: stat,
 						count: player.unnecessaryStats[stat],
@@ -76,11 +61,7 @@ const UnnecessaryStats = (props: Props) => {
 
 		let most: PlayerHighlight = undefined;
 		for (const player of props.match.players) {
-			if (
-				most === undefined ||
-				player.unnecessaryStats.blind.duration >
-					player.unnecessaryStats.blind.duration
-			) {
+			if (most === undefined || player.unnecessaryStats.blind.duration > player.unnecessaryStats.blind.duration) {
 				most = {
 					type: 'blind',
 					count: Math.round(player.unnecessaryStats.blind.duration),

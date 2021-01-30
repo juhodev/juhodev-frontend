@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { GameWithStats } from '../../../api/types';
+import { MatchWithPlayerStats } from '../../../api/types';
 import { dateFormat } from '../../../ts/timeUtils';
 
 type Props = {
-	match: GameWithStats;
+	match: MatchWithPlayerStats;
 };
 
 const CsgoMatchPreview = (props: Props) => {
@@ -46,7 +46,6 @@ const CsgoMatchPreview = (props: Props) => {
 				<span className="text-gray-500 mx-1">-</span>
 				<span>{match.player.score} score</span>
 			</div>
-			{/* <span>{`${match.player.kills} kills - ${match.player.assists} assists - ${match.player.deaths} deaths - ${match.player.score} score`}</span> */}
 		</a>
 	);
 };

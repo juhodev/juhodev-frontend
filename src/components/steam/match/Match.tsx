@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { fetchCsgoMatch } from '../../../api/api';
-import { CsgoMatch, CsgoPlayer, SteamMatchResponse } from '../../../api/types';
+import { CsgoMatch, PlayerStatistics, SteamMatchResponse } from '../../../api/types';
 import MapBanner from './MapBanner';
 import Scoreboard from './scoreboard/Scoreboard';
 import UnnecessaryStats from './UnnecessaryStats';
@@ -12,9 +12,7 @@ const Match = () => {
 	const [csgoMatch, setCsgoMatch] = useState<CsgoMatch>(undefined);
 
 	useEffect(() => {
-		const searchParams: URLSearchParams = new URLSearchParams(
-			window.location.search,
-		);
+		const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
 
 		if (!searchParams.has('id')) {
 			return;
@@ -36,13 +34,8 @@ const Match = () => {
 		return <h1>Loading</h1>;
 	}
 
-	const terroristPlayers: CsgoPlayer[] = csgoMatch.players.filter(
-		(player) => player.side === 'T',
-	);
-
-	const counterTerroristPlayers: CsgoPlayer[] = csgoMatch.players.filter(
-		(player) => player.side === 'CT',
-	);
+	const terroristPlayers: PlayerStatistics[] = csgoMatch.players.filter((player) => player.side === 'T');
+	const counterTerroristPlayers: PlayerStatistics[] = csgoMatch.players.filter((player) => player.side === 'CT');
 
 	return (
 		<div className="flex justify-center">

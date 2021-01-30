@@ -256,7 +256,7 @@ export type CsgoPlayer = {
 
 export type CsgoMatch = {
 	date: number;
-	players: CsgoPlayer[];
+	players: PlayerStatistics[];
 	map: string;
 	matchDuration: number;
 	waitTime: number;
@@ -282,7 +282,7 @@ export type SteamUploadCodeResponse = {
 export type SteamGamesResponse = {
 	error: boolean;
 	errorCode?: number;
-	games?: GameWithStats[];
+	matches?: MatchWithPlayerStats[];
 	mapStatistics?: MapStatistics;
 	matchFrequency?: DateMatches[];
 };
@@ -401,3 +401,35 @@ export type ItemPickup = {
 	count: number;
 	silent: number;
 };
+
+export type MatchWithPlayerStats = {
+	id: number;
+	date: number;
+	ctRounds: number;
+	tRounds: number;
+	map: string;
+	matchDuration: number;
+	player: PlayerStatistics;
+};
+
+export type PlayerStatistics = {
+	player: PlayerData;
+	ping: number;
+	kills: number;
+	assists: number;
+	deaths: number;
+	mvps: number;
+	hsp: number;
+	score: number;
+	side: Side;
+	unnecessaryStats?: UnnecessaryStats;
+};
+
+export type PlayerData = {
+	name: string;
+	id: string;
+	avatarLink: string;
+	steamLink: string;
+};
+
+export type Side = 'T' | 'CT' | 'TIE';

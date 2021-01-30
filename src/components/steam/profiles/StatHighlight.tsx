@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { CsgoPlayer } from '../../../api/types';
+import { PlayerStatistics } from '../../../api/types';
 
-type Props = { profile: CsgoPlayer; text: string; count: number | string };
+type Props = { profile: PlayerStatistics; text: string; count: number | string };
 
 const StatHighlight = (props: Props) => {
 	const { profile, text, count } = props;
@@ -9,17 +9,15 @@ const StatHighlight = (props: Props) => {
 	return (
 		<div className="flex flex-col bg-gray-800 p-2 m-2 rounded">
 			<div className="flex items-center">
-				<img className="w-10 h-10 rounded" src={profile.avatar} />
+				<img className="w-10 h-10 rounded" src={profile.player.avatarLink} />
 				<div className="mx-2 flex flex-col self-end">
 					<a
 						className="text-xl text-gray-100 whitespace-nowrap overflow-hidden truncate w-32"
-						href={`${window.location.origin}/steam?id=${profile.playerId}`}
+						href={`${window.location.origin}/steam?id=${profile.player.id}`}
 					>
-						{profile.name}
+						{profile.player.name}
 					</a>
-					<span className="text-gray-500 text-xs leading-none">
-						{profile.playerId}
-					</span>
+					<span className="text-gray-500 text-xs leading-none">{profile.player.id}</span>
 				</div>
 			</div>
 			<div className="flex flex-col mt-4">

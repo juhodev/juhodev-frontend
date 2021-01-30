@@ -40,7 +40,7 @@ const Steam = () => {
 	const selectedClassName: string = 'text-lg mx-2 text-gray-200 font-bold border-b-2 border-blue-600';
 	const normalClassName: string = 'text-lg mx-2 text-gray-200';
 
-	const paths: string[] = ['Search', 'Leaderboard', 'Track'];
+	const paths: string[] = ['Search', 'Track'];
 	const pathComponents: React.ReactNode = paths.map((path) => (
 		<button
 			className={page === path.toLowerCase() ? selectedClassName : normalClassName}
