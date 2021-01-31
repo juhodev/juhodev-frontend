@@ -40,7 +40,7 @@ const CsgoMatches = (props: Props) => {
 		setMatches(response.matches);
 	};
 
-	const changePage = (by: number) => {
+	const changePage = (by: number, map?: string) => {
 		const newPage: number = page + by;
 		if (newPage < 0) {
 			return;
@@ -48,7 +48,7 @@ const CsgoMatches = (props: Props) => {
 
 		setPage(newPage);
 		window.history.pushState(undefined, 'Csgo match history', `/matches?id=${props.steamId}&page=${newPage}`);
-		fetchData();
+		fetchData(map);
 	};
 
 	const fetchMaps = async () => {
@@ -57,16 +57,18 @@ const CsgoMatches = (props: Props) => {
 	};
 
 	const changeMap = (map: string) => {
+		const changePageBy: number = page * -1;
+
 		// This is special behavior for the `all` filter. Should have thought about this
 		// but now I'll do it this way and I'm not changing it 😡
 		if (map === 'All') {
 			setSelectedMap('all');
-			fetchData('all');
+			changePage(changePageBy, 'all');
 			return;
 		}
 
 		setSelectedMap(map);
-		fetchData(map);
+		changePage(changePageBy, map);
 	};
 
 	const gameComponents: JSX.Element[] = matches.map((match) => {
