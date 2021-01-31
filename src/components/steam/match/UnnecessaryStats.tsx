@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CsgoMatch, PlayerStatistics } from '../../../api/types';
+import { isNil } from '../../../ts/utils';
 import StatHighlight from '../profiles/StatHighlight';
 
 type Props = {
@@ -43,28 +44,19 @@ const UnnecessaryStats = (props: Props) => {
 		highest.push(most);
 	}
 
-	if (props.match.players[0].unnecessaryStats !== undefined) {
-		for (const stat of unnecessaryStats) {
-			let most: PlayerHighlight = undefined;
-			for (const player of props.match.players) {
-				if (most === undefined || player['unnecessaryStats'][stat] > most.player['unnecessaryStats'][stat]) {
-					most = {
-						type: stat,
-						count: player.unnecessaryStats[stat],
-						player,
-					};
-				}
-			}
-
-			highest.push(most);
-		}
-
+	for (const stat of unnecessaryStats) {
 		let most: PlayerHighlight = undefined;
 		for (const player of props.match.players) {
-			if (most === undefined || player.unnecessaryStats.blind.duration > player.unnecessaryStats.blind.duration) {
+			// The player's might sometimes not have unnecessary stats even if every one else
+			// has them. That's why I check this for every player and not just for the first player
+			if (isNil(player.unnecessaryStats)) {
+				continue;
+			}
+
+			if (most === undefined || player['unnecessaryStats'][stat] > most.player['unnecessaryStats'][stat]) {
 				most = {
-					type: 'blind',
-					count: Math.round(player.unnecessaryStats.blind.duration),
+					type: stat,
+					count: player.unnecessaryStats[stat],
 					player,
 				};
 			}
@@ -72,6 +64,25 @@ const UnnecessaryStats = (props: Props) => {
 
 		highest.push(most);
 	}
+
+	let most: PlayerHighlight = undefined;
+	for (const player of props.match.players) {
+		// The player's might sometimes not have unnecessary stats even if every one else
+		// has them. That's why I check this for every player and not just for the first player
+		if (isNil(player.unnecessaryStats)) {
+			continue;
+		}
+
+		if (most === undefined || player.unnecessaryStats.blind.duration > player.unnecessaryStats.blind.duration) {
+			most = {
+				type: 'blind',
+				count: Math.round(player.unnecessaryStats.blind.duration),
+				player,
+			};
+		}
+	}
+
+	highest.push(most);
 
 	return (
 		<div className="mt-4 grid xl:grid-cols-4 lg:grid-cols-3 gap-2">

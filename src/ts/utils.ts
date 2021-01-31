@@ -1,13 +1,10 @@
 // https://stackoverflow.com/a/1349426
 export function makeid(length: number): string {
 	var result = '';
-	var characters =
-		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	var charactersLength = characters.length;
 	for (var i = 0; i < length; i++) {
-		result += characters.charAt(
-			Math.floor(Math.random() * charactersLength),
-		);
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
 	}
 	return result;
 }
@@ -39,14 +36,14 @@ export function redirectFrom(to: string, from: string) {
 	window.location.href = `${to}?from=${from}`;
 }
 
-export function pluralize(
-	text: string,
-	textPlural: string,
-	count: number,
-): string {
+export function pluralize(text: string, textPlural: string, count: number): string {
 	if (count === 1) {
 		return text;
 	} else {
 		return textPlural;
 	}
+}
+
+export function isNil(value: any): boolean {
+	return value === undefined || value === null;
 }
