@@ -103,10 +103,7 @@ export async function fetchClip(clip: string): Promise<ClipsRouteResponse> {
 	return response.json();
 }
 
-export async function sendImage(
-	name: string,
-	link: string,
-): Promise<ImageRouteResponse> {
+export async function sendImage(name: string, link: string): Promise<ImageRouteResponse> {
 	const response = await fetch(`${getURL()}/api/images`, {
 		method: 'POST',
 		headers: {
@@ -119,9 +116,7 @@ export async function sendImage(
 	return response.json();
 }
 
-export async function fetchProfile(
-	snowflake: string,
-): Promise<ProfileRouteResponse> {
+export async function fetchProfile(snowflake: string): Promise<ProfileRouteResponse> {
 	let url: string;
 	if (snowflake === null) {
 		url = `${getURL()}/api/profile`;
@@ -139,9 +134,7 @@ export async function fetchProfile(
 	return response.json();
 }
 
-export async function fetchCsgoProfile(
-	id: string,
-): Promise<SteamRouteResponse> {
+export async function fetchCsgoProfile(id: string): Promise<SteamRouteResponse> {
 	const response = await fetch(`${getURL()}/api/steam/${id}`, {
 		method: 'GET',
 		headers: {
@@ -161,9 +154,7 @@ export async function fetchSearch(q: string): Promise<SteamSearchResponse> {
 	return response.json();
 }
 
-export async function fetchCsgoMatch(
-	matchId: number,
-): Promise<SteamMatchResponse> {
+export async function fetchCsgoMatch(matchId: number): Promise<SteamMatchResponse> {
 	const response = await fetch(`${getURL()}/api/steam/match?id=${matchId}`, {
 		method: 'GET',
 		headers: {
@@ -183,19 +174,13 @@ export async function fetchCsgoUploadCode(): Promise<SteamUploadCodeResponse> {
 	return response.json();
 }
 
-export async function fetchCsgoMatchesForUser(
-	id: string,
-	page: number,
-): Promise<SteamGamesResponse> {
-	const response = await fetch(
-		`${getURL()}/api/steam/games?id=${id}&page=${page}`,
-		{
-			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-			},
+export async function fetchCsgoMatchesForUser(id: string, page: number, map: string): Promise<SteamGamesResponse> {
+	const response = await fetch(`${getURL()}/api/steam/games?id=${id}&page=${page}&map=${map}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
 		},
-	);
+	});
 	return response.json();
 }
 
@@ -273,6 +258,11 @@ export async function fetchDemoWorkerStatus() {
 
 export async function fetchMetrics() {
 	const response = await fetch(`${getURL()}/api/metrics`);
+	return response.json();
+}
+
+export async function fetchUniqueMaps(id: string) {
+	const response = await fetch(`${getURL()}/api/steam/uniquemaps?id=${id}`);
 	return response.json();
 }
 

@@ -433,3 +433,9 @@ export type PlayerData = {
 };
 
 export type Side = 'T' | 'CT' | 'TIE';
+
+export type SteamUniqueMapsResponse = {
+	error: boolean;
+	errorCode?: number;
+	data: string[];
+};
