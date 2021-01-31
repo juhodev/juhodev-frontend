@@ -62,7 +62,9 @@ const UnnecessaryStats = (props: Props) => {
 			}
 		}
 
-		highest.push(most);
+		if (most !== undefined) {
+			highest.push(most);
+		}
 	}
 
 	let most: PlayerHighlight = undefined;
@@ -82,7 +84,9 @@ const UnnecessaryStats = (props: Props) => {
 		}
 	}
 
-	highest.push(most);
+	if (most !== undefined) {
+		highest.push(most);
+	}
 
 	return (
 		<div className="mt-4 grid xl:grid-cols-4 lg:grid-cols-3 gap-2">
