@@ -13,7 +13,7 @@ const StatHighlight = (props: Props) => {
 				<div className="mx-2 flex flex-col self-end">
 					<a
 						className="text-xl text-gray-100 whitespace-nowrap overflow-hidden truncate w-32"
-						href={`${window.location.origin}/steam?id=${profile.player.id}`}
+						href={`cs?id=${profile.player.id}`}
 					>
 						{profile.player.name}
 					</a>

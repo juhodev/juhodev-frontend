@@ -20,7 +20,7 @@ const PlayerRow = (props: Props) => {
 		<tr className={trClassName}>
 			<td className="px-4 flex flex-row items-center my-1">
 				<img className="w-8 h-8 overflow-hidden rounded mr-2" src={player.player.avatarLink} />
-				<a href={`${window.location.origin}/steam?id=${player.player.id}`}>{player.player.name}</a>
+				<a href={`cs?id=${player.player.id}`}>{player.player.name}</a>
 			</td>
 			<td className="px-1 xl:table-cell hidden xl:px-4">{player.ping}</td>
 			<td className="px-1 sm:px-4">{player.kills}</td>

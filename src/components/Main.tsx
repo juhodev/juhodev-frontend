@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const Auth = React.lazy(() => import('./Auth'));
 const Clips = React.lazy(() => import('./clips/Clips'));
@@ -18,6 +17,7 @@ const Metrics = React.lazy(() => import('./metrics/Metrics'));
 const GA = React.lazy(() => import('./projects/ga/GA'));
 const Match = React.lazy(() => import('./steam/match/Match'));
 const Login = React.lazy(() => import('./Login'));
+const CsgoProfileView = React.lazy(() => import('./steam/profiles/CsgoProfileView'));
 
 const Main = () => {
 	return (
@@ -40,6 +40,7 @@ const Main = () => {
 					<Route path="/workermetrics" component={DemoWorkerDashboard} />
 					<Route path="/ga" component={GA} />
 					<Route path="/login" component={Login} />
+					<Route path="/cs" component={CsgoProfileView} />
 				</Switch>
 			</React.Suspense>
 		</Router>

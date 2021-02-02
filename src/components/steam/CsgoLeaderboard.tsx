@@ -44,7 +44,7 @@ const CsgoLeaderboard = () => {
 						className="w-10 h-10 overflow-hidden rounded mr-2"
 						src={avatar}
 					/>
-					<a href={`${window.location.origin}/steam?id=${playerId}`}>
+					<a href={`cs?id=${playerId}`}>
 						{name}
 					</a>
 				</td>
