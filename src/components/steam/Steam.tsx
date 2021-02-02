@@ -4,7 +4,7 @@ import LinkSteamAccount from './LinkSteamAccount';
 import ProfilePreviews from './profiles/ProfilePreviews';
 import SteamInput from './SteamInput';
 
-const { useState, useEffect } = React;
+const { useState } = React;
 
 const Steam = () => {
 	const [page, setPage] = useState<string>('search');
@@ -37,16 +37,14 @@ const Steam = () => {
 		</button>
 	));
 
-	const searchOrLeaderboardWithControls = () => (
-		<div className="">
-			<div className="flex flex-row justify-center">{pathComponents}</div>
-			{renderSearchOrLeaderboard()}
-		</div>
-	);
-
 	return (
 		<div className="flex flex-row justify-center overflow-auto flex-1">
-			<div className="2xl:w-2/3 xl:w-5/6 w-full">{searchOrLeaderboardWithControls()}</div>
+			<div className="2xl:w-2/3 xl:w-5/6 w-full">
+				<div>
+					<div className="flex flex-row justify-center">{pathComponents}</div>
+					{renderSearchOrLeaderboard()}
+				</div>
+			</div>
 		</div>
 	);
 };
