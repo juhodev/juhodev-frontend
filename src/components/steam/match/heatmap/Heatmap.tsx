@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Position } from '../../../../api/types';
+import { HeatmapPosition, Position } from '../../../../api/types';
 import * as heatmap from 'heatmap.js';
 
 const { useRef, useEffect, useState } = React;
 
 type Props = {
-	positions: Position[];
+	positions: HeatmapPosition[];
 	map: string;
 };
 
@@ -43,30 +43,6 @@ const Heatmap = (props: Props) => {
 		return asset.default;
 	};
 
-	const createHeatmapData = (positions: Position[]): any[] => {
-		const squareCount: number = 7;
-
-		const points: any[] = [];
-		for (const pos of positions) {
-			const { x, y } = pos;
-
-			const squareX: number = Math.floor(x / squareCount);
-			const squareY: number = Math.floor(y / squareCount);
-
-			const old = points.find((square) => square.x === squareX && square.y === squareY);
-			if (old !== undefined) {
-				old.count++;
-				continue;
-			}
-
-			points.push({ x: squareX, y: squareY, count: 1 });
-		}
-
-		return points.map((square) => {
-			return { x: square.x * squareCount, y: square.y * squareCount, value: square.count };
-		});
-	};
-
 	useEffect(() => {
 		updateResource();
 
@@ -80,12 +56,11 @@ const Heatmap = (props: Props) => {
 			heatmapInstance = savedHeatmapInstance;
 		}
 
-		const points: any = createHeatmapData(props.positions);
-		const values = points.map((p) => p.value);
+		const values = props.positions.map((p) => p.value);
 		const data: heatmap.HeatmapData<Record<'value' | 'x' | 'y', number>> = {
 			max: Math.max(0, ...values),
 			min: 0,
-			data: points,
+			data: props.positions,
 		};
 
 		heatmapInstance.setData(data);
