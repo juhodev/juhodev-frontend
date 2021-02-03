@@ -50,7 +50,7 @@ const Match = () => {
 					counterTerroristTeam={counterTerroristPlayers}
 				/>
 				<UnnecessaryStats match={csgoMatch} />
-				{!isNil(terroristPlayers[0].unnecessaryStats.firingHeatmap) && <HeatmapContainer match={csgoMatch} />}
+				{!isNil(terroristPlayers[0].unnecessaryStats?.firingHeatmap) && <HeatmapContainer match={csgoMatch} />}
 			</div>
 		</div>
 	);
