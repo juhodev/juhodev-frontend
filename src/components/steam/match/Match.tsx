@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { fetchCsgoMatch } from '../../../api/api';
 import { CsgoMatch, PlayerStatistics, SteamMatchResponse } from '../../../api/types';
+import { isNil } from '../../../ts/utils';
 import HeatmapContainer from './heatmap/HeatmapContainer';
 import MapBanner from './MapBanner';
 import Scoreboard from './scoreboard/Scoreboard';
@@ -49,9 +50,7 @@ const Match = () => {
 					counterTerroristTeam={counterTerroristPlayers}
 				/>
 				<UnnecessaryStats match={csgoMatch} />
-				{terroristPlayers[0].unnecessaryStats.firingHeatmap !== undefined && (
-					<HeatmapContainer match={csgoMatch} />
-				)}
+				{!isNil(terroristPlayers[0].unnecessaryStats.firingHeatmap) && <HeatmapContainer match={csgoMatch} />}
 			</div>
 		</div>
 	);
