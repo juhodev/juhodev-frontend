@@ -14,14 +14,14 @@ const PlayerSelector = (props: Props) => {
 	const players: React.ReactNode[] = props.match.players.map((statistic) => {
 		if (statistic.player.id === props.selectedPlayer.player.id) {
 			return (
-				<button className={selected} onClick={() => props.selectPlayer(statistic)}>
+				<button key={statistic.player.id} className={selected} onClick={() => props.selectPlayer(statistic)}>
 					{statistic.player.name}
 				</button>
 			);
 		}
 
 		return (
-			<button className={nonSelected} onClick={() => props.selectPlayer(statistic)}>
+			<button key={statistic.player.id} className={nonSelected} onClick={() => props.selectPlayer(statistic)}>
 				{statistic.player.name}
 			</button>
 		);
