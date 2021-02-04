@@ -12,7 +12,7 @@ type Props = {
 	counterTerroristRounds: number;
 };
 
-enum SortType {
+export enum SortType {
 	SCORE = 'SCORE',
 	KILLS = 'KILLS',
 	DEATHS = 'DEATHS',
@@ -72,7 +72,7 @@ const Scoreboard = (props: Props) => {
 						<td className="pl-8 text-yellow-400 font-bold text-xl">{`T - ${props.terroristRounds}`}</td>
 					</tr>
 					{sortedTSide.map((player, index) => (
-						<PlayerRow player={player} playerIndex={index} />
+						<PlayerRow key={player.player.id} player={player} playerIndex={index} />
 					))}
 					<tr>
 						<td className="pl-8 text-blue-500 font-bold text-xl">
@@ -80,7 +80,7 @@ const Scoreboard = (props: Props) => {
 						</td>
 					</tr>
 					{sortedCTSide.map((player, index) => (
-						<PlayerRow player={player} playerIndex={index} />
+						<PlayerRow key={player.player.id} player={player} playerIndex={index} />
 					))}
 				</tbody>
 			</table>

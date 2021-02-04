@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CsgoPlayer, PlayerStatistics } from '../../../../api/types';
+import { PlayerStatistics } from '../../../../api/types';
 
 type Props = {
 	player: PlayerStatistics;
