@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CsgoMatch, PlayerStatistics } from '../../../../api/types';
+import { isNil } from '../../../../ts/utils';
 
 type Props = {
 	match: CsgoMatch;
@@ -8,6 +9,10 @@ type Props = {
 };
 
 const PlayerSelector = (props: Props) => {
+	if (isNil(props.match.players)) {
+		return <span className="text-red-500 text-lg">ERROR: This match doens't have players!</span>;
+	}
+
 	const nonSelected: string = 'bg-gray-800 rounded px-4 py-2 m-2 text-gray-200';
 	const selected: string = 'bg-gray-800 rounded px-4 py-2 m-2 text-blue-500 font-bold';
 
