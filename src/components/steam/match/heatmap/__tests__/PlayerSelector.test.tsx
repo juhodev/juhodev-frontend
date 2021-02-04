@@ -4,7 +4,6 @@ import * as React from 'react';
 import { CsgoMatch, PlayerStatistics } from '../../../../../api/types';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PlayerSelector from '../PlayerSelector';
-import { StateMock } from '@react-mock/state';
 
 const createMatch = (): CsgoMatch => {
 	const firstSelected: PlayerStatistics = {

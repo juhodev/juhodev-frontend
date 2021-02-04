@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { HeatmapPosition, Position } from '../../../../api/types';
 import * as heatmap from 'heatmap.js';
+import { isNil } from '../../../../ts/utils';
 
 const { useRef, useEffect, useState } = React;
 
@@ -13,6 +14,14 @@ const Heatmap = (props: Props) => {
 	const [img, setImg] = useState<string>(undefined);
 	const [savedHeatmapInstance, setSavedHeatmapInstance] = useState<any>(undefined);
 	const containerRef = useRef(null);
+
+	if (isNil(props.positions)) {
+		return (
+			<div className="flex justify-center">
+				<img className="rounded" src={img} width={1024} height={1024}></img>
+			</div>
+		);
+	}
 
 	const lazyLoadImage = async (map: string) => {
 		let file: string;

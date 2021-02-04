@@ -19,7 +19,7 @@ const HeatmapContainer = (props: Props) => {
 				selectPlayer={(player) => setSelectedPlayer(player)}
 				selectedPlayer={selectedPlayer}
 			/>
-			<Heatmap map={props.match.map} positions={selectedPlayer.unnecessaryStats.firingHeatmap} />
+			<Heatmap map={props.match.map} positions={selectedPlayer.unnecessaryStats?.firingHeatmap} />
 		</div>
 	);
 };
