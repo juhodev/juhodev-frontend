@@ -92,6 +92,7 @@ const UnnecessaryStats = (props: Props) => {
 		<div className="mt-4 grid xl:grid-cols-4 lg:grid-cols-3 gap-2">
 			{highest.map((highlight) => (
 				<StatHighlight
+					key={highlight.type}
 					text={HighlightDisplayName[highlight.type]}
 					profile={highlight.player}
 					count={highlight.count}

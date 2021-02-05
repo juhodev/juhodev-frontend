@@ -157,9 +157,6 @@ export async function fetchSearch(q: string): Promise<SteamSearchResponse> {
 export async function fetchCsgoMatch(matchId: number): Promise<SteamMatchResponse> {
 	const response = await fetch(`${getURL()}/api/steam/match?id=${matchId}`, {
 		method: 'GET',
-		headers: {
-			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-		},
 	});
 	return response.json();
 }

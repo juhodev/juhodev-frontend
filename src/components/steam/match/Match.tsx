@@ -17,6 +17,7 @@ const Match = () => {
 		const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
 
 		if (!searchParams.has('id')) {
+			console.error('Search params does not have `id`');
 			return;
 		}
 
@@ -27,6 +28,11 @@ const Match = () => {
 	const fetchData = async (matchId: number) => {
 		const response: SteamMatchResponse = await fetchCsgoMatch(matchId);
 
+		if (isNil(response.csgoMatch)) {
+			setCsgoMatch(null);
+			return;
+		}
+
 		setCsgoMatch(response.csgoMatch);
 		setLoading(false);
 	};
@@ -34,6 +40,16 @@ const Match = () => {
 	if (loading) {
 		// TODO: Add a better loading page
 		return <h1>Loading</h1>;
+	}
+
+	if (csgoMatch === null) {
+		return (
+			<div className="flex justify-center">
+				<div className="w-full lg:w-2/3">
+					<span className="text-gray-200 text-xl">Game not found!</span>
+				</div>
+			</div>
+		);
 	}
 
 	const terroristPlayers: PlayerStatistics[] = csgoMatch.players.filter((player) => player.side === 'T');
