@@ -58,8 +58,7 @@ const mockResponse: SteamMatchResponse = {
 
 const handlers = [
 	rest.get('http://localhost:8080/api/steam/match', (req, res, ctx) => {
-		const { id } = req.params;
-
+		const id = req.url.searchParams.get('id');
 		if (id === '1') {
 			return res(ctx.json(mockResponse));
 		} else {
@@ -80,17 +79,26 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-const setSearch = () => {
+const setSearch = (matchId: number) => {
 	delete window.location;
 	//@ts-ignore
-	window.location = new URL('http://localhost:8080?id=1');
+	window.location = new URL(`http://localhost:8080?id=${matchId}`);
 };
 
 test('loads match', async () => {
-	setSearch();
+	setSearch(1);
 
 	render(<Match />);
 	await waitFor(() => screen.getByText('Mirage'));
 
 	expect(screen.findByText('joo')).toBeDefined();
+});
+
+test('render an error message if the game is undefined', async () => {
+	setSearch(123);
+
+	render(<Match />);
+	await waitFor(() => screen.getByText('Game not found!'));
+
+	expect(screen.findByText('Game not found!')).toBeDefined();
 });

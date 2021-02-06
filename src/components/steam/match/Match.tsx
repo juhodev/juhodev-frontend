@@ -30,9 +30,11 @@ const Match = () => {
 
 		if (isNil(response.csgoMatch)) {
 			setCsgoMatch(null);
+			setLoading(false);
 			return;
 		}
 
+		// console.log('got response', response);
 		setCsgoMatch(response.csgoMatch);
 		setLoading(false);
 	};
