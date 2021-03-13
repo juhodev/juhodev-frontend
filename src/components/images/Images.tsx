@@ -7,7 +7,7 @@ import {
 } from '../../api/types';
 import { fetchImages } from '../../api/api';
 import User from '../User';
-import SubmissionFeed from '../SubmissionFeed';
+import SubmissionFeed from '../discord/SubmissionFeed';
 import LinkDiscord from '../LinkDiscord';
 import ImageUpload from './ImageUpload';
 import { redirectFrom } from '../../ts/utils';

@@ -5,9 +5,9 @@ import {
 	QuoteSubmission,
 	SubmissionType,
 	UserSubmission,
-} from '../api/types';
-import { timeSince } from '../ts/timeUtils';
-import TextIcon from './utils/TextIcon';
+} from '../../api/types';
+import { timeSince } from '../../ts/timeUtils';
+import TextIcon from '../utils/TextIcon';
 
 import Person from '../../assets/person.svg';
 import Paint from '../../assets/paint.svg';

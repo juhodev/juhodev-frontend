@@ -2,7 +2,7 @@ import * as React from 'react';
 import User from './User';
 import { fetchUserData } from '../api/api';
 import { ERROR, UserBasicData, UserRouteResponse } from '../api/types';
-import SubmissionFeed from './SubmissionFeed';
+import SubmissionFeed from './discord/SubmissionFeed';
 import LinkDiscord from './LinkDiscord';
 import { redirectFrom } from '../ts/utils';
 import { LOGIN_PAGE } from '../ts/constants';

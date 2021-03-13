@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ImageSubmission, SubmissionType, UserSubmission } from '../api/types';
-import { filterSearch } from '../ts/search';
+import { ImageSubmission, SubmissionType, UserSubmission } from '../../api/types';
+import { filterSearch } from '../../ts/search';
 import Submission from './Submission';
-import Sort from './utils/Sort';
+import Sort from '../utils/Sort';
 
 const { useState } = React;
 
