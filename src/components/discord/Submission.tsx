@@ -9,12 +9,12 @@ import {
 import { timeSince } from '../../ts/timeUtils';
 import TextIcon from '../utils/TextIcon';
 
-import Person from '../../assets/person.svg';
-import Paint from '../../assets/paint.svg';
-import Today from '../../assets/today.svg';
-import Eye from '../../assets/eye.svg';
-import Source from '../../assets/source.svg';
-import More from '../../assets/more.svg';
+import Person from '../../../assets/person.svg';
+import Paint from '../../../assets/paint.svg';
+import Today from '../../../assets/today.svg';
+import Eye from '../../../assets/eye.svg';
+import Source from '../../../assets/source.svg';
+import More from '../../../assets/more.svg';
 
 type Props = { submission: UserSubmission };
 
