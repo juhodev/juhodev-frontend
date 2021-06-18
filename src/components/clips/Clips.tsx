@@ -9,7 +9,7 @@ import {
 import { LOGIN_PAGE } from '../../ts/constants';
 import { redirectFrom } from '../../ts/utils';
 import LinkDiscord from '../LinkDiscord';
-import SubmissionFeed from '../SubmissionFeed';
+import SubmissionFeed from '../discord/SubmissionFeed';
 import User from '../User';
 
 const { useState, useEffect } = React;
