@@ -18,6 +18,7 @@ const GA = React.lazy(() => import('./projects/ga/GA'));
 const Match = React.lazy(() => import('./steam/match/Match'));
 const Login = React.lazy(() => import('./Login'));
 const CsgoProfileView = React.lazy(() => import('./steam/profiles/CsgoProfileView'));
+const MemeTemplate = React.lazy(() => import('./memes/MemeTemplate'));
 
 const Main = () => {
 	return (
@@ -41,6 +42,7 @@ const Main = () => {
 					<Route path="/ga" component={GA} />
 					<Route path="/login" component={Login} />
 					<Route path="/cs" component={CsgoProfileView} />
+					<Route path="/meme" component={MemeTemplate} />
 				</Switch>
 			</React.Suspense>
 		</Router>

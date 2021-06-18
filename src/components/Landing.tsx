@@ -10,6 +10,7 @@ const Landing = () => {
 			<ProjectCard name="Discord" link="/home" img={Discord} backgroundColor={'bg-discord'} />
 			<ProjectCard name="Steam" link="/steam" img={Steam} />
 			<ProjectCard name="?" />
+			<ProjectCard name="Memes" link="/meme" />
 		</div>
 	);
 };
