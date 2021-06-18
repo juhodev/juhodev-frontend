@@ -13,6 +13,7 @@ import {
 	SteamLeaderboardResponse,
 	SteamStatisticsResponse,
 	SteamLinkResponse,
+	TodoResponse,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -261,6 +262,76 @@ export async function fetchMetrics() {
 export async function fetchUniqueMaps(id: string) {
 	const response = await fetch(`${getURL()}/api/steam/uniquemaps?id=${id}`);
 	return response.json();
+}
+
+export async function fetchTodoItems(): Promise<TodoResponse> {
+	const response = await fetch(`${getURL()}/api/todo`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+	});
+	return response.json();
+}
+
+export async function sendCompleteTodo(id: number) {
+	const response = await fetch(`${getURL()}/api/todo/done`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+		body: JSON.stringify({
+			id,
+		}),
+	});
+
+	return response;
+}
+
+export async function sendCancelTodo(id: number) {
+	const response = await fetch(`${getURL()}/api/todo/cancel`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+		body: JSON.stringify({
+			id,
+		}),
+	});
+
+	return response;
+}
+
+export async function sendRemoveTodo(id: number) {
+	const response = await fetch(`${getURL()}/api/todo/remove`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+		body: JSON.stringify({
+			id,
+		}),
+	});
+
+	return response;
+}
+
+export async function sendTodoTask(task: string) {
+	const response = await fetch(`${getURL()}/api/todo/add`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+		},
+		body: JSON.stringify({
+			task,
+		}),
+	});
+
+	return response;
 }
 
 export function getURL() {
