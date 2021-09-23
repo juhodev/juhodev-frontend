@@ -5,6 +5,7 @@ import { LOGIN_PAGE } from '../../ts/constants';
 import { redirectFrom } from '../../ts/utils';
 import TodoCreator from './TodoCreator';
 import TodoItem from './TodoItem';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 const { useState, useEffect } = React;
 
@@ -54,6 +55,17 @@ const TodoPage = () => {
 				<div className="mb-4">{otherItems}</div>
 				<div className="mb-4">{doneItems}</div>
 				<div className="">{cancelledItems}</div>
+				<ProgressBar
+					uuid="this is a test"
+					snowflake="ldjaljdasjjkaslkdj"
+					size="xl"
+					value={50}
+					max={100}
+					title="This is a test progress bar"
+					displayNumber={true}
+					displayPercentage={true}
+					onEdit={() => {}}
+				/>
 			</div>
 		</div>
 	);

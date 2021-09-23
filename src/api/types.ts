@@ -468,3 +468,13 @@ export type TodoResponse = {
 	todos?: Todo[];
 	errorCode?: number;
 };
+
+export type ProgressBarData = {
+	snowflake: string;
+	uuid: string;
+	name: string;
+	value: number;
+	max: number;
+	displayPercentage?: boolean;
+	displayNumber?: boolean;
+}

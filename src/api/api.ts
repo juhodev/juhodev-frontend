@@ -14,6 +14,7 @@ import {
 	SteamStatisticsResponse,
 	SteamLinkResponse,
 	TodoResponse,
+	ProgressBarData,
 } from './types';
 
 export async function fetchUserData(): Promise<UserRouteResponse> {
@@ -332,6 +333,43 @@ export async function sendTodoTask(task: string) {
 	});
 
 	return response;
+}
+
+export async function getProgressBars(): Promise<ProgressBarData[]> {
+	const url: string = `${getURL()}/api/todo/progressbar`;
+
+	const res = await fetch(url);
+	const data = await res.json();
+
+	return data;
+}
+
+export async function editProgressBar(original: ProgressBarData, edited: ProgressBarData): Promise<boolean> {
+	const url: string = `${getURL()}/api/todo/progressbar/edit`;
+
+	await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ original, edited }),
+	});
+
+	return true;
+}
+
+export async function createProgressBar(data: ProgressBarData): Promise<boolean> {
+	const url: string = `${getURL()}/api/todo/progressbar/create`;
+
+	await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	});
+
+	return true;
 }
 
 export function getURL() {
