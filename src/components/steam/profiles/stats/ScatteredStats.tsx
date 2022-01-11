@@ -14,17 +14,17 @@ type Props = {
 const ScatteredStats = (props: Props) => {
 	const [data, setData] = useState<number[]>([]);
 	const [currentType, setCurrentType] = useState<SelectionType>(props.types[0]);
-	const [onlySoloQueue, setOnlySoloQueue] = useState<boolean>(false);
+	const [average, setAverage] = useState<boolean>(false);
 
 	useEffect(() => {
 		fetchData();
-	}, [currentType, onlySoloQueue]);
+	}, [currentType, average]);
 
 	const fetchData = async () => {
 		const response: SteamStatisticsResponse = await fetchCsgoStatistics(
 			props.playerId,
 			currentType.type,
-			onlySoloQueue,
+			average,
 		);
 		setData(response.data);
 	};
@@ -39,8 +39,8 @@ const ScatteredStats = (props: Props) => {
 					}}
 				/>
 				<div className="mx-2">
-					<input type="checkbox" checked={onlySoloQueue} onChange={() => setOnlySoloQueue(!onlySoloQueue)} />
-					<span className="ml-2 text-gray-500 text-sm">Only show solo queue games</span>
+					<input type="checkbox" checked={average} onChange={() => setAverage(!average)} />
+					<span className="ml-2 text-gray-500 text-sm">Average</span>
 				</div>
 				<div className="flex-1"></div>
 			</div>
@@ -49,7 +49,7 @@ const ScatteredStats = (props: Props) => {
 				width="100%"
 				name={currentType.displayName}
 				data={data.map((value, i) => {
-					return { data: value };
+					return { data: Math.round(value) };
 				})}
 			/>
 		</div>
